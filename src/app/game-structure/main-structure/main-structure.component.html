@@ -1,4 +1,7 @@
 <ng-container *ngIf=structure>
-  <p *ngFor="let text of structure.paragraphs">{{ text }}</p>
-  <div (click)="loadLink(link)" class="link" *ngFor="let link of structure.links">{{ link.text }}</div>
+  <ng-container *ngFor="let text of structure.paragraphs">
+    <p>{{ text }}</p>
+    <!--<div class="separator"></div>-->
+  </ng-container>
+  <div *ngFor="let link of structure.links" (click)="loadLink(link)" class="link">{{ link.text }}</div>
 </ng-container>

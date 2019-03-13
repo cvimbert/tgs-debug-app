@@ -1,0 +1,39 @@
+@start {
+  inst1;
+  inst2;
+}
+
+@init {
+  yo1;
+  yo2;
+}
+
+#block1
+  Une petite route de terre, longue et étroite, poussièreuse,
+  et qui se divise en deux au bout d'une centaine de mètres.
+  ---
+  Louche, n'est-ce pas ?
+
+  * Prendre à gauche => #gauche
+  * Prendre à droite => #droite
+  * Explorer les alentours => #explorer
+###
+
+#droite
+  C'était pas une bonne idée !
+  ---
+  FIN
+###
+
+#gauche
+  Le chemin gauche est pas mal...
+###
+
+#explorer
+  Au bout d'une bonne heure de ratissage systématique, vous n'avez rien trouvé...
+  ---
+  Mais alors là rien du tout !
+
+  * Prendre à gauche => #gauche
+  * Ou à droite => #droite
+###
