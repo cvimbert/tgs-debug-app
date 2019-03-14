@@ -8,8 +8,9 @@
   yo2;
 }
 
+// commentaire
 #block1
-  [(valeur == "ok")
+  [(variableTest > 5)
     Texte début
     ---
   ]
@@ -18,7 +19,7 @@
   ---
   Louche, n'est-ce pas ?
 
-  * Prendre à gauche => #gauche
+  * (variableTest == 9) Prendre à gauche => #gauche
   * Prendre à droite => #droite
   * Explorer les alentours => #explorer
 ###
