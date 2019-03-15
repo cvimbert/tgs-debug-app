@@ -1,6 +1,10 @@
 @start {
-  inst1;
-  inst2;
+  log "false" "uuu";
+
+  if (variableTest > 2) {
+    log "dans condition";
+  }
+
 }
 
 @init {
