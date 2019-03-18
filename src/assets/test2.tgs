@@ -1,10 +1,12 @@
 @start {
   log "false" "uuu";
+  setvar t1 0;
 
-  if (variableTest > 2) {
-    log "dans condition";
+  if (variableTest > 5) {
+    log "dans condition" variableTest;
   }
 
+  log "t1 =" t1;
 }
 
 @init {
@@ -14,16 +16,18 @@
 
 // commentaire
 #block1
-  [(variableTest > 5)
+  [(variableTest == 8)
     Texte début
     ---
   ]
-  Une petite route de terre, longue et étroite, poussièreuse,
-  et qui se divise en deux au bout d'une centaine de mètres.
+  <letter>
+    Une petite route de terre, longue et étroite, poussièreuse,
+    et qui se divise en deux au bout d'une centaine de mètres.
+  </letter>
   ---
   Louche, n'est-ce pas ?
 
-  * (variableTest == 9) Prendre à gauche => #gauche
+  * (true) Prendre à gauche => #gauche
   * Prendre à droite => #droite
   * Explorer les alentours => #explorer
 ###

@@ -4,10 +4,38 @@
   border: 1px solid black;
   margin-bottom: 6px;
   width: 300px;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+  color: white;
+  text-align: center;
 }
 
 .separator {
   border: 1px solid;
   margin-top: 14px;
   width: 80%;
+}
+
+.container {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.links {
+  margin-top: 12px;
+}
+
+.paragraph {
+  background-color: ghostwhite;
+  margin-bottom: 7px;
+  padding: 12px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+
+  .line {
+
+  }
 }
