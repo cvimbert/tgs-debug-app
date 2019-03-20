@@ -1,9 +1,9 @@
 .line-container {
-  //display: initial;
+  display: initial;
 }
 
 .line-sub-container {
-  //display: inline;
+  display: inline;
 }
 
 .paragraph-separator {
@@ -24,4 +24,16 @@
 
 .bold {
   font-weight: bold;
+}
+
+.i {
+  font-style: italic;
+}
+
+.b {
+  font-weight: bold;
+}
+
+.u {
+  text-decoration: underline;
 }
