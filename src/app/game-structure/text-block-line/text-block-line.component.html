@@ -1,0 +1,9 @@
+<div class="line-container">
+  <span *ngIf="unit.text && unit.text !== '---'">
+    {{ unit.text }}
+  </span>
+  <div class="paragraph-separator" *ngIf="unit.text && unit.text == '---'"></div>
+  <div class="line-sub-container" [ngClass]="unit.styles" *ngIf="unit.units">
+    <app-text-block-line *ngFor="let subUnit of unit.units" [unit]="subUnit"></app-text-block-line>
+  </div>
+</div>

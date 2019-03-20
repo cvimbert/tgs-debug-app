@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { TGSParser, ParsingResult } from 'tgs-parser';
 import { MainStructure } from 'tgs-model';
 import { GameSequence } from 'tgs-core';
+import { TgsMainService } from './tgs-main.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TgsLoadingService {
 
-  constructor() { }
+  constructor(
+    private tgsService: TgsMainService
+  ) { }
 
   loadFile(path: string): Promise<GameSequence> {
 
@@ -20,6 +23,7 @@ export class TgsLoadingService {
         let structure: MainStructure = MainStructure.loadFromParsingResult(resp);
         let sequence = new GameSequence(structure);
         sequence.init();
+        this.tgsService.currentSequence = sequence;
         success(sequence);
       });
     });

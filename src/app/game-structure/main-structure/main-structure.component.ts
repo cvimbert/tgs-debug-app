@@ -34,7 +34,7 @@ export class MainStructureComponent implements OnInit {
     if (!link.globalLinkRef) {
       this.sequence.loadBlock(link.localLinkRef);
     } else {
-      
+
     }
   }
 
