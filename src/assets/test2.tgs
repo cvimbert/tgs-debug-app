@@ -1,4 +1,4 @@
-@start {
+@init {
   log "false" "uuu";
   setvar t1 0;
 
@@ -9,21 +9,21 @@
   log "t1 =" t1;
 }
 
-@init {
-  yo1;
-  yo2;
-}
-
 // regrouper les styles dans une seule balise, genre <title t1>
 #block1
-  @start{ setvar t1 1; }
-  [(variableTest == 8)<title>
+  @start{
+    setvar t1 1;
+    log "start";
+  }
+  [(variableTest == 7)<title>
     Texte début
     ---
   ]
   "Il me semble qu'il est temps de nous présenter..."
-  ---
-  Une petite route de terre, longue et étroite, [<b i>poussièreuse,]
+  [(variableTest == 8)<b>
+    <img src="ok.png">
+  ]
+  Une petite route de terre, longue et étroite, [<b>poussièreuse,]
   et qui se divise en deux au bout d'une centaine de mètres.
   ---
   Louche, n'est-ce pas ?
@@ -36,7 +36,9 @@
 #droite
   C'était pas une bonne idée !
   ---
-  [<b>FIN]
+  [(variableTest == 8)<b>
+    FIN
+  ]
 ###
 
 #gauche

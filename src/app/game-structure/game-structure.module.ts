@@ -8,13 +8,15 @@ import { DebugViewComponent } from './debug-view/debug-view.component';
 import { BlockComponent } from './block/block.component';
 import { TextBlockLineComponent } from './text-block-line/text-block-line.component';
 import { TgsMainService } from './tgs-main.service';
+import { TagDisplayComponent } from './tag-display/tag-display.component';
 
 @NgModule({
   declarations: [
     MainStructureComponent,
     DebugViewComponent,
     BlockComponent,
-    TextBlockLineComponent
+    TextBlockLineComponent,
+    TagDisplayComponent
   ],
   imports: [
     CommonModule,
