@@ -1,0 +1,3 @@
+<div class="tag-container" [class.inline]="tag.attributes['display'] === 'inline'">
+  <img *ngIf="tag.name === 'img'" [ngClass]="alignment" src="assets/img/{{ tag.attributes['src'] }}">
+</div>
