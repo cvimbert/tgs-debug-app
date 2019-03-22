@@ -8,11 +8,17 @@ import { TagModel } from 'tgs-model';
 })
 export class TagDisplayComponent implements OnInit {
 
+  alignment: string[] = [];
+
   @Input("tag") tag: TagModel;
 
   constructor() { }
 
   ngOnInit() {
+    if (this.tag.name === "img") {
+      let align: string = this.tag.attributes["valign"];
+      this.alignment = align ? ["valign-" + align] : [];
+    }
   }
 
 }

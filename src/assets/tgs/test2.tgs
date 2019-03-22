@@ -1,6 +1,7 @@
 @init {
   log "false" "uuu";
   setvar t1 0;
+  setvar variableTest 8;
 
   if (variableTest > 5) {
     log "dans condition" variableTest;
@@ -25,7 +26,7 @@
   [(variableTest == 8)
     <img src="ok.png">
   ]
-  Une petite route de terre, longue et étroite, [<b>poussièreuse,]
+  Une petite route de terre <img src="inline.png" display="inline" valign="middle">, longue et étroite, [<b>poussièreuse,]
   et qui se divise en deux au bout d'une centaine de mètres.
   ---
   Louche, n'est-ce pas ?

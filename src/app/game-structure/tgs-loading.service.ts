@@ -3,6 +3,7 @@ import { TGSParser, ParsingResult } from 'tgs-parser';
 import { MainStructure } from 'tgs-model';
 import { GameSequence } from 'tgs-core';
 import { TgsMainService } from './tgs-main.service';
+import { GameContext } from 'tgs-core/core/game-context.class';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,9 @@ export class TgsLoadingService {
 
   constructor(
     private tgsService: TgsMainService
-  ) { }
+  ) {
+    GameContext.init();
+  }
 
   loadFile(path: string): Promise<GameSequence> {
 
