@@ -25,7 +25,7 @@ export class TgsLoadingService {
       parser.loadTGSFile("assets/tgs/" + path + ".tgs").then((resp: ParsingResult) => {
         let structure: MainStructure = MainStructure.loadFromParsingResult(resp);
         let sequence = new GameSequence(structure);
-        sequence.init();
+        sequence.init(path);
         this.tgsService.currentSequence = sequence;
         success(sequence);
       });

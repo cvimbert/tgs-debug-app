@@ -37,6 +37,10 @@
 ###
 
 #droite
+  @start {
+    setvar yop "uuuu";
+  }
+
   C'était pas une bonne idée !
   ---
   [(variableTest == 8)<b>
