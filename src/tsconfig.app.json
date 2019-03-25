@@ -8,7 +8,9 @@
     "**/*.ts",
     "../node_modules/tgs-parser/**/*.ts",
     "../node_modules/tgs-model/**/*.ts",
-    "../node_modules/tgs-core/**/*.ts"
+    "../node_modules/tgs-core/**/*.ts",
+    "../node_modules/tgs-core/node_modules/tgs-model/**/*.ts",
+    "../node_modules/tgs-core/node_modules/tgs-parser/**/*.ts"
   ],
   "exclude": [
     "test.ts",
