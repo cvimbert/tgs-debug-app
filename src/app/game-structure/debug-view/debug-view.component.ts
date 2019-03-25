@@ -31,10 +31,6 @@ export class DebugViewComponent implements OnInit {
     })
   }
 
-  get structure(): SequenceStructure {
-    return this.sequence.sequence;
-  }
-
   get data(): MainStructure {
     if (this.sequence) {
       return this.sequence.structureData;

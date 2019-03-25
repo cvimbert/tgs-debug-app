@@ -40,8 +40,4 @@ export class MainStructureComponent implements OnInit {
     return this.loadingService.sequence;
   }
 
-  get structure(): SequenceStructure {
-    return this.loadingService.structure;
-  }
-
 }
