@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TgsLoadingService } from '../tgs-loading.service';
 import { GameSequence, SequenceStructure } from 'tgs-core';
@@ -12,8 +12,6 @@ import { LinkModel } from 'tgs-model';
 export class MainStructureComponent implements OnInit {
 
   tgsPath: string;
-  sequence: GameSequence;
-  structure: SequenceStructure;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,10 +21,10 @@ export class MainStructureComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.tgsPath = params["id"];
-      this.loadingService.loadFile(this.tgsPath).then((sequence: GameSequence) => {
-        this.sequence = sequence;
-        this.structure = sequence.sequence;
-      });
+      /*this.loadingService.loadFile(this.tgsPath).then((sequence: GameSequence) => {
+        console.log("loaded");
+        //this.ref.detectChanges();
+      });*/
     });
   }
 
@@ -36,6 +34,14 @@ export class MainStructureComponent implements OnInit {
     } else {
 
     }
+  }
+
+  get sequence(): GameSequence {
+    return this.loadingService.sequence;
+  }
+
+  get structure(): SequenceStructure {
+    return this.loadingService.structure;
   }
 
 }

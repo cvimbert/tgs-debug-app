@@ -1,5 +1,5 @@
 <div class="container">
-  <ng-container *ngIf=structure>
+  <ng-container *ngIf="structure">
     <div class="paragraph" *ngFor="let unitsArray of sequence.units">
       <app-text-block-line *ngFor="let unit of unitsArray" [unit]="unit"></app-text-block-line>
     </div>

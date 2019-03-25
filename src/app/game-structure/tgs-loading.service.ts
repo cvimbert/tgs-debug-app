@@ -7,11 +7,10 @@ import { TgsMainService } from './tgs-main.service';
 })
 export class TgsLoadingService extends GameManager {
 
-  constructor(
-    private tgsService: TgsMainService
-  ) {
+  constructor() {
     super({
-      assetsFolder: "assets/"
+      assetsFolder: "assets/",
+      rootSequence: "test2"
     });
   }
 }
