@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, HostListener } from '@angular/core';
 import { TgsLoadingService } from '../tgs-loading.service';
 import { GameSequence } from 'tgs-core';
 import { LinkModel } from 'tgs-model';
@@ -18,12 +18,10 @@ export class MainStructureComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    // on ne devrait pas faire ça avec Angular. Chercher une alternative
-    window.addEventListener("keyup", evt => {
-      this.onKeyUp(evt);
-    });
+    
   }
 
+  @HostListener('window:keyup', ['$event'])
   onKeyUp(evt:KeyboardEvent) {
     if (evt.ctrlKey) {
       switch(evt.key) {
