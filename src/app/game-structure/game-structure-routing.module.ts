@@ -5,7 +5,7 @@ import { DebugViewComponent } from './debug-view/debug-view.component';
 
 const routes: Routes = [
   {
-    path: "structure/:id",
+    path: "structure",
     component: MainStructureComponent
   },
   {

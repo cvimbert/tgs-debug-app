@@ -1,10 +1,11 @@
+<app-tools-panel *ngIf="toolsDisplayed"></app-tools-panel>
 <div class="container">
   <ng-container *ngIf="sequence">
     <div class="paragraph" *ngFor="let unitsArray of sequence.units">
       <app-text-block-line *ngFor="let unit of unitsArray" [unit]="unit"></app-text-block-line>
     </div>
     <div class="links">
-      <div *ngFor="let link of sequence .links" (click)="loadLink(link)" class="link">{{ link.text }}</div>
+      <div *ngFor="let link of sequence.links" (click)="loadLink(link)" class="link">{{ link.text }}</div>
     </div>
   </ng-container>
 </div>

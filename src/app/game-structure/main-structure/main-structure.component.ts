@@ -1,7 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { TgsLoadingService } from '../tgs-loading.service';
-import { GameSequence, SequenceStructure } from 'tgs-core';
+import { GameSequence } from 'tgs-core';
 import { LinkModel } from 'tgs-model';
 
 @Component({
@@ -9,23 +8,31 @@ import { LinkModel } from 'tgs-model';
   templateUrl: './main-structure.component.html',
   styleUrls: ['./main-structure.component.scss']
 })
-export class MainStructureComponent implements OnInit {
+export class MainStructureComponent implements OnInit, OnDestroy {
 
-  tgsPath: string;
+  toolsDisplayed: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
-    private loadingService: TgsLoadingService
+    private loadingService: TgsLoadingService,
+    private ref: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.tgsPath = params["id"];
-      /*this.loadingService.loadFile(this.tgsPath).then((sequence: GameSequence) => {
-        console.log("loaded");
-        //this.ref.detectChanges();
-      });*/
+    // on ne devrait pas faire ça avec Angular. Chercher une alternative
+    window.addEventListener("keyup", evt => {
+      this.onKeyUp(evt);
     });
+  }
+
+  onKeyUp(evt:KeyboardEvent) {
+    if (evt.ctrlKey) {
+      switch(evt.key) {
+        case "c":
+          this.toolsDisplayed = !this.toolsDisplayed;
+          this.ref.detectChanges();
+          break;
+      }
+    }
   }
 
   loadLink(link: LinkModel) {
@@ -38,6 +45,10 @@ export class MainStructureComponent implements OnInit {
 
   get sequence(): GameSequence {
     return this.loadingService.sequence;
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener("keyup", this.onKeyUp);
   }
 
 }

@@ -1,0 +1,17 @@
+.panel-body {
+    width: 90%;
+    background-color: white;
+    position: fixed;
+    margin-right: auto;
+    margin-left: auto;
+    left: 5%;
+    top: 50px;
+    border: 1px solid darkgrey;
+    border-radius: 15px;
+    padding: 14px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+input {
+    margin: 3px;
+}

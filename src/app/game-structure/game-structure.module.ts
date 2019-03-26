@@ -9,6 +9,7 @@ import { BlockComponent } from './block/block.component';
 import { TextBlockLineComponent } from './text-block-line/text-block-line.component';
 import { TgsMainService } from './tgs-main.service';
 import { TagDisplayComponent } from './tag-display/tag-display.component';
+import { ToolsPanelComponent } from './tools-panel/tools-panel.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TagDisplayComponent } from './tag-display/tag-display.component';
     DebugViewComponent,
     BlockComponent,
     TextBlockLineComponent,
-    TagDisplayComponent
+    TagDisplayComponent,
+    ToolsPanelComponent
   ],
   imports: [
     CommonModule,
