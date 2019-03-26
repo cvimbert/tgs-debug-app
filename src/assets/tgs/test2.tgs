@@ -15,15 +15,23 @@
 
 // regrouper les styles dans une seule balise, genre <title t1>
 #block1
-  @start{
+  // éxécuté au premier passage
+  @init {
+    log "init block1";
     setvar t1 1;
     log nom;
   }
+
+  // éxécuté quand le bloc est le point d'arrêt
+  @head {
+    log "block1 est le bloc de tête";
+  }
+
   [(variableTest == 8)<title>
     Texte début
     ---
   ]
-  "Il me semble qu'il est temps de nous %nom% présenter %v1%..."
+  "Il me semble qu'il est temps de nous %nom% présenter [<b>%v1%]..."
   [(variableTest == 8)
     <img src="ok.png">
   ]

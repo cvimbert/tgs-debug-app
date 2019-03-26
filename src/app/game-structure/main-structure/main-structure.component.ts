@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { TgsLoadingService } from '../tgs-loading.service';
 import { GameSequence } from 'tgs-core';
 import { LinkModel } from 'tgs-model';
@@ -10,11 +10,10 @@ import { LinkModel } from 'tgs-model';
 })
 export class MainStructureComponent implements OnInit, OnDestroy {
 
-  toolsDisplayed: boolean = true;
+  toolsDisplayed: boolean = false;
 
   constructor(
-    private loadingService: TgsLoadingService,
-    private ref: ChangeDetectorRef
+    private loadingService: TgsLoadingService
   ) { }
 
   ngOnInit() {
@@ -27,7 +26,6 @@ export class MainStructureComponent implements OnInit, OnDestroy {
       switch(evt.key) {
         case "c":
           this.toolsDisplayed = !this.toolsDisplayed;
-          this.ref.detectChanges();
           break;
       }
     }

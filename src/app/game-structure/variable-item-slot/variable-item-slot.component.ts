@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { VariableItem } from '../interfaces/variable-item';
-import { isNgTemplate } from '@angular/compiler';
 import { TgsLoadingService } from '../tgs-loading.service';
 
 @Component({
@@ -13,6 +12,7 @@ export class VariableItemSlotComponent implements OnInit {
   type: string;
 
   @Input("item") item: VariableItem;
+  @Input("index") index: number;
 
   constructor(
     private tgsService: TgsLoadingService
@@ -20,7 +20,7 @@ export class VariableItemSlotComponent implements OnInit {
 
   ngOnInit() {
     this.type = typeof this.item.value;
-    console.log(this.type);
+    //console.log(this.index);
   }
 
   get value():any {

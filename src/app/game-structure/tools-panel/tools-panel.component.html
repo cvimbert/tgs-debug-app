@@ -1,4 +1,5 @@
 <div class="panel-container">
+    <div class="panel-background" (click)="close()"></div>
     <div class="panel-body">
         <div class="panel-title">Console</div>
         <input type="button" (click)="resetGame()" value="Reset game">
@@ -6,4 +7,3 @@
         <app-variables-inspector *ngIf="variablesInspectorDisplay"></app-variables-inspector>
     </div>
 </div>
-

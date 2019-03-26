@@ -1,4 +1,4 @@
-<div class="slot">
+<div class="slot" [class.odd]="index % 2 === 1">
   <div class="name">{{ item.name }}</div>
   <div class="value">
     <input *ngIf="type === 'string'" type="text" [(ngModel)]="value">

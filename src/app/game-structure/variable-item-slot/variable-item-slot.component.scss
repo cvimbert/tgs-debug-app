@@ -1,6 +1,12 @@
 .slot {
     display: flex;
     flex-direction: row;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 3px;
+
+    &.odd {
+        background-color: rgba(0, 0, 0, 0.02);
+    }
     
     .name {
         flex: 1;
@@ -10,7 +16,7 @@
         
     }
 
-    select {
-        width: 100%;
+    select, input {
+        width: 300px;
     }
 }

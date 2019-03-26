@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TgsLoadingService } from '../tgs-loading.service';
 
 @Component({
@@ -10,6 +10,8 @@ export class ToolsPanelComponent implements OnInit {
 
   variablesInspectorDisplay: boolean = true;
 
+  @Output("onClose") onClose: EventEmitter<void> = new EventEmitter();
+
   constructor(
     private tgsService: TgsLoadingService
   ) { }
@@ -20,6 +22,11 @@ export class ToolsPanelComponent implements OnInit {
 
   resetGame() {
     this.tgsService.resetGame();
+    this.close();
+  }
+
+  close() {
+    this.onClose.emit();
   }
 
   inspectVariables() {

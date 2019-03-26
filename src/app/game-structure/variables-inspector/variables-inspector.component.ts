@@ -28,7 +28,7 @@ export class VariablesInspectorComponent implements OnInit {
       });
     }
 
-    console.log(this.variablesItems);
+    //console.log(this.variablesItems);
   }
 
 }
