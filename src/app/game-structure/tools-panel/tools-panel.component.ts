@@ -8,6 +8,8 @@ import { TgsLoadingService } from '../tgs-loading.service';
 })
 export class ToolsPanelComponent implements OnInit {
 
+  variablesInspectorDisplay: boolean = true;
+
   constructor(
     private tgsService: TgsLoadingService
   ) { }
@@ -21,6 +23,6 @@ export class ToolsPanelComponent implements OnInit {
   }
 
   inspectVariables() {
-    
+    this.variablesInspectorDisplay = !this.variablesInspectorDisplay;
   }
 }

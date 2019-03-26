@@ -10,6 +10,7 @@
   log "t1 =" t1;
   setvar nom "un nom";
   setvar v1 "ok";
+  setvar v2 false;
 }
 
 // regrouper les styles dans une seule balise, genre <title t1>

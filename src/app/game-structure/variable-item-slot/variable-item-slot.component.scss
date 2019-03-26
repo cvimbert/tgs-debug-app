@@ -1,0 +1,16 @@
+.slot {
+    display: flex;
+    flex-direction: row;
+    
+    .name {
+        flex: 1;
+    }
+
+    .value {
+        
+    }
+
+    select {
+        width: 100%;
+    }
+}

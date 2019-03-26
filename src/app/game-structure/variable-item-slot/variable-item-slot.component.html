@@ -1,0 +1,11 @@
+<div class="slot">
+  <div class="name">{{ item.name }}</div>
+  <div class="value">
+    <input *ngIf="type === 'string'" type="text" [(ngModel)]="value">
+    <input *ngIf="type === 'number'" type="number" [(ngModel)]="value">
+    <select *ngIf="type === 'boolean'" [(ngModel)]="value">
+      <option value='true'>True</option>
+      <option value='false'>False</option>
+    </select>
+  </div>
+</div>

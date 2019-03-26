@@ -10,7 +10,7 @@ import { LinkModel } from 'tgs-model';
 })
 export class MainStructureComponent implements OnInit, OnDestroy {
 
-  toolsDisplayed: boolean = false;
+  toolsDisplayed: boolean = true;
 
   constructor(
     private loadingService: TgsLoadingService,
