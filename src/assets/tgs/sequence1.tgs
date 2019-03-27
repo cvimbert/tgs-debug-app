@@ -5,6 +5,11 @@
 ###
 
 #block1
+    @head {
+        log "on head";
+        vtest = 5;
+    }
+
     Texte block1
 
     * Aller à la séquence 2 => sequence2#start
