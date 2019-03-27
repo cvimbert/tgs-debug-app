@@ -27,6 +27,10 @@ export class MainStructureComponent implements OnInit, OnDestroy {
         case "c":
           this.toolsDisplayed = !this.toolsDisplayed;
           break;
+
+        case "b":
+          this.loadingService.goBack();
+          break;
       }
     }
   }

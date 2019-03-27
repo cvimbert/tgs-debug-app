@@ -37,4 +37,9 @@ export class ToolsPanelComponent implements OnInit {
   inspectVariables() {
     this.variablesInspectorDisplay = !this.variablesInspectorDisplay;
   }
+
+  goBack() {
+    this.tgsService.goBack();
+    this.close();
+  }
 }
