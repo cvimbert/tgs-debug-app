@@ -28,3 +28,12 @@
 input {
     margin: 3px;
 }
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+
+    .panel1 {
+        flex: 1;
+    }
+}

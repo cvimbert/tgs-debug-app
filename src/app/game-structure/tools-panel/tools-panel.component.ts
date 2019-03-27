@@ -25,6 +25,11 @@ export class ToolsPanelComponent implements OnInit {
     this.close();
   }
 
+  refresh() {
+    this.tgsService.refreshGame();
+    this.close();
+  }
+
   close() {
     this.onClose.emit();
   }

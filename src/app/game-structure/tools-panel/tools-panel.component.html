@@ -2,8 +2,17 @@
     <div class="panel-background" (click)="close()"></div>
     <div class="panel-body">
         <div class="panel-title">Console</div>
-        <input type="button" (click)="resetGame()" value="Reset game">
-        <input type="button" (click)="inspectVariables()" value="Inspect variables">
+        <div class="buttons-container">
+            <div class="panel1">
+                <input type="button" (click)="resetGame()" value="Reset game">
+                <input type="button" (click)="refresh()" value="Refresh view">
+                <!--<input type="button" (click)="inspectVariables()" value="Inspect variables">-->
+            </div>
+            <div class="panel2">
+                <input type="button" (click)="close()" value="Close">
+            </div>
+        </div>
+        
         <app-variables-inspector *ngIf="variablesInspectorDisplay"></app-variables-inspector>
     </div>
 </div>

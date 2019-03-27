@@ -1,0 +1,11 @@
+#start
+    Un texte de test
+
+    * Nav => #block1
+###
+
+#block1
+    Texte block1
+
+    * Nav2 => sequence2#start
+###

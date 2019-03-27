@@ -1,4 +1,4 @@
-<app-tools-panel *ngIf="toolsDisplayed" (onClose)="toolsDisplayed = false"></app-tools-panel>
+<app-tools-panel *ngIf="toolsDisplayed" (onClose)="onClose()"></app-tools-panel>
 <div class="container">
   <ng-container *ngIf="sequence">
     <div class="paragraph" *ngFor="let unitsArray of sequence.units">

@@ -31,11 +31,16 @@ export class MainStructureComponent implements OnInit, OnDestroy {
     }
   }
 
+  onClose() {
+    this.toolsDisplayed = false;
+    this.loadingService.refreshGame();
+  }
+
   loadLink(link: LinkModel) {
     if (!link.globalLinkRef) {
       this.sequence.loadBlock(link.localLinkRef);
     } else {
-
+      this.sequence.navigateToSequence(link.globalLinkRef, link.localLinkRef);
     }
   }
 
