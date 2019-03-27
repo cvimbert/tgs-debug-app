@@ -7,5 +7,7 @@
 #block1
     Texte block1
 
-    * Nav2 => sequence2#start
+    * Aller à la séquence 2 => sequence2#start
+    * Aller à la séquence 2 bloc test => sequence2#test
+    * Aller à la séquence 3 => sequence3#start
 ###
