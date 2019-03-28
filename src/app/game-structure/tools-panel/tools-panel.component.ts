@@ -10,7 +10,7 @@ export class ToolsPanelComponent implements OnInit {
 
   variablesInspectorDisplay: boolean = true;
 
-  @Output("onClose") onClose: EventEmitter<void> = new EventEmitter();
+  @Output("onClose") onClose: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
     private tgsService: TgsLoadingService
@@ -21,8 +21,9 @@ export class ToolsPanelComponent implements OnInit {
   }
 
   resetGame() {
+    //this.close();
     this.tgsService.resetGame();
-    this.close();
+    this.close(false);
   }
 
   refresh() {
@@ -30,8 +31,8 @@ export class ToolsPanelComponent implements OnInit {
     this.close();
   }
 
-  close() {
-    this.onClose.emit();
+  close(refresh: boolean = true) {
+    this.onClose.emit(refresh);
   }
 
   inspectVariables() {

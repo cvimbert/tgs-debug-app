@@ -9,7 +9,7 @@ export class TgsLoadingService extends GameManager {
   constructor() {
     super({
       assetsFolder: "assets/",
-      rootSequence: "sequence1"
+      rootSequence: "interrogatoire1"
     });
   }
 }

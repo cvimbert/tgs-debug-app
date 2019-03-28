@@ -1,0 +1,45 @@
+@init {
+    main = 0;
+    son = 0;
+}
+
+#start
+    [<title>Un interrogatoire
+        [<subtitle>Lieu inconnu...]
+    ]
+    Est-ce que c'était un soleil qui tourne devant moi ?
+    ---
+    Difficile à dire...
+    ---
+    Une forme ronde, lumineuse me vrille les pupilles, provoque des élancement dans mes orbites,
+    et fait vibrer mon pauvre crâne au bord de la rupture...
+    ---
+    A la périphérie de ce soleil, rien d'autre qu'une obscurité totale.
+
+    * (main == 0) Tendre la main... => #tendremain
+    * (son == 0) Un bourdonnement... => #bourdonnement
+    * -> #hub1
+
+#hub1
+    * (main == 0) Tendre la main... => #tendremain
+    * (son == 0) Un bourdonnement... => #bourdonnement
+
+#tendremain
+    @init { main = 1; }
+
+    Tendre la main vers ce soleil était peut-être la solution. Un peu naïve...
+    ---
+    L'ombre de ma main se découpe, tranchante sur le cercle lumineux. Rien d'autre...
+
+    * (main == 0) Tendre la main... => #tendremain
+    * (son == 0) Un bourdonnement... => #bourdonnement
+
+#bourdonnement
+    @init { son = 1; }
+
+    Un bourdonnement sourd semble provenir de... si c'est possible... de l'autre côté du soleil.
+    ---
+    Tantôt une vibration mécanique, tantôt une basse psalmodie...
+
+    * (main == 0) Tendre la main... => #tendremain
+    * (son == 0) Un bourdonnement... => #bourdonnement

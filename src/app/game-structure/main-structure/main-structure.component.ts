@@ -21,9 +21,9 @@ export class MainStructureComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:keyup', ['$event'])
-  onKeyUp(evt:KeyboardEvent) {
+  onKeyUp(evt: KeyboardEvent) {
     if (evt.ctrlKey) {
-      switch(evt.key) {
+      switch (evt.key) {
         case "c":
           this.toolsDisplayed = !this.toolsDisplayed;
           break;
@@ -32,12 +32,22 @@ export class MainStructureComponent implements OnInit, OnDestroy {
           this.loadingService.goBack();
           break;
       }
+    } else {
+      switch (evt.key) {
+        case "Escape":
+          this.toolsDisplayed = false;
+          this.loadingService.refreshGame();
+          break;
+      }
     }
   }
 
-  onClose() {
+  onClose(refresh: boolean) {
     this.toolsDisplayed = false;
-    this.loadingService.refreshGame();
+
+    if (refresh) {
+      this.loadingService.refreshGame();
+    }
   }
 
   loadLink(link: LinkModel) {
