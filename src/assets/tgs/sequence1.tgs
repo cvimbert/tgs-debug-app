@@ -1,3 +1,10 @@
+?condition1 { vtest == 5 }
+?condition2 { true }
+
+@script1 {
+    log "exec script 1";
+}
+
 #start
     Un texte de test
 
@@ -15,11 +22,12 @@
         vtest += 10;
         vtest (=) 7;
         vtest = t1;
+        global.yop = "val";
     }
 
     Texte block1
     ---
-    Valeur vtest %vtest%
+    Valeur vtest %vtest% 
 
     * Aller à la séquence 2 => sequence2#start
     * Aller à la séquence 2 bloc test => sequence2#test
