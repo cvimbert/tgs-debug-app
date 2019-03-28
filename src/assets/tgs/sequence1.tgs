@@ -5,14 +5,23 @@
 ###
 
 #block1
+    @init {
+        vtest = 1;
+    }
+
     @head {
+        t1 = 99;
         log "on head";
-        vtest = 5;
+        vtest += 10;
+        vtest (=) 7;
+        vtest = t1;
     }
 
     Texte block1
+    ---
+    Valeur vtest %vtest%
 
     * Aller à la séquence 2 => sequence2#start
     * Aller à la séquence 2 bloc test => sequence2#test
-    * Aller à la séquence 3 => sequence3#start
+    * Aller à la séquence 3 => sequence3
 ###
