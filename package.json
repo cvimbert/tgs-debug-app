@@ -2,7 +2,6 @@
   "name": "tgs-debug-app",
   "version": "0.0.0",
   "main": "main.js",
-  
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -44,7 +43,9 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "@types/electron": "^1.6.10",
     "core-js": "^2.5.4",
+    "ngx-electron": "^2.1.1",
     "rxjs": "~6.3.3",
     "tgs-core": "file:../tgs-core",
     "tgs-model": "file:../tgs-model",
