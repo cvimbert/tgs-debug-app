@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { GameManager, GameSequence } from 'tgs-core';
 import { ElectronService } from 'ngx-electron';
+import { MainStructure } from 'tgs-model';
+import { ParsingResult } from '../../../../tgs-parser';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +26,16 @@ export class TgsLoadingService extends GameManager {
     } else {
       return new Promise<GameSequence>((success: Function) => {
         let fs = this.electronService.remote.require("fs");
-        let localPath: string = "/assets/tgs/" + path + ".tgs";
+        let localPath: string = "./" + this.configuration.assetsFolder + "tgs/" + path + ".tgs";
 
-        fs.readFile(localPath, (fail, resp) => {
-          console.log(fail);
-          console.log(resp);
+        fs.readFile(localPath, "utf8", (fail: string, resp: string) => {
+          let assetsFolder: string = this.configuration.assetsFolder || "";
+
+          let result: ParsingResult = this.parser.parseTGSString(resp);
+          let structure: MainStructure = MainStructure.loadFromParsingResult(result);
+          this.sequence = new GameSequence(structure, this);
+          this.loading = false;
+          success(this.sequence);
         });
 
         console.log(localPath);
