@@ -19,8 +19,7 @@ export class TgsLoadingService extends GameManager {
   }
 
   loadFile(path: string): Promise<GameSequence> {
-    if (false) {
-      console.log("ici");
+    if (!this.electronService.isElectronApp) {
       return super.loadFile(path);
     } else {
       return new Promise<GameSequence>((success: Function) => {
@@ -28,6 +27,7 @@ export class TgsLoadingService extends GameManager {
         let localPath: string = "/assets/tgs/" + path + ".tgs";
 
         fs.readFile(localPath, (fail, resp) => {
+          console.log(fail);
           console.log(resp);
         });
 
