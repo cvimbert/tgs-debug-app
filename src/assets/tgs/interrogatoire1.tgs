@@ -16,13 +16,11 @@
     ---
     A la périphérie de ce soleil, rien d'autre qu'une obscurité totale.
 
-    * (main == 0) Tendre la main... => #tendremain
-    * (son == 0) Un bourdonnement... => #bourdonnement
-    * -> #hub1
+    * => #hub1
 
 #hub1
-    * (main == 0) Tendre la main... => #tendremain
-    * (son == 0) Un bourdonnement... => #bourdonnement
+    * (main == 0) Tendre la main... -> #tendremain
+    * (son == 0) Un bourdonnement... -> #bourdonnement
 
 #tendremain
     @init { main = 1; }
@@ -31,8 +29,7 @@
     ---
     L'ombre de ma main se découpe, tranchante sur le cercle lumineux. Rien d'autre...
 
-    * (main == 0) Tendre la main... => #tendremain
-    * (son == 0) Un bourdonnement... => #bourdonnement
+    * => #hub1
 
 #bourdonnement
     @init { son = 1; }
@@ -41,5 +38,4 @@
     ---
     Tantôt une vibration mécanique, tantôt une basse psalmodie...
 
-    * (main == 0) Tendre la main... => #tendremain
-    * (son == 0) Un bourdonnement... => #bourdonnement
+    * => #hub1

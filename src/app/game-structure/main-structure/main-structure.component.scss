@@ -35,6 +35,10 @@
   padding-top: 15px;
   padding-bottom: 15px;
 
+  &.no-display {
+    display: none;
+  }
+
   .line {
 
   }
