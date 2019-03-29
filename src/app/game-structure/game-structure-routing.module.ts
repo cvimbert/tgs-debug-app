@@ -11,6 +11,11 @@ const routes: Routes = [
   {
     path: "debug/:id",
     component: DebugViewComponent
+  },
+  {
+    path: "",
+    redirectTo: "structure",
+    pathMatch: "full"
   }
 ];
 

@@ -1,13 +1,36 @@
 {
   "name": "tgs-debug-app",
   "version": "0.0.0",
+  "main": "main.js",
+  
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "electron": "ng build --prod --base-href ./ && electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "directories": {
+    "output": "dist",
+    "buildResources": "src/assets"
+  },
+  "build": {
+    "appId": "app.testif",
+    "mac": {
+      "category": "test.category"
+    },
+    "files": [
+      "dist/tgs-debug-app",
+      "main.js",
+      "dist/tgs-debug-app/assets"
+    ],
+    "extraResources": [
+      "dist/tgs-debug-app/assets"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -34,10 +57,12 @@
     "@angular/cli": "~7.3.3",
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
+    "electron": "^4.1.2",
+    "electron-builder": "^20.39.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.0",
