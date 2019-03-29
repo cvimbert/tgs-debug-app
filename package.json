@@ -9,13 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "electron": "ng build --prod --base-href ./ && electron .",
-    "pack": "electron-builder --dir",
+    "electron": "ng build --base-href ./ && electron .",
+    "pack": "ng build --base-href ./ && electron-builder --dir",
     "dist": "electron-builder"
-  },
-  "directories": {
-    "output": "dist",
-    "buildResources": "src/assets"
   },
   "build": {
     "appId": "app.testif",
@@ -25,10 +21,13 @@
     "files": [
       "dist/tgs-debug-app",
       "main.js",
-      "dist/tgs-debug-app/assets"
+      "!dist/tgs-debug-app/assets"
     ],
-    "extraResources": [
-      "dist/tgs-debug-app/assets"
+    "extraFiles": [
+      {
+        "from": "dist/tgs-debug-app/assets",
+        "to": "assets"
+      }
     ]
   },
   "private": true,

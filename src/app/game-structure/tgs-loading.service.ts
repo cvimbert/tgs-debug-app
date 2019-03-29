@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GameManager } from 'tgs-core';
+import { GameManager, GameSequence } from 'tgs-core';
 import { ElectronService } from 'ngx-electron';
 
 @Injectable({
@@ -8,13 +8,31 @@ import { ElectronService } from 'ngx-electron';
 export class TgsLoadingService extends GameManager {
 
   constructor(
-    private electronService: ElectronService
+    public electronService: ElectronService
   ) {
     super({
       assetsFolder: "assets/",
       rootSequence: "test_sauts_de_lignes"
     });
 
-    console.log(electronService.remote.require("fs"));
+    this.init();
+  }
+
+  loadFile(path: string): Promise<GameSequence> {
+    if (false) {
+      console.log("ici");
+      return super.loadFile(path);
+    } else {
+      return new Promise<GameSequence>((success: Function) => {
+        let fs = this.electronService.remote.require("fs");
+        let localPath: string = "/assets/tgs/" + path + ".tgs";
+
+        fs.readFile(localPath, (fail, resp) => {
+          console.log(resp);
+        });
+
+        console.log(localPath);
+      });
+    }
   }
 }

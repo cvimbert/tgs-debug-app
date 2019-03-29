@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameStructureModule } from './game-structure/game-structure.module';
-import { NgxElectronModule } from 'ngx-electron';
 
 @NgModule({
   declarations: [
@@ -12,8 +11,7 @@ import { NgxElectronModule } from 'ngx-electron';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GameStructureModule,
-    NgxElectronModule
+    GameStructureModule
   ],
   providers: [],
   bootstrap: [AppComponent]

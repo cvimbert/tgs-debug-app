@@ -13,6 +13,7 @@ import { TagDisplayComponent } from './tag-display/tag-display.component';
 import { ToolsPanelComponent } from './tools-panel/tools-panel.component';
 import { VariablesInspectorComponent } from './variables-inspector/variables-inspector.component';
 import { VariableItemSlotComponent } from './variable-item-slot/variable-item-slot.component';
+import { NgxElectronModule } from 'ngx-electron';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { VariableItemSlotComponent } from './variable-item-slot/variable-item-sl
   imports: [
     CommonModule,
     GameStructureRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxElectronModule
   ],
   providers: [
     TgsLoadingService,
