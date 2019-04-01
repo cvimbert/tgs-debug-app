@@ -4,15 +4,18 @@
 
 #start
     [<title>Ligne 1]
+    * Aller au 1 -> #block1
+
+#block1
     Et la suite de la ligne 1
 
     Ligne 2
     
     Ligne 3
     
-    *(#block1) Lien -> #block1
+    *(!#block2) Lien -> #block2
 
-#block1
+#block2
     ok
 
-    * Retour -> #start
+    * Retour -> #block1
