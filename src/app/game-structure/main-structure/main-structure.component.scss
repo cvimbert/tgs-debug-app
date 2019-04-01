@@ -1,15 +1,15 @@
 .link {
   cursor: pointer;
   padding: 10px;
-  border: 1px solid black;
   margin-bottom: 6px;
   width: 300px;
   font-weight: bold;
   margin-left: auto;
   margin-right: auto;
-  background-color: black;
+  background-color: #a70039;
   color: white;
   text-align: center;
+  border-radius: 8px;
 }
 
 .separator {
@@ -22,6 +22,8 @@
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  padding: 15px;
+  max-width: 700px;
 }
 
 .links {
@@ -29,11 +31,12 @@
 }
 
 .paragraph {
-  background-color: ghostwhite;
+  background-color: #d9f3ff;
   margin-bottom: 7px;
   padding: 12px;
   padding-top: 15px;
   padding-bottom: 15px;
+  border-radius: 13px;
 
   &.no-display {
     display: none;

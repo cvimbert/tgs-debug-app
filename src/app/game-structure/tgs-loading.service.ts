@@ -24,18 +24,23 @@ export class TgsLoadingService extends GameManager {
     if (!this.electronService.isElectronApp) {
       return super.loadFile(path);
     } else {
-      return new Promise<GameSequence>((success: Function) => {
+      return new Promise<GameSequence>((resolve: Function, reject: Function) => {
         let fs = this.electronService.remote.require("fs");
         let localPath: string = "./" + this.configuration.assetsFolder + "tgs/" + path + ".tgs";
 
         fs.readFile(localPath, "utf8", (fail: string, resp: string) => {
-          let assetsFolder: string = this.configuration.assetsFolder || "";
+          
+          if (fail) {
+            reject(fail);
+          } else {
+            let assetsFolder: string = this.configuration.assetsFolder || "";
 
-          let result: ParsingResult = this.parser.parseTGSString(resp);
-          let structure: MainStructure = MainStructure.loadFromParsingResult(result);
-          this.sequence = new GameSequence(structure, this);
-          this.loading = false;
-          success(this.sequence);
+            let result: ParsingResult = this.parser.parseTGSString(resp);
+            let structure: MainStructure = MainStructure.loadFromParsingResult(result);
+            this.sequence = new GameSequence(structure, this);
+            this.loading = false;
+            resolve(this.sequence);
+          }
         });
 
         console.log(localPath);
