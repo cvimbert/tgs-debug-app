@@ -1,0 +1,8 @@
+
+@font-face {
+  font-family: 'ViceCitySans';
+  src: url('ViceCitySans.eot?#iefix') format('embedded-opentype'),  url('ViceCitySans.otf')  format('opentype'),
+	     url('ViceCitySans.woff') format('woff'), url('ViceCitySans.ttf')  format('truetype'), url('ViceCitySans.svg#ViceCitySans') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

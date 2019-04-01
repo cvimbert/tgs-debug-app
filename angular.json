@@ -28,7 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/fonts/HighVoltageRough/styles.css",
+              "src/fonts/ViceCitySans/styles.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true
