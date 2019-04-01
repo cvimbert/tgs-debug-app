@@ -1,14 +1,18 @@
+@init {
+    v1 = true;
+}
+
 #start
     Ligne 1
-    
-    
+    et la suite de la ligne 1
+
     Ligne 2
     
     Ligne 3
     
-    * Lien -> #block1
+    *(#block1) Lien -> #block1
 
 #block1
     ok
-    d
+
     * Retour -> #start
