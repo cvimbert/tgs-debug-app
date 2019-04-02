@@ -1,7 +1,6 @@
 @init {
     v1 = true;
-    log "test";
-    log("test", "ok");
+    log("test", v1);
 }
 
 #start
