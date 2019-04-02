@@ -1,9 +1,11 @@
 @init {
     v1 = true;
+    log "test";
+    log("test", "ok");
 }
 
 #start
-    [<title>Ligne 1]
+    [<title>Titre]
     * Aller au 1 -> #block1
 
 #block1
@@ -13,7 +15,7 @@
     
     Ligne 3
     
-    *(!#block2) Lien -> #block2
+    */*[unique, rand(arg1, arg2)]*/ (!#block2) Lien -> #block2
 
 #block2
     ok
