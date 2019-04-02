@@ -14,7 +14,7 @@
     
     Ligne 3
     
-    */*[unique, rand(arg1, arg2)]*/ (!#block2) Lien -> #block2
+    * [unique, rand, rrr] (!#block2) Lien -> #block2
 
 #block2
     ok
