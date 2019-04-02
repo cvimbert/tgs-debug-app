@@ -4,8 +4,20 @@
 }
 
 #start
-    [<title>Titre]
-    * Aller au 1 -> #block1
+    <title>Titre
+    [<subtitle>Et un texte d'intro]
+
+    Et nous y voilà, encore une fois...
+
+    Ici, là, ailleurs, dans un autre monde
+
+
+    Où ça ?
+
+    Vous me osez me le demander ??
+    * Aller au bloc 1 -> #block1
+    * Oui tout à fait -> #block1
+    * Euh maintenant que vous posez la question... -> #block1
 
 #block1
     Et la suite de la ligne 1
@@ -14,7 +26,7 @@
     
     Ligne 3
     
-    * [unique, rand, rrr] (!#block2) Lien -> #block2
+    * [unique, rand] (!#block2) Lien -> #block2
 
 #block2
     ok
