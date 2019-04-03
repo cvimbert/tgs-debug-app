@@ -1,12 +1,13 @@
 @init {
     v1 = true;
     v2 = 5;
+    v3 = 25;
     log("test", v1);
 }
 
 #start
     <title>Titre
-    <subtitle>Et un texte d'intro %v2%
+    <subtitle>Et un texte d'intro
 
     <i>Et nous y voilà, encore une fois...
 
@@ -16,7 +17,8 @@
     Où ça ?
 
     Vous me osez me le demander ??
-    * Aller au bloc 1 -> #block1
+    
+    * (v1 == true && v2 == 5) Aller au bloc 1 -> #block1
     * Oui tout à fait -> #block1
     * Euh maintenant que vous posez la question... -> #block1
 
@@ -35,4 +37,4 @@
 #block2
     ok %v2%
 
-    * (v1 == true && v2 == 8) Retour -> #block1
+    * (v1 == true && (v2 == 8 || v2 > 9)) Retour -> #block1
