@@ -1,20 +1,54 @@
-- D�claration de conditions : dans les scripts
+- Commentaires: ok
+- Evaluation de condition de base : ok
+- Condition sur les liens : ok
+- Execution de scripts basiques (assignation de variable, etc) : ok
+- Déclaration de conditions : dans les scripts
+- Injection de variables dans les textes : ok
+- Formatage du texte : ok
 - Un peu de graphisme : un peu seulement :)
 - Ajout du else au if
+- Liens directs	
+- Execution de scripts en paragraphe : ok
 - Suppression du triple tiret pour saut de paragraphe
-- Inclusion d'�l�ments graphiques au sein d'une ligne
-- Nesting des blocs, et liens locaux ou relatifs ? (� voir � l'usage)
+- Styles à intéger dans les blocs : ok
+- Refonte globale de l'extraction des textes : ok
+- Supprimer le nesting inutile sur les lignes : ok
+- Insertion d'éléments graphiques : ok
+- Blocs crochets au sein d'une ligne : ok
+- Styles multiples dans une balise style : ok
+- Inclusion d'éléments graphiques au sein d'une ligne
+- Nesting des blocs, et liens locaux ou relatifs ? (à voir à l'usage)
+- Installer gimp, krita : ok
 - Un peu d'animation (voir doc)
-- M�canisme de sauvegarde incr�mentiel (pour retour en arri�re)
-- Faire une palette compl�te de commande de script
-- Coloration syntaxique des fichiers tgs (tr�s accessoire)
-- Console d'�dition des variables (tri�es par groupe)
-- Cr�ation de temporisations (va de pair avec l'animation)
+- Mécanisme de sauvegarde incrémentiel (pour retour en arrière)
+- Faire une palette complète de commande de script
+- Coloration syntaxique des fichiers tgs (très accessoire)
+- Boutons de réinitialisation du jeu : ok
+- Console d'édition des variables (triées par groupe)
+- Gestion des variables : ok mais à vérifier
+- Création de temporisations (va de pair avec l'animation)
 - Groupes de variables dans l'inspecteur
-- Ex�cution s�lective des scripts : en partie
+- Exécution sélective des scripts : en partie
 - Scrolling auto de la vue principale
+- Navigation inter-séquences : ok
 - Assignations de variables (avec fonctions annexes)	
+- Aller à une autre séquence sans identifiant de bloc : ok
 - Suppression de variables
 - Revoir syntaxe des commandes simples
-- Distinguer d�clarations globales et locales (pour variables, scripts et conditions)
-- M�canisme potentiel d'inclusion de code dans un fichier
+
+- Distinguer déclarations globales et locales (pour variables, scripts et conditions)
+- Mécanisme potentiel d'inclusion de code dans un fichier
+- Création de hubs de liens (avec redirection auto) : découle de la redirection auto
+- Condition de visualisation d'un bloc
+- Suppression du ### : ok, mais bug à voir quand fin de fichier
+- Suppression du saut de ligne par --- : ok
+- Ajout d'un saut de ligne simple : ok
+- Inverser indicateurs de lien ? -> lien normal, => redirection ?? : ok
+- Test d'électron (ce midi ??) : ok
+- Changer de typo pour une autre plus sympa : ok, mais pb du bold avec la nouvelle
+- Possibilité d'appliquer des styles sans utiliser de crochet (application à la ligne seulement): ok
+- Négation des conditions : ok
+- Chainage des conditions
+- Directives sur les liens (unique) (last)
+- Affichage des variables dans l'état où elles sont à un point donné ?		
+
