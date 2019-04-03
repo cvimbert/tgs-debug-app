@@ -1,13 +1,14 @@
 @init {
     v1 = true;
+    v2 = 5;
     log("test", v1);
 }
 
 #start
     <title>Titre
-    [<subtitle>Et un texte d'intro]
+    <subtitle>Et un texte d'intro
 
-    Et nous y voilà, encore une fois...
+    <i>Et nous y voilà, encore une fois...
 
     Ici, là, ailleurs, dans un autre monde
 
@@ -26,7 +27,7 @@
     
     Ligne 3
     
-    * [unique, rand] (!#block2) Lien -> #block2
+    * [unique] Lien -> #block2
 
 #block2
     ok

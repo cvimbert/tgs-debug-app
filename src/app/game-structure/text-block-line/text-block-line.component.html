@@ -1,5 +1,5 @@
 <div class="line-container">
-  <span *ngIf="unit.textType === 'simple'">
+  <span *ngIf="unit.textType === 'simple'" [ngClass]="unit.styles">
     {{ unit.text }}
   </span>
   <div class="paragraph-separator" *ngIf="unit.textType === 'paragraph_separator'"></div>
