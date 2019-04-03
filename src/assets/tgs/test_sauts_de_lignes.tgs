@@ -6,7 +6,7 @@
 
 #start
     <title>Titre
-    <subtitle>Et un texte d'intro
+    <subtitle>Et un texte d'intro %v2%
 
     <i>Et nous y voilà, encore une fois...
 
@@ -30,6 +30,9 @@
     * [unique] Lien -> #block2
 
 #block2
-    ok
+    @init {
+        v2 = 8;
+    }
+    ok %v2%
 
     * Retour -> #block1

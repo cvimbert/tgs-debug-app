@@ -23,15 +23,29 @@ export class MainStructureComponent implements OnInit, OnDestroy {
   @HostListener('window:keyup', ['$event'])
   onKeyUp(evt: KeyboardEvent) {
     if (evt.ctrlKey) {
-      switch (evt.key) {
-        case "c":
-          this.toolsDisplayed = !this.toolsDisplayed;
-          break;
 
-        case "b":
-          this.loadingService.goBack();
-          break;
+      if (!evt.altKey) {
+        switch (evt.key) {
+          case "c":
+            this.toolsDisplayed = !this.toolsDisplayed;
+            break;
+  
+          case "b":
+            this.loadingService.goBack();
+            break;
+  
+          case "y":
+            this.loadingService.refreshGame();
+            break;
+        }
+      } else {
+        switch (evt.key) {
+          case "y":
+            this.loadingService.resetGame();
+            break;
+        }
       }
+      
     } else {
       switch (evt.key) {
         case "Escape":
@@ -40,6 +54,11 @@ export class MainStructureComponent implements OnInit, OnDestroy {
           break;
       }
     }
+
+    // ça ne fait rien !
+    evt.preventDefault();
+    evt.stopImmediatePropagation();
+    evt.stopPropagation();
   }
 
   onClose(refresh: boolean) {
