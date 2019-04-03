@@ -21,6 +21,9 @@
     * Euh maintenant que vous posez la question... -> #block1
 
 #block1
+    @init {
+        v2 = 8;
+    }
     Et la suite de la ligne 1
 
     Ligne 2
@@ -30,9 +33,6 @@
     * [unique] Lien -> #block2
 
 #block2
-    @init {
-        v2 = 8;
-    }
     ok %v2%
 
-    * Retour -> #block1
+    * (v1 == true && v2 == 8) Retour -> #block1
