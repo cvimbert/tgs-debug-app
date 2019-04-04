@@ -1,54 +1,30 @@
 - Commentaires: ok
-- Evaluation de condition de base : ok
-- Condition sur les liens : ok
-- Execution de scripts basiques (assignation de variable, etc) : ok
 - Déclaration de conditions : dans les scripts
-- Injection de variables dans les textes : ok
-- Formatage du texte : ok
 - Un peu de graphisme : un peu seulement :)
 - Ajout du else au if
 - Liens directs	
-- Execution de scripts en paragraphe : ok
 - Suppression du triple tiret pour saut de paragraphe
-- Styles à intéger dans les blocs : ok
-- Refonte globale de l'extraction des textes : ok
-- Supprimer le nesting inutile sur les lignes : ok
-- Insertion d'éléments graphiques : ok
-- Blocs crochets au sein d'une ligne : ok
-- Styles multiples dans une balise style : ok
 - Inclusion d'éléments graphiques au sein d'une ligne
 - Nesting des blocs, et liens locaux ou relatifs ? (à voir à l'usage)
-- Installer gimp, krita : ok
 - Un peu d'animation (voir doc)
-- Mécanisme de sauvegarde incrémentiel (pour retour en arrière)
 - Faire une palette complète de commande de script
-- Coloration syntaxique des fichiers tgs (très accessoire)
-- Boutons de réinitialisation du jeu : ok
 - Console d'édition des variables (triées par groupe)
 - Gestion des variables : ok mais à vérifier
-- Création de temporisations (va de pair avec l'animation)
+- Création de temporisations (va de pair avec l'animation) : ce midi ?? Ou après défrichage complet ?
 - Groupes de variables dans l'inspecteur
 - Exécution sélective des scripts : en partie
-- Scrolling auto de la vue principale
-- Navigation inter-séquences : ok
-- Assignations de variables (avec fonctions annexes)	
-- Aller à une autre séquence sans identifiant de bloc : ok
+- Scrolling auto de la vue principale	
 - Suppression de variables
-- Revoir syntaxe des commandes simples
 
 - Distinguer déclarations globales et locales (pour variables, scripts et conditions)
 - Mécanisme potentiel d'inclusion de code dans un fichier
-- Création de hubs de liens (avec redirection auto) : découle de la redirection auto
 - Condition de visualisation d'un bloc
 - Suppression du ### : ok, mais bug à voir quand fin de fichier
-- Suppression du saut de ligne par --- : ok
-- Ajout d'un saut de ligne simple : ok
-- Inverser indicateurs de lien ? -> lien normal, => redirection ?? : ok
-- Test d'électron (ce midi ??) : ok
-- Changer de typo pour une autre plus sympa : ok, mais pb du bold avec la nouvelle
-- Possibilité d'appliquer des styles sans utiliser de crochet (application à la ligne seulement): ok
-- Négation des conditions : ok
-- Chainage des conditions
-- Directives sur les liens (unique) (last)
-- Affichage des variables dans l'état où elles sont à un point donné ?		
+- Négation des conditions : à faire sur chainage
+- Directives sur les liens (unique) (last) : voir la logique d'execution
 
+
+- Affichage des variables dans l'état où elles sont à un point donné	
+
+- Réorganisation de la configuration du language
+- Affichage des messages de log dans la console
