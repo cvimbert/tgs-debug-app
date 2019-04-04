@@ -9,6 +9,9 @@
     <title>Titre
     <subtitle>Et un texte d'intro
 
+    v2 = %v2%
+
+
     <i>Et nous y voilà, encore une fois...
 
     Ici, là, ailleurs, dans un autre monde
@@ -35,6 +38,8 @@
     * [unique] Lien -> #block2
 
 #block2
-    ok %v2%
+    ok
+    
+    v2 = %v2%
 
     * (v1 == true && (v2 == 8 || v2 > 9)) Retour -> #block1
