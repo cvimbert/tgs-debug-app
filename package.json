@@ -29,7 +29,7 @@
         "to": "assets"
       }
     ],
-    "nsis":{
+    "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     }
@@ -49,6 +49,7 @@
     "@types/electron": "^1.6.10",
     "core-js": "^2.5.4",
     "ngx-electron": "^2.1.1",
+    "ngx-perfect-scrollbar": "^7.2.1",
     "rxjs": "~6.3.3",
     "tgs-core": "file:../tgs-core",
     "tgs-model": "file:../tgs-model",

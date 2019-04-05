@@ -10,7 +10,7 @@
 
       <app-text-block-line *ngFor="let unit of unitsArray" [unit]="unit"></app-text-block-line>
     </div>
-    <div class="links">
+    <div class="links" [@linksAnimation]="linksAnimationState">
       <div *ngFor="let link of sequence.links" (click)="loadLink(link)" class="link">{{ link.text }}</div>
     </div>
   </ng-container>

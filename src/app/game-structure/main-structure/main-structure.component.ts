@@ -21,12 +21,26 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       transition('void => visible', [
         animate("0.5s ease-out")
       ])
+    ]),
+    trigger("linksAnimation", [
+      state('*', style({
+        opacity: 0,
+        transform: 'translateY(50px)',
+      })),
+      state('visible', style({
+        opacity: 1,
+        transform: 'translateY(0)',
+      })),
+      transition('hidden => visible', [
+        animate("0.5s 0.2s ease-out")
+      ])
     ])
   ]
 })
 export class MainStructureComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   toolsDisplayed = false;
+  linksAnimationState = "none";
 
   constructor(
     private loadingService: TgsLoadingService,
@@ -103,11 +117,13 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
       //console.log("scroll");
       setTimeout(() => this.scrollToBottom());
     }
+
+    this.linksAnimationState = "visible";
   }
 
   scrollToBottom() {
-    let element: HTMLElement = document.querySelector("body");
-    element.parentElement.scrollTo(0, element.scrollHeight);
+    let element: HTMLElement = document.querySelector("#main-container");
+    element.scrollTo(0, element.scrollHeight);
   }
 
   onClose(refresh: boolean) {
@@ -119,11 +135,17 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
   }
 
   loadLink(link: LinkModel) {
+    this.linksAnimationState = "hidden";
+
     if (!link.globalLinkRef) {
       this.sequence.loadBlock(link.localLinkRef);
     } else {
       this.sequence.navigateToSequence(link.globalLinkRef, link.localLinkRef);
     }
+    
+    setTimeout(() => {
+      this.linksAnimationState = "visible";
+    });
   }
 
   get sequence(): GameSequence {

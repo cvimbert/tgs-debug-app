@@ -17,8 +17,6 @@ function createWindow () {
   mainWindow.on('page-title-updated', function(e) {
     e.preventDefault()
   });
-
-  mainWindow.maximize();
   
 
   //mainWindow.webContents.openDevTools()
@@ -36,6 +34,8 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  mainWindow.maximize();
 }
 
 // This method will be called when Electron has finished
