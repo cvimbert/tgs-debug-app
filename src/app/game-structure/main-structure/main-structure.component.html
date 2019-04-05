@@ -1,7 +1,7 @@
 <app-tools-panel *ngIf="toolsDisplayed" (onClose)="onClose($event)"></app-tools-panel>
 <div class="container">
   <ng-container *ngIf="sequence">
-    <div class="paragraph" [class.no-display]="unitsArray.length === 0" *ngFor="let unitsArray of sequence.units">
+    <div class="paragraph" [@hiddenVisible]="animationState" (@hiddenVisible.done)="paragraphAnimationEnd($event)" [class.no-display]="unitsArray.length === 0" *ngFor="let unitsArray of sequence.units">
       <app-text-block-line *ngFor="let unit of unitsArray" [unit]="unit"></app-text-block-line>
     </div>
     <div class="links">

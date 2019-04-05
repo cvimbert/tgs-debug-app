@@ -1,31 +1,45 @@
-import { Component, OnInit, OnDestroy, HostListener, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, AfterViewChecked, AfterViewInit, ElementRef } from '@angular/core';
 import { TgsLoadingService } from '../tgs-loading.service';
 import { GameSequence } from 'tgs-core';
 import { LinkModel } from 'tgs-model';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-main-structure',
   templateUrl: './main-structure.component.html',
-  styleUrls: ['./main-structure.component.scss']
+  styleUrls: ['./main-structure.component.scss'],
+  animations: [
+    trigger('hiddenVisible', [
+      state('hidden', style({
+        opacity: 0,
+        transform: 'translateY(50px)',
+      })),
+      state('visible', style({
+        opacity: 1,
+        transform: 'translateY(0)',
+      })),
+      transition('hidden => visible', [
+        animate("0.5s ease-out")
+      ])
+    ])
+  ]
 })
-export class MainStructureComponent implements OnInit, OnDestroy, AfterViewChecked, AfterViewInit {
+export class MainStructureComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-  toolsDisplayed: boolean = false;
+  toolsDisplayed = false;
+  animationState = "visible";
 
   constructor(
-    private loadingService: TgsLoadingService
+    private loadingService: TgsLoadingService,
+    private element: ElementRef
   ) { }
 
   ngOnInit() {
-    
+    //setTimeout(() => this.animationState = "visible", 2000);
   }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
-  }
-
-  ngAfterViewInit() {
-    //this.scrollToBottom();
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -64,13 +78,13 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
     }
   }
 
+  paragraphAnimationEnd(evt: AnimationEvent) {
+    //console.log("done !", evt);
+  }
+
   scrollToBottom() {
     let element: HTMLElement = document.querySelector("body");
-    element.scrollTop = 20;
-    console.log(element, element.scrollTop, element.scrollHeight, element.clientHeight);
-    element.scrollTo({
-      top: 1000
-    });
+    element.parentElement.scrollTo(0, element.scrollHeight);
   }
 
   onClose(refresh: boolean) {
