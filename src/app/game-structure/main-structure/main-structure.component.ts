@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { TgsLoadingService } from '../tgs-loading.service';
 import { GameSequence } from 'tgs-core';
 import { LinkModel } from 'tgs-model';
@@ -8,7 +8,7 @@ import { LinkModel } from 'tgs-model';
   templateUrl: './main-structure.component.html',
   styleUrls: ['./main-structure.component.scss']
 })
-export class MainStructureComponent implements OnInit, OnDestroy {
+export class MainStructureComponent implements OnInit, OnDestroy, AfterViewChecked, AfterViewInit {
 
   toolsDisplayed: boolean = false;
 
@@ -18,6 +18,14 @@ export class MainStructureComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  ngAfterViewInit() {
+    //this.scrollToBottom();
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -54,11 +62,15 @@ export class MainStructureComponent implements OnInit, OnDestroy {
           break;
       }
     }
+  }
 
-    // ça ne fait rien !
-    evt.preventDefault();
-    evt.stopImmediatePropagation();
-    evt.stopPropagation();
+  scrollToBottom() {
+    let element: HTMLElement = document.querySelector("body");
+    element.scrollTop = 20;
+    console.log(element, element.scrollTop, element.scrollHeight, element.clientHeight);
+    element.scrollTo({
+      top: 1000
+    });
   }
 
   onClose(refresh: boolean) {
