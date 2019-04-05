@@ -28,7 +28,11 @@
         "from": "dist/tgs-debug-app/assets",
         "to": "assets"
       }
-    ]
+    ],
+    "nsis":{
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "private": true,
   "dependencies": {
