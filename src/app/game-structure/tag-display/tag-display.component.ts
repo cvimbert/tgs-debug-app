@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TagModel } from 'tgs-model';
+import { ElectronService } from 'ngx-electron';
 
 @Component({
   selector: 'app-tag-display',
@@ -9,10 +10,19 @@ import { TagModel } from 'tgs-model';
 export class TagDisplayComponent implements OnInit {
 
   alignment: string[] = [];
+  assetsFolder = "";
 
   @Input("tag") tag: TagModel;
 
-  constructor() { }
+  constructor(
+    electronService: ElectronService
+  ) {
+    if (electronService.isElectronApp) {
+
+      // on doit pouvoir faire mieux avec un chemin absolu
+      this.assetsFolder = "../../../../";
+    }
+  }
 
   ngOnInit() {
     if (this.tag.name === "img") {
@@ -20,5 +30,6 @@ export class TagDisplayComponent implements OnInit {
       this.alignment = align ? ["valign-" + align] : [];
     }
   }
+
 
 }

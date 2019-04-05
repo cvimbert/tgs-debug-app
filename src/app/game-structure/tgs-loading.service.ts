@@ -33,8 +33,6 @@ export class TgsLoadingService extends GameManager {
           if (fail) {
             reject(fail);
           } else {
-            let assetsFolder: string = this.configuration.assetsFolder || "";
-
             let result: ParsingResult = this.parser.parseTGSString(resp);
             let structure: MainStructure = MainStructure.loadFromParsingResult(result);
             this.sequence = new GameSequence(structure, this);

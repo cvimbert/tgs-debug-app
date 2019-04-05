@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "electron": "ng build --base-href ./ && electron .",
-    "pack": "ng build --prod --base-href ./ && electron-builder --dir",
+    "pack": "ng build --base-href ./ && electron-builder --dir",
     "dist": "ng build --prod --base-href ./ && electron-builder"
   },
   "build": {
