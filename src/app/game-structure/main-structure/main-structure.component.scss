@@ -33,7 +33,9 @@
 }
 
 .links {
+  position: relative;
   margin-top: 12px;
+  z-index: 3;
 }
 
 .paragraph {

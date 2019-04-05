@@ -12,6 +12,11 @@
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
+.panel-container {
+    z-index: 100;
+    position: fixed;
+}
+
 .panel-background {
     position: fixed;
     width: 100%;

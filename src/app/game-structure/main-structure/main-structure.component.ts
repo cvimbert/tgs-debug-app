@@ -10,15 +10,15 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   styleUrls: ['./main-structure.component.scss'],
   animations: [
     trigger('hiddenVisible', [
-      state('hidden', style({
+      state('*', style({
         opacity: 0,
         transform: 'translateY(50px)',
       })),
-      state('visible', style({
+      state('visible, visibleNoAnim', style({
         opacity: 1,
         transform: 'translateY(0)',
       })),
-      transition('hidden => visible', [
+      transition('void => visible', [
         animate("0.5s ease-out")
       ])
     ])
@@ -27,7 +27,6 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class MainStructureComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   toolsDisplayed = false;
-  animationState = "visible";
 
   constructor(
     private loadingService: TgsLoadingService,
@@ -35,11 +34,18 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
   ) { }
 
   ngOnInit() {
-    //setTimeout(() => this.animationState = "visible", 2000);
   }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
+  }
+
+  animationState(index: number): string {
+    if (index === this.loadingService.currentSequence.units.length - 1 && this.loadingService.currentSequence.initialized) {
+      return "visible";
+    } else {
+      return "visibleNoAnim";
+    }
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -78,8 +84,25 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
     }
   }
 
-  paragraphAnimationEnd(evt: AnimationEvent) {
-    //console.log("done !", evt);
+  getAnimationState(index: number): string {
+    if (!this.loadingService.currentSequence.initialized) {
+      return "visible"
+    } else if (index === this.loadingService.currentSequence.units.length -1) {
+
+      //setTimeout(() => )
+
+      return "visible";
+    } else {
+      return "visible";
+    }
+  }
+
+  paragraphAnimationEnd(evt: AnimationEvent, index: number) {
+    //console.log("done !", index, evt, this.loadingService.currentSequence.units.length - 1);
+    if (index === this.loadingService.currentSequence.units.length - 1) {
+      //console.log("scroll");
+      setTimeout(() => this.scrollToBottom());
+    }
   }
 
   scrollToBottom() {
