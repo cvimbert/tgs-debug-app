@@ -40,7 +40,15 @@
     
     Ligne 3
     
-    * Lien -> #block2
+    * Lien ->
+
+        ##
+        #sub1
+            Ligne
+
+            * Test -> #block2
+        ##
+
     * Lien 2 -> #block2
 
 #block2

@@ -4,14 +4,12 @@
 - Suppression du triple tiret pour saut de paragraphe
 - Inclusion d'éléments graphiques au sein d'une ligne
 - Nesting des blocs, et liens locaux ou relatifs ? (à voir à l'usage)
-- Un peu d'animation (voir doc)
 - Faire une palette complète de commande de script
 - Console d'édition des variables (triées par groupe)
 - Gestion des variables : ok mais à vérifier
 - Création de temporisations (va de pair avec l'animation) : ce midi ?? Ou après défrichage complet ?
 - Groupes de variables dans l'inspecteur
 - Exécution sélective des scripts : en partie
-- Scrolling auto de la vue principale	
 - Suppression de variables
 
 - Distinguer déclarations globales et locales (pour variables, scripts et conditions)
@@ -24,4 +22,4 @@
 - Affichage des variables dans l'état où elles sont à un point donné	
 
 - Réorganisation de la configuration du language
-- Affichage des messages de log dans la console
+- Affichage des messages de log dans la console : à peaufiner
