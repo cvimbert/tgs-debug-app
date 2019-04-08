@@ -1,0 +1,5 @@
+<div class="inspector-title">Logs</div>
+<div class="log-item" *ngFor="let log of logs; let i = index">
+  <div class="item-content">[{{ logDate(log) }}] - {{ log.text }}</div>
+  <div class="item-deletion" (click)="deleteLog(index)">x</div>
+</div>

@@ -7,13 +7,17 @@
                 <input type="button" (click)="resetGame()" value="Reset game">
                 <input type="button" (click)="refresh()" value="Refresh view">
                 <input type="button" (click)="goBack()" value="Go back">
-                <!--<input type="button" (click)="inspectVariables()" value="Inspect variables">-->
+                <input [class.selected]="displayedPanel === 'variables'"
+                    type="button" (click)="inspectVariables()" value="Inspect variables">
+                <input [class.selected]="displayedPanel === 'logs'"
+                    type="button" (click)="viewLogs()" value="View logs">
             </div>
             <div class="panel2">
                 <input type="button" (click)="close()" value="Close">
             </div>
         </div>
         
-        <app-variables-inspector *ngIf="variablesInspectorDisplay"></app-variables-inspector>
+        <app-variables-inspector *ngIf="displayedPanel === 'variables'"></app-variables-inspector>
+        <app-logs-viewer *ngIf="displayedPanel === 'logs'"></app-logs-viewer>
     </div>
 </div>

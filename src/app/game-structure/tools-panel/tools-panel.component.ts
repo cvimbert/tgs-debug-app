@@ -8,7 +8,8 @@ import { TgsLoadingService } from '../tgs-loading.service';
 })
 export class ToolsPanelComponent implements OnInit {
 
-  variablesInspectorDisplay: boolean = true;
+  //variablesInspectorDisplay: boolean = true;
+  displayedPanel = "variables";
 
   @Output("onClose") onClose: EventEmitter<boolean> = new EventEmitter();
 
@@ -36,7 +37,11 @@ export class ToolsPanelComponent implements OnInit {
   }
 
   inspectVariables() {
-    this.variablesInspectorDisplay = !this.variablesInspectorDisplay;
+    this.displayedPanel = "variables";
+  }
+
+  viewLogs() {
+    this.displayedPanel = "logs";
   }
 
   goBack() {

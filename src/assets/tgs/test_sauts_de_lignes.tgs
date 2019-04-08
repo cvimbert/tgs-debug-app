@@ -6,6 +6,11 @@
 }
 
 #start
+    @head {
+        log("ici");
+        log("et un autre log");
+    }
+
     <title>Titre
     <subtitle>Et un texte d'intro
 
@@ -36,6 +41,7 @@
     Ligne 3
     
     * Lien -> #block2
+    * Lien 2 -> #block2
 
 #block2
     ok

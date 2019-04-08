@@ -1,0 +1,17 @@
+.inspector-title {
+    text-align: center;
+    margin-bottom: 7px;
+}
+
+.log-item {
+    display: flex;
+    flex-direction: row;
+
+    .item-content {
+        flex: 1;
+    }
+
+    .item-deletion {
+        cursor: pointer;
+    }
+}

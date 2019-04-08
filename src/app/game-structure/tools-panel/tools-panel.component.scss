@@ -32,11 +32,16 @@
 
 input {
     margin: 3px;
+
+    &.selected {
+        font-weight: bold;
+    }
 }
 
 .buttons-container {
     display: flex;
     flex-direction: row;
+    margin-bottom: 20px;
 
     .panel1 {
         flex: 1;

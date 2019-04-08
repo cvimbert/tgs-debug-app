@@ -32,7 +32,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         transform: 'translateY(0)',
       })),
       transition('hidden => visible', [
-        animate("0.5s 0.2s ease-out")
+        animate("0.5s 0.4s ease-out")
       ])
     ])
   ]

@@ -14,6 +14,7 @@ import { ToolsPanelComponent } from './tools-panel/tools-panel.component';
 import { VariablesInspectorComponent } from './variables-inspector/variables-inspector.component';
 import { VariableItemSlotComponent } from './variable-item-slot/variable-item-slot.component';
 import { NgxElectronModule } from 'ngx-electron';
+import { LogsViewerComponent } from './logs-viewer/logs-viewer.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NgxElectronModule } from 'ngx-electron';
     ToolsPanelComponent,
     VariablesInspectorComponent,
     VariableItemSlotComponent,
+    LogsViewerComponent,
   ],
   imports: [
     CommonModule,
