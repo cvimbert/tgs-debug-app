@@ -1,6 +1,4 @@
-- Commentaires: ok
 - Déclaration de conditions : dans les scripts
-- Un peu de graphisme : un peu seulement :)
 - Ajout du else au if
 - Liens directs	
 - Suppression du triple tiret pour saut de paragraphe
@@ -20,7 +18,6 @@
 - Mécanisme potentiel d'inclusion de code dans un fichier
 - Condition de visualisation d'un bloc
 - Suppression du ### : ok, mais bug à voir quand fin de fichier
-- Négation des conditions : à faire sur chainage
 - Directives sur les liens (unique) (last) : voir la logique d'execution
 
 
