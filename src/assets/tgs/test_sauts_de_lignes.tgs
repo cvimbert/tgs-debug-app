@@ -10,7 +10,6 @@
         log("ici");
         log("et un autre log");
     }
-
     <title>Titre
     <subtitle>Et un texte d'intro
 
@@ -55,4 +54,4 @@
     
     v2 = %v2%
 
-    * (v1 == true && (v2 == 8 || v2 > 9)) Retour -> #block1
+    * => #block1
