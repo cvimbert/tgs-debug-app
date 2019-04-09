@@ -26,9 +26,9 @@
 
     Vous me osez me le demander ??
     
-    * (v1 == true && v2 == 5) Aller au bloc 1 -> #block1
+    //* (v1 == true && v2 == 5) Aller au bloc 1 -> #block1
     * Oui tout à fait -> #block1
-    * Euh maintenant que vous posez la question... -> #block1
+    //* Euh maintenant que vous posez la question... -> #block1
 
 #block1
     @init {
@@ -42,8 +42,7 @@
     
     * Lien ->
 
-        ##
-        #sub1
+        ##sub1
             Ligne
 
             * Test -> #block2
