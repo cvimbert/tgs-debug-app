@@ -1,6 +1,13 @@
 #index
-
     <title>ok
     <subtitle>Sous titre 1
 
-* Texte -> #index
+* Texte -> #block1
+
+#block1
+    Et voilà !
+
+    * Test -> #index
+
+#block2
+    Yep
