@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GameManager, GameSequence } from 'tgs-core';
 import { ElectronService } from 'ngx-electron';
 import { MainStructure } from 'tgs-model';
-import { ParsingResult } from '../../../../tgs-parser';
+import { ParsingResult } from 'tgs-parser';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class TgsLoadingService extends GameManager {
   ) {
     super({
       assetsFolder: "assets/",
-      rootSequence: "test_sauts_de_lignes"
+      rootSequence: "index"
     });
 
     this.init();
