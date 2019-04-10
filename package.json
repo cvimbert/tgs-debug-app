@@ -15,6 +15,7 @@
   },
   "build": {
     "appId": "app.testif",
+    "productName": "TGS debug application",
     "mac": {
       "category": "test.category"
     },
