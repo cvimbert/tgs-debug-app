@@ -1,5 +1,14 @@
+@init {
+    t1 = 0;
+}
+
 #index
-    <title>ok
+    @init {
+        log(t1);
+        //t1++;
+    }
+
+    <title>Titre
     <subtitle>Sous titre 1
 
 * Texte -> #block1

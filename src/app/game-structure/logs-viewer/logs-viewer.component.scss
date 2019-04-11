@@ -6,6 +6,12 @@
 .log-item {
     display: flex;
     flex-direction: row;
+    padding: 3px;
+    background-color: rgba(0, 0, 0, 0.05);
+
+    &.odd {
+        background-color: rgba(0, 0, 0, 0.02);
+    }
 
     .item-content {
         flex: 1;
@@ -14,4 +20,14 @@
     .item-deletion {
         cursor: pointer;
     }
+}
+
+.items-container {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.buttons-container {
+    text-align: right;
+    padding-top: 8px;
 }

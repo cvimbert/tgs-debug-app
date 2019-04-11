@@ -28,4 +28,8 @@ export class LogsViewerComponent implements OnInit {
   deleteLog(index: number) {
     this.tgsService.deleteLog(index);
   }
+
+  clearLogs() {
+    this.tgsService.clearLogs();
+  }
 }
