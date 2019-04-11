@@ -5,11 +5,15 @@
 #index
     @init {
         log(t1);
-        //t1++;
+        t1 += 2;
     }
 
-    <title>Titre
-    <subtitle>Sous titre 1
+    <title>Interrogatoire 1
+    <subtitle>Lieu inconnu - Temps inconnu
+
+    Nous y voilà !
+
+    Je suis enchanté de vous rencontrer... encore une fois ?
 
 * Texte -> #block1
 
