@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditorComponent implements OnInit {
 
-  content: string = "ok";
+  content: string = `#dsqdqsdq
+
+	dqsdqsdsqdqs
+    qsdqsdqsdqs
+    
+    * sqdqsdsq -> #qsdsqdsq
+    
+    
+ #qsdsqdqs`;
 
   constructor() { }
 

@@ -1,0 +1,33 @@
+ngx-codemirror {
+    height: 100% ;
+}
+
+:host /deep/ .CodeMirror {
+    height: 100%;
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.editor {
+    flex: 1;
+}
+
+.buttons {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+
+    .left {
+        text-align: left;
+        flex: 1;
+    }
+
+    .right {
+        text-align: right;
+        flex: 1;
+    }
+}

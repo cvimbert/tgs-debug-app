@@ -1,8 +1,18 @@
-<ngx-codemirror 
-  [(ngModel)]="content" 
-  [options]="{
-    lineNumbers: true,
-    theme: 'material',
-    mode: 'markdown'
-  }"
-></ngx-codemirror>
+<div class="buttons">
+  <div class="left">
+      <input type="button" value="Back to game" routerLink="/">
+  </div>
+  <div class="right">
+      <input type="button" value="Save">
+  </div>
+</div>
+<div class="editor">
+  <ngx-codemirror 
+    [(ngModel)]="content" 
+    [options]="{
+      lineNumbers: true,
+      theme: 'material',
+      mode: 'tgs'
+    }">
+  </ngx-codemirror>
+</div>

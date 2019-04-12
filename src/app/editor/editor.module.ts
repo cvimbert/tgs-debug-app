@@ -5,6 +5,7 @@ import { EditorRoutingModule } from './editor-routing.module';
 import { EditorComponent } from './editor/editor.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import './tgs';
 
 @NgModule({
   declarations: [EditorComponent],
