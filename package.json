@@ -2,6 +2,8 @@
   "name": "tgs-debug-app",
   "version": "0.0.0",
   "main": "main.js",
+  "author": "Christophe Vimbert",
+  "description": "Text game debug application",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

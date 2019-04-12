@@ -1,26 +1,4 @@
-@init {
-    t1 = 0;
-}
-
 #index
-    @init {
-        log(t1);
-        t1 += 2;
-    }
+    <title>Un démarrage en trombe
+    <subtitle>Lieu :  si seulement on le savait...
 
-    <title>Interrogatoire 1
-    <subtitle>Lieu inconnu - Temps inconnu
-
-    Nous y voilà !
-
-    Je suis enchanté de vous rencontrer... encore une fois ?
-
-* Texte -> #block1
-
-#block1
-    Et voilà !
-
-    * Test -> #index
-
-#block2
-    Yep
