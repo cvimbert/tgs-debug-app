@@ -18,7 +18,9 @@
     CodeMirror.defineSimpleMode("tgs", {
         // The start state contains the rules that are intially used
         start: [
-            {regex: /#[A-Za-z0-9]+/, token: "keyword"}
+            {regex: /#[A-Za-z0-9]+/, token: "keyword"},
+            {regex: /->|=>/, token: "keyword"},
+            {regex: /\/\/.*?/, token: "comment"}
         ],
         typedObject: [
             {regex: /[A-Za-z0-9]+\s*:/, token: "property", push: "group"}
@@ -74,6 +76,9 @@
         actionArgs: [
             {regex: /[A-Za-z0-9]+[ ]*$/, token: "string", next: "script"},
             {regex: /[A-Za-z0-9]+/, next: "actionArgs"}
-        ]
+        ],
+        meta: {
+            lineComment: [ "/*" ]
+          }
     });
 });
