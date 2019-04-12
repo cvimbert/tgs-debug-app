@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { GameStructureModule } from './game-structure/game-structure.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/markdown/markdown';
+import { EditorModule } from './editor/editor.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     BrowserAnimationsModule,
     AppRoutingModule,
     GameStructureModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    EditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
