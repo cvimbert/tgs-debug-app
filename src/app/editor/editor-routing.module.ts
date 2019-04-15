@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: "editor",
     component: EditorComponent
+  },
+  {
+    path: "editor/:path",
+    component: EditorComponent
   }
 ];
 

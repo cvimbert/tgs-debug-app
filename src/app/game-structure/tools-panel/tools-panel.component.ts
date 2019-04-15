@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TgsLoadingService } from '../tgs-loading.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tools-panel',
@@ -14,7 +15,8 @@ export class ToolsPanelComponent implements OnInit {
   @Output("onClose") onClose: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
-    private tgsService: TgsLoadingService
+    private tgsService: TgsLoadingService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -25,6 +27,14 @@ export class ToolsPanelComponent implements OnInit {
     //this.close();
     this.tgsService.resetGame();
     this.close(false);
+  }
+
+  goToEditor() {
+    this.router.navigate(["editor"], {
+      queryParams: {
+        path: "path/truc"
+      }
+    });
   }
 
   refresh() {

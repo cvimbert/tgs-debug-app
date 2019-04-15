@@ -7,6 +7,11 @@
 
 */
 
+.cm-underline {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .cm-s-material.CodeMirror {
   background-color: #263238;
   color: rgba(233, 237, 237, 1);

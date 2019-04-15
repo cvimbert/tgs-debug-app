@@ -7,7 +7,7 @@
                 <input type="button" (click)="resetGame()" value="Reset game">
                 <input type="button" (click)="refresh()" value="Refresh view">
                 <input type="button" (click)="goBack()" value="Go back">
-                <input type="button" routerLink="/editor" value="Editor">
+                <input type="button" (click)="goToEditor()" value="Editor">
                 <input [class.selected]="displayedPanel === 'variables'"
                     type="button" (click)="inspectVariables()" value="Inspect variables">
                 <input [class.selected]="displayedPanel === 'logs'"
