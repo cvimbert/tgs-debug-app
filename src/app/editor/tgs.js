@@ -18,15 +18,28 @@
     CodeMirror.defineSimpleMode("tgs", {
         // The start state contains the rules that are intially used
         start: [
-            {regex: /#[A-Za-z0-9]+/, token: "keyword"},
-            {regex: /->|=>/, token: "keyword"},
-            {regex: /\/\/.*?/, token: "comment"}
+            {regex: /\/\/.*/, token: "comment"},
+            {regex: /\/\*/, token: "comment", next: "comment"},
+            {regex: /@[A-Za-z0-9-]+/, next: "script", token: "script-id"},
+            {regex: /#[A-Za-z0-9-]+/, next: "block", token: "keyword"},
+            {regex: /->|=>/, token: "keyword"}
         ],
-        typedObject: [
+        script: [
+            {regex: /\/\/.*/, token: "comment"},
+            { regex: /\{/, token: "operator"},
+            { regex: /\}/, token: "operator", next: "start"}
+        ],
+        block: [
+            { regex: /(?=#).*?/, next: "start" }
+        ],
+        comment: [
+            {regex: /.*\*\//, token: "comment", next: "start"},
+            {regex: /.*/, token: "comment"}
+          ],
+        /*typedObject: [
             {regex: /[A-Za-z0-9]+\s*:/, token: "property", push: "group"}
         ],
         group: [
-            //{regex: /{/, push: "group", token: "variable"},
             {regex: /#[A-Za-z0-9]+/, push: "typedObject", token: "keyword"},
             {regex: /@[A-Za-z0-9]+/, push: "script", token: "variable-3"},
             {token: "attribute", push: "attributesList"}
@@ -54,11 +67,6 @@
         objectSelectorArgument: [
             {regex: /[A-Za-z0-9]+/, token: "variable", pop: true}
         ],
-        script: [
-            {regex: /}/, push: "group"},
-            {regex: /listen/, token: "keyword", next: "listen"},
-            {regex: /(?=[A-Za-z0-9]+[ ]+[A-Za-z0-9_-]+[ ]*>[ ]*)/, push: "actionOnObject"}
-        ],
         listen: [
             {regex: /[A-Za-z0-9]+/, token: "variable", next: "script"}
         ],
@@ -76,9 +84,10 @@
         actionArgs: [
             {regex: /[A-Za-z0-9]+[ ]*$/, token: "string", next: "script"},
             {regex: /[A-Za-z0-9]+/, next: "actionArgs"}
-        ],
+        ],*/
         meta: {
-            lineComment: [ "/*" ]
+            dontIndentStates: ["comment"],
+            lineComment: "//"
           }
     });
 });

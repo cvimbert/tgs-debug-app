@@ -7,15 +7,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditorComponent implements OnInit {
 
-  content: string = `#dsqdqsdq
+  content: string = `/*fsdfsdfsdf*/
+  //qsdqsd
+  @init {
+    main = 0;
+    //son = 0;
+  }
+
+  #dsqdqsdq
 
 	dqsdqsdsqdqs
-    qsdqsdqsdqs
+  qsd/*qsdqsdqs*/
+  dsqdqsdqs
+  dsqdqsd
+  qsdqsdqs
+  qsdqdsqdqs
+  
+  qsdqsdqsdqsd
+  
+  //* sqdqsdsq -> #qsdsqdsq
+  * Test -> #dsss
     
-    * sqdqsdsq -> #qsdsqdsq
     
-    
- #qsdsqdqs`;
+ #qsdsqdqs
+ fdssdfsd
+ fsdfsdfsd
+ fsdfsdfsdf
+ sdfsdfsdfsd
+ 
+ * sdfsdf -> #sdqsdqsd
+ * fdssdfsdf -> #sqdqsdqsd`;
 
   constructor() { }
 
