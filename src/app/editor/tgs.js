@@ -21,7 +21,7 @@
             {regex: /\/\/.*/, token: "comment"},
             {regex: /\/\*/, token: "comment", next: "comment"},
             {regex: /@[A-Za-z0-9-]+/, next: "script", token: "script-id"},
-            {regex: /#[A-Za-z0-9-]+/, next: "block", token: "keyword"},
+            {regex: /#[A-Za-z0-9-]+/, next: "block", token: "block-id"},
             {regex: /->|=>/, token: "keyword"}
         ],
         script: [
@@ -30,7 +30,18 @@
             { regex: /\}/, token: "operator", next: "start"}
         ],
         block: [
-            { regex: /(?=#).*?/, next: "start" }
+            {regex: /\/\*/, token: "comment", next: "comment"},
+            { regex: /%[A-Za-z0-9]+\%/, token: "script-id"},
+            { regex: /(?=#).*?/, next: "start" },
+            { regex: /\*/, next: "link", token: "linkb", pop: true}
+        ],
+        link: [
+            { regex: /->|=>/, token: "linkb", next: "linkRef"}
+        ],
+        linkRef: [
+            { regex: /[A-Za-z0-9-]+#[A-Za-z0-9-]+/, token: "linkref", next: "block" },
+            { regex: /[A-Za-z0-9-]+/, token: "linkref", next: "block" },
+            { regex: /#[A-Za-z0-9-]+/, token: "linkref", next: "block" }
         ],
         comment: [
             {regex: /.*\*\//, token: "comment", next: "start"},

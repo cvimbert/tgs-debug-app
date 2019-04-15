@@ -7,40 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditorComponent implements OnInit {
 
-  content: string = `/*fsdfsdfsdf*/
-  //qsdqsd
-  @init {
-    main = 0;
-    //son = 0;
-  }
-
-  #dsqdqsdq
-
-	dqsdqsdsqdqs
-  qsd/*qsdqsdqs*/
-  dsqdqsdqs
-  dsqdqsd
-  qsdqsdqs
-  qsdqdsqdqs
-  
-  qsdqsdqsdqsd
-  
-  //* sqdqsdsq -> #qsdsqdsq
-  * Test -> #dsss
-    
-    
- #qsdsqdqs
- fdssdfsd
- fsdfsdfsd
- fsdfsdfsdf
- sdfsdfsdfsd
- 
- * sdfsdf -> #sdqsdqsd
- * fdssdfsdf -> #sqdqsdqsd`;
+  content: string;
 
   constructor() { }
 
+  save() {
+    localStorage.setItem("editor", this.content);
+  }
+
   ngOnInit() {
+    this.content = localStorage.getItem("editor");
   }
 
 }
