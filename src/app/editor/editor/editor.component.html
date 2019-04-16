@@ -1,18 +1,31 @@
-<div class="buttons">
-  <div class="left">
-      <input type="button" value="Back to game" routerLink="/">
+<div class="main-panel">
+  <div class="left-panel">
+    <div class="buttons">
+      <div class="left">
+          <input type="button" value="Back to game" routerLink="/">
+          <input type="button" value="Refresh inspector" (click)="refreshInspector()">
+      </div>
+      <div class="right">
+          <input type="button" value="Save" (click)="save()">
+      </div>
+    </div>
+    <div class="editor">
+      <ngx-codemirror #editor
+        [(ngModel)]="content" 
+        [options]="{
+          lineNumbers: true,
+          theme: 'material',
+          mode: 'tgs'
+        }">
+      </ngx-codemirror>
+    </div>
   </div>
-  <div class="right">
-      <input type="button" value="Save" (click)="save()">
+  <div class="right-panel">
+    <div class="title">
+      Inspector
+    </div>
+      <div *ngIf="mainModel">
+        <div *ngFor="let block of mainModel.blocksArray">{{ block.id }}</div>
+      </div>
   </div>
-</div>
-<div class="editor">
-  <ngx-codemirror 
-    [(ngModel)]="content" 
-    [options]="{
-      lineNumbers: true,
-      theme: 'material',
-      mode: 'tgs'
-    }">
-  </ngx-codemirror>
 </div>

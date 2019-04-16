@@ -34,3 +34,24 @@ ngx-codemirror {
         flex: 1;
     }
 }
+
+.main-panel {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    .left-panel {
+        flex: 1;
+    }
+
+    .right-panel {
+        width: 200px;
+        background-color: white;
+        height: 100%;
+        padding: 10px;
+    }
+}
+
+.title {
+    text-align: center;
+}
