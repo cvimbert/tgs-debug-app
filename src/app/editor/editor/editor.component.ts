@@ -189,10 +189,10 @@ export class EditorComponent implements OnInit {
 
       if (this.mainModel.blocks[blockId]) {
         // on y positionne le curseur
-        
+        this.selectBlock(this.mainModel.blocks[blockId]);
       } else {
-        // on crée un nouveu block (pour l'instant à la fin)
-        this.content += "\n\n#" + blockId;
+        // on crée un nouveau block (pour l'instant à la fin)
+        this.content += "\n\n\n#" + blockId + "\n\n\t";
       }
 
     } else if (!blockId && path) {
@@ -206,7 +206,12 @@ export class EditorComponent implements OnInit {
 
     } else if (blockId && path) {
       // lien externe et blockId
-
+      this.router.navigate(["editor"], {
+        queryParams: {
+          path: path,
+          block: blockId
+        }
+      });
 
     }
   }

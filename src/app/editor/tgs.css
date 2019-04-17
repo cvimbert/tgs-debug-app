@@ -41,10 +41,11 @@
   font-size: 18px;
 }
 .cm-s-material .cm-linkb {
-  color: rgb(252, 86, 57);
+  color: rgb(255, 118, 94);
+  font-weight: bold;
 }
 .cm-s-material .cm-linkref {
-  color: rgb(233, 67, 255);
+  color: rgba(199, 146, 234, 1);
   font-weight: bold;
 }
 .cm-s-material .cm-operator { color: rgba(233, 237, 237, 1); }
