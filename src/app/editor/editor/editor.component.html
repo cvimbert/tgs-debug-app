@@ -1,37 +1,37 @@
 <div class="main-panel">
-  <div class="left-panel">
-    <div class="buttons">
-      <div class="left">
-          <input type="button" value="Back to game" routerLink="/">
-          <input type="button" value="Refresh inspector" (click)="refreshInspector()">
-      </div>
-      <div class="right">
-          <input type="button" value="Save" (click)="save()">
-      </div>
+  <div class="buttons">
+    <div class="left">
+        <input type="button" value="Back to game" (click)="goBackToGame()">
+        <input type="button" value="Refresh inspector" (click)="refreshInspector()">
     </div>
-    <div class="editor">
-      <ngx-codemirror #editor
-        [(ngModel)]="content" 
-        [options]="{
-          lineNumbers: true,
-          theme: 'material',
-          mode: 'tgs',
-          extraKeys: { 'Ctrl-Space': 'autocomplete'}
-        }"
-        (cursorActivity)="onCursorActivity($event)">
-      </ngx-codemirror>
+    <div class="right">
+        <input type="button" value="Save" (click)="save()">
     </div>
   </div>
-  <div class="right-panel">
-    <div class="title">
-      Inspector
-    </div>
-      <div *ngIf="mainModel">
-        <div class="block-item"
-          [class.selected]="currentBlock === block"
-          *ngFor="let block of mainModel.blocksArray"
-          (click)="selectBlock(block)">{{ block.id }}
+  <div class="bottom-panel">
+      <div class="left-panel">
+    
+          <div class="editor">
+            <ngx-codemirror #editor
+              [(ngModel)]="content" 
+              [options]="{
+                lineNumbers: true,
+                theme: 'material',
+                mode: 'tgs',
+                extraKeys: { 'Ctrl-Space': 'autocomplete'}
+              }"
+              (cursorActivity)="onCursorActivity($event)">
+            </ngx-codemirror>
+          </div>
         </div>
-      </div>
+        <div class="right-panel">
+            <div *ngIf="mainModel">
+              <div class="block-item"
+                [class.selected]="currentBlock === block"
+                *ngFor="let block of mainModel.blocksArray"
+                (click)="selectBlock(block)">{{ block.id }}
+              </div>
+            </div>
+        </div>
   </div>
 </div>

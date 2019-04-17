@@ -26,6 +26,8 @@ export class EditorComponent implements OnInit {
 
   bdSubject: Subject<number> = new Subject()
 
+  private initialized: boolean = false;
+
   @ViewChild("editor") editor: CodemirrorComponent;
 
   constructor(
@@ -52,13 +54,16 @@ export class EditorComponent implements OnInit {
     localStorage.setItem("editor-" + this.currentPath, this.content);
   }
 
+  goBackToGame() {
+    this.save();
+    this.router.navigate(["/"]);
+  }
+
   refreshInspector() {
     if (this.content && this.content !== "") {
       let parser: TGSParser = new TGSParser();
       let result: ParsingResult = parser.parseTGSString(this.content);
-      //console.log(result);
       this.mainModel = MainStructure.loadFromParsingResult(result);
-      //console.log(this.mainModel);
     }
   }
 
@@ -77,8 +82,14 @@ export class EditorComponent implements OnInit {
   onCursorActivity(evt: any) {
     let pos: any = evt.getDoc().getCursor();
     let charPos = this.convertLineAndChToPosition(pos.line, pos.ch);
+    this.selectBlockByCursorPos(charPos);
     this.bdSubject.next(charPos);
-    //this.selectBlockByCursorPos(charPos);
+
+    if (!this.initialized) {
+      this.editor.codeMirror.refresh();
+      this.initialized = true;
+    }
+    
   }
 
   convertLineAndChToPosition(line: number, ch: number): number {
@@ -102,7 +113,9 @@ export class EditorComponent implements OnInit {
       let newCount = count + line.text.length + 1;
 
       if (index >= count && index < newCount) {
-        this.editor.codeMirror.getDoc().setCursor({ch: index - count, line: lineNum});
+        this.editor.codeMirror.getDoc().setCursor(lineNum, index - count, {
+          scroll: true
+        });
       }
       
       count = newCount;
@@ -114,7 +127,8 @@ export class EditorComponent implements OnInit {
 
   selectBlock(model: GameBlockModel) {
     this.editor.codeMirror.focus();
-    this.setCursorPos(model.startIndex);
+    console.log(model.startIndex);
+    this.setCursorPos(model.endIndex);
     this.currentBlock = model;
   }
 
@@ -192,7 +206,14 @@ export class EditorComponent implements OnInit {
         this.selectBlock(this.mainModel.blocks[blockId]);
       } else {
         // on crée un nouveau block (pour l'instant à la fin)
-        this.content += "\n\n\n#" + blockId + "\n\n\t";
+        this.content += "\n\n\n#" + blockId + "\n\n\tTxt...";
+
+        // et on positionne le curseur à la fin de ce block
+        this.refreshInspector();
+
+        setTimeout(() => {
+          this.selectBlock(this.mainModel.blocks[blockId]);
+        });
       }
 
     } else if (!blockId && path) {
