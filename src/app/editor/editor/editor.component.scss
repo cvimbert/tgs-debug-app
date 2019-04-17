@@ -5,7 +5,8 @@ ngx-codemirror {
 :host /deep/ .CodeMirror {
     height: 100%;
     //font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 15px;
+    font-family: RobotoMono-Regular;
+    font-size: 14px;
 }
 
 :host /deep/ textarea {

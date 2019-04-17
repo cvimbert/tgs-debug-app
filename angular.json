@@ -30,7 +30,10 @@
             "styles": [
               "src/styles.scss",
               "src/fonts/HighVoltageRough/styles.css",
-              "src/fonts/ViceCitySans/styles.css"
+              "src/fonts/ViceCitySans/styles.css",
+              "src/fonts/BitstreamVeraSansMono-Roman/styles.css",
+              "src/fonts/RobotoMono-Medium/styles.css",
+              "src/fonts/RobotoMono-Regular/styles.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true
