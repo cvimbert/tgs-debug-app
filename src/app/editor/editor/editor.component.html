@@ -25,7 +25,11 @@
       Inspector
     </div>
       <div *ngIf="mainModel">
-        <div *ngFor="let block of mainModel.blocksArray">{{ block.id }}</div>
+        <div class="block-item"
+          [class.selected]="currentBlock === block"
+          *ngFor="let block of mainModel.blocksArray"
+          (click)="selectBlock(block)">{{ block.id }}
+        </div>
       </div>
   </div>
 </div>

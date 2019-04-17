@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TGSParser, ParsingResult } from 'tgs-parser';
-import { MainStructure } from 'tgs-model';
+import { MainStructure, GameBlockModel } from 'tgs-model';
 import { CodemirrorComponent } from '@ctrl/ngx-codemirror';
 
 @Component({
@@ -20,6 +20,7 @@ export class EditorComponent implements OnInit {
   listenLink: boolean = false;
 
   mainModel: MainStructure;
+  currentBlock: GameBlockModel;
 
   @ViewChild("editor") editor: CodemirrorComponent;
 
@@ -39,6 +40,23 @@ export class EditorComponent implements OnInit {
       //console.log(result);
       this.mainModel = MainStructure.loadFromParsingResult(result);
       //console.log(this.mainModel);
+
+      // temporaire
+      setTimeout(() => {
+        this.editor.codeMirror.focus();
+        this.setCursorPos(0);
+        this.selectBlockByCursorPos(8);
+      }, 100);
+      
+    }
+  }
+
+  selectBlockByCursorPos(index: number) {
+    for (let block of this.mainModel.blocksArray) {
+      if (index >= block.startIndex && index <= block.endIndex) {
+        this.currentBlock = block;
+        return;
+      }
     }
   }
 
@@ -47,14 +65,36 @@ export class EditorComponent implements OnInit {
       this.currentPath = params["path"];
       this.content = localStorage.getItem("editor-" + this.currentPath) || "#index";
       this.refreshInspector();
-      console.log(this.editor);
+      //console.log(this.editor);
 
-      setTimeout(() => {
-        this.editor.codeMirror.focus();
-        //this.editor.codeMirror.getDoc().eachLine({ch: 5});
-      }, 200);
-      
+      this.editor.codeMirror
     });
+  }
+
+  setCursorPos(index: number) {
+    //console.log("Content", this.content.length);
+
+    let count = 0;
+    let lineNum = 0;
+
+    this.editor.codeMirror.getDoc().eachLine(line => {
+      let newCount = count + line.text.length + 1;
+
+      if (index >= count && index < newCount) {
+        this.editor.codeMirror.getDoc().setCursor({ch: index - count, line: lineNum});
+      }
+      
+      count = newCount;
+      lineNum++;
+    });
+
+    //console.log("Count", count - 1);
+  }
+
+  selectBlock(model: GameBlockModel) {
+    this.editor.codeMirror.focus();
+    this.setCursorPos(model.startIndex);
+    this.currentBlock = model;
   }
 
   @HostListener('window:keydown', ['$event'])
