@@ -15,8 +15,10 @@
         [options]="{
           lineNumbers: true,
           theme: 'material',
-          mode: 'tgs'
-        }">
+          mode: 'tgs',
+          extraKeys: { 'Ctrl-Space': 'autocomplete'}
+        }"
+        (cursorActivity)="onCursorActivity($event)">
       </ngx-codemirror>
     </div>
   </div>

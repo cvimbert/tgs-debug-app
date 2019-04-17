@@ -1,8 +1,10 @@
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, AfterContentInit, OnChanges, AfterViewInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TGSParser, ParsingResult } from 'tgs-parser';
 import { MainStructure, GameBlockModel } from 'tgs-model';
 import { CodemirrorComponent } from '@ctrl/ngx-codemirror';
+import { Subject, timer } from 'rxjs';
+import { debounce, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-editor',
@@ -22,12 +24,29 @@ export class EditorComponent implements OnInit {
   mainModel: MainStructure;
   currentBlock: GameBlockModel;
 
+  bdSubject: Subject<number> = new Subject()
+
   @ViewChild("editor") editor: CodemirrorComponent;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+    private ref: ChangeDetectorRef
+  ) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.currentPath = params["path"];
+      this.content = localStorage.getItem("editor-" + this.currentPath) || "#index";
+      this.refreshInspector();
+      this.selectBlockByCursorPos(0);
+    });
+
+    this.bdSubject.pipe(debounceTime(1000)).subscribe(pos => {
+      this.refreshInspector();
+      this.selectBlockByCursorPos(pos);
+    });
+  }
 
   save() {
     localStorage.setItem("editor-" + this.currentPath, this.content);
@@ -40,35 +59,37 @@ export class EditorComponent implements OnInit {
       //console.log(result);
       this.mainModel = MainStructure.loadFromParsingResult(result);
       //console.log(this.mainModel);
-
-      // temporaire
-      setTimeout(() => {
-        this.editor.codeMirror.focus();
-        this.setCursorPos(0);
-        this.selectBlockByCursorPos(8);
-      }, 100);
-      
     }
   }
 
   selectBlockByCursorPos(index: number) {
+    if (!this.mainModel) return;
+
     for (let block of this.mainModel.blocksArray) {
       if (index >= block.startIndex && index <= block.endIndex) {
         this.currentBlock = block;
+        this.ref.detectChanges();
         return;
       }
     }
   }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.currentPath = params["path"];
-      this.content = localStorage.getItem("editor-" + this.currentPath) || "#index";
-      this.refreshInspector();
-      //console.log(this.editor);
+  onCursorActivity(evt: any) {
+    let pos: any = evt.getDoc().getCursor();
+    let charPos = this.convertLineAndChToPosition(pos.line, pos.ch);
+    this.bdSubject.next(charPos);
+    //this.selectBlockByCursorPos(charPos);
+  }
 
-      this.editor.codeMirror
-    });
+  convertLineAndChToPosition(line: number, ch: number): number {
+
+    let count: number = 0;
+
+    for (let i: number = 0; i < line; i++) {
+      count += this.editor.codeMirror.getDoc().getLine(i).length + 1;
+    }
+
+    return count + ch;
   }
 
   setCursorPos(index: number) {
@@ -168,7 +189,7 @@ export class EditorComponent implements OnInit {
 
       if (this.mainModel.blocks[blockId]) {
         // on y positionne le curseur
-
+        
       } else {
         // on crée un nouveu block (pour l'instant à la fin)
         this.content += "\n\n#" + blockId;

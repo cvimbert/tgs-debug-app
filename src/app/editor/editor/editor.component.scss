@@ -31,6 +31,10 @@ ngx-codemirror {
     .left {
         text-align: left;
         flex: 1;
+        
+        input {
+            margin-right: 5px;
+        }
     }
 
     .right {
