@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GameManager, GameSequence } from 'tgs-core';
+import { GameManager, GameSequence, GameMode } from 'tgs-core';
 import { ElectronService } from 'ngx-electron';
 import { MainStructure } from 'tgs-model';
 import { ParsingResult } from 'tgs-parser';
@@ -9,7 +9,6 @@ import { ParsingResult } from 'tgs-parser';
 })
 export class TgsLoadingService extends GameManager {
 
-  mode: string;
   rawContent: string;
 
   constructor(
@@ -22,9 +21,9 @@ export class TgsLoadingService extends GameManager {
   }
 
   modeInit(mode: string, content: string) {
-    if (mode === "normal") {
+    if (mode === GameMode.NORMAL) {
       this.init();
-    } else if (mode === "debug") {
+    } else if (mode === GameMode.DEBUG) {
       console.log(content);
       let result: ParsingResult = this.parser.parseTGSString(content);
       let structure: MainStructure = MainStructure.loadFromParsingResult(result);
@@ -36,13 +35,13 @@ export class TgsLoadingService extends GameManager {
 
   loadFile(path: string): Promise<GameSequence> {
 
-    if (this.mode === "debug") {
+    if (this.mode === GameMode.DEBUG) {
       return new Promise<GameSequence>((resolve: Function, reject: Function) => {
-        console.log(this.rawContent);
+        //console.log(this.rawContent);
         let result: ParsingResult = this.parser.parseTGSString(this.rawContent);
         let structure: MainStructure = MainStructure.loadFromParsingResult(result);
         this.sequence = new GameSequence(structure, this);
-        console.log(structure);
+        //console.log(structure);
         this.loading = false;
         resolve(this.sequence);
       });

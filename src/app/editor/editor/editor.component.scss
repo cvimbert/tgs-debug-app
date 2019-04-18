@@ -111,7 +111,7 @@
         }
 
         .game-display-panel {
-            width: 500px;
+            width: 600px;
             background-color: #263238;
             //border-left: 1px solid rgba(255, 255, 255, 0.315);
 
@@ -120,6 +120,24 @@
 
             .display-tools {
                 border-bottom: 1px solid rgba(255, 255, 255, 0.315);
+                display: flex;
+                flex-direction: row;
+
+                .right-sub-panel {
+                    flex: 1;
+                    text-align: right;
+
+                    input {
+                        border-left: 1px solid rgba(255, 255, 255, 0.315);
+                    }
+                }
+
+                .left-sub-panel {
+
+                    input {
+                        border-right: 1px solid rgba(255, 255, 255, 0.315);
+                    }
+                }
 
                 input {
                     color: white;
@@ -130,10 +148,15 @@
                     padding-left: 12px;
                     font-family: RobotoMono-Regular;
                     background-color: rgba(255, 255, 255, 0.1);
-                    border-right: 1px solid rgba(255, 255, 255, 0.315);
+                    
                     cursor: pointer;
 
                     &:hover {
+                        background-color: rgba(211, 211, 211, 0.692);
+                        color: black;
+                    }
+                
+                    &.selected {
                         background-color: lightgrey;
                         color: black;
                     }

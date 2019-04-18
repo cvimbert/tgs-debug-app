@@ -1,7 +1,7 @@
 <div class="main-panel">
   <div class="buttons">
     <div class="left">
-        <input type="button" value="Back to game" (click)="goBackToGame()">
+        <input type="button" value="Back" (click)="goBackInHistory()">
         <!-- <input type="button" value="Refresh inspector" (click)="refreshInspector()"> -->
     </div>
     <div class="sequence-name">
@@ -42,11 +42,27 @@
         </div>
         <div class="game-display-panel">
           <div class="display-tools">
-            <input type="button" value="Reload" (click)="reloadGameDisplay()">
-            <input type="button" value="Reset" (click)="resetGameDisplay()">
+            <div class="left-sub-panel">
+                <input type="button" value="Reload" (click)="reloadGameDisplay()">
+                <input type="button" value="Reset" (click)="resetGameDisplay()">
+            </div>
+            <div class="right-sub-panel">
+              <input
+                [class.selected]="selectedDisplayPanel === 'display'"
+                (click)="selectedDisplayPanel = 'display'"
+                type="button" value="Display">
+              <input
+                [class.selected]="selectedDisplayPanel === 'console'"
+                (click)="selectedDisplayPanel = 'console'"
+                type="button" value="Console">
+              <input
+                [class.selected]="selectedDisplayPanel === 'variables'"
+                (click)="selectedDisplayPanel = 'variables'"
+                type="button" value="Variables">
+            </div>
           </div>
           <div class="display-container">
-              <app-main-structure mode="debug" [path]="currentPath" [content]="content"></app-main-structure>
+              <app-main-structure (externalNavigation)="onExternalNavigation($event)" mode="debug" [path]="currentPath" [content]="content"></app-main-structure>
           </div>
         </div>
   </div>

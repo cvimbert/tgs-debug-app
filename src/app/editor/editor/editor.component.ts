@@ -5,6 +5,8 @@ import { MainStructure, GameBlockModel } from 'tgs-model';
 import { CodemirrorComponent } from '@ctrl/ngx-codemirror';
 import { Subject, timer } from 'rxjs';
 import { debounce, debounceTime } from 'rxjs/operators';
+import { TgsLoadingService } from 'src/app/game-structure/tgs-loading.service';
+import { ExternalNavigation } from '../interfaces/external-navigation.interface';
 
 @Component({
   selector: 'app-editor',
@@ -24,7 +26,9 @@ export class EditorComponent implements OnInit {
   mainModel: MainStructure;
   currentBlock: GameBlockModel;
 
-  bdSubject: Subject<number> = new Subject()
+  bdSubject: Subject<number> = new Subject();
+
+  selectedDisplayPanel: string = "display";
 
   private initialized: boolean = false;
 
@@ -33,7 +37,8 @@ export class EditorComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private ref: ChangeDetectorRef
+    private ref: ChangeDetectorRef,
+    private tgsService: TgsLoadingService
   ) {}
 
   ngOnInit() {
@@ -62,6 +67,22 @@ export class EditorComponent implements OnInit {
   goBackToGame() {
     this.save();
     this.router.navigate(["/"]);
+  }
+
+  goBackInHistory() {
+    this.save();
+
+    // à voir avec angular
+    window.history.back();
+  }
+
+  onExternalNavigation(navigationData: ExternalNavigation) {
+    this.router.navigate(["editor"], {
+      queryParams: {
+        path: navigationData.globalRef,
+        block: navigationData.localRef
+      }
+    });
   }
 
   refreshInspector() {
@@ -140,7 +161,6 @@ export class EditorComponent implements OnInit {
 
   selectBlock(model: GameBlockModel) {
     this.editor.codeMirror.focus();
-    console.log(model.startIndex);
     this.setCursorPos(model.endIndex);
     this.currentBlock = model;
   }
@@ -201,11 +221,13 @@ export class EditorComponent implements OnInit {
   }
 
   reloadGameDisplay() {
-
+    this.tgsService.rawContent = this.content;
+    this.tgsService.refreshGame();
   }
 
   resetGameDisplay() {
-    
+    this.tgsService.rawContent = this.content;
+    this.tgsService.resetGame();
   }
 
   linkClick(evt: MouseEvent) {

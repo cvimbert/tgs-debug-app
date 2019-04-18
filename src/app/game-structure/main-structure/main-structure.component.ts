@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy, HostListener, AfterViewChecked, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, AfterViewChecked, Input, EventEmitter, Output } from '@angular/core';
 import { TgsLoadingService } from '../tgs-loading.service';
-import { GameSequence } from 'tgs-core';
+import { GameSequence, GameMode } from 'tgs-core';
 import { LinkModel } from 'tgs-model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ExternalNavigation } from '../../editor/interfaces/external-navigation.interface';
 
 @Component({
   selector: 'app-main-structure',
@@ -41,6 +42,8 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
 
   toolsDisplayed = false;
   linksAnimationState = "none";
+
+  @Output("externalNavigation") externalNavigation = new EventEmitter<ExternalNavigation>();
 
   @Input("mode") mode: string = "normal";
   @Input("path") path: string;
@@ -141,17 +144,28 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
   }
 
   loadLink(link: LinkModel) {
-    this.linksAnimationState = "hidden";
 
-    if (!link.globalLinkRef) {
-      this.sequence.loadBlock(link.localLinkRef);
-    } else {
-      this.sequence.navigateToSequence(link.globalLinkRef, link.localLinkRef);
+    if (this.loadingService.mode === GameMode.NORMAL) {
+      this.linksAnimationState = "hidden";
+
+      if (!link.globalLinkRef) {
+        this.sequence.loadBlock(link.localLinkRef);
+      } else {
+        this.sequence.navigateToSequence(link.globalLinkRef, link.localLinkRef);
+      }
+      
+      setTimeout(() => {
+        this.linksAnimationState = "visible";
+      });
+    } else if (this.loadingService.mode === GameMode.DEBUG) {
+
+      console.log("ici");
+      
+      this.externalNavigation.emit({
+        globalRef: link.globalLinkRef,
+        localRef: link.localLinkRef
+      });
     }
-    
-    setTimeout(() => {
-      this.linksAnimationState = "visible";
-    });
   }
 
   get sequence(): GameSequence {
