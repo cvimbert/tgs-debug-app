@@ -42,6 +42,11 @@ export class EditorComponent implements OnInit {
       this.content = localStorage.getItem("editor-" + this.currentPath) || "#index";
       this.refreshInspector();
       this.selectBlockByCursorPos(0);
+
+      // Code TOUPOURI(TM)
+      setTimeout(() => {
+        this.editor.codeMirror.refresh();
+      }, 500);
     });
 
     this.bdSubject.pipe(debounceTime(1000)).subscribe(pos => {
@@ -68,14 +73,22 @@ export class EditorComponent implements OnInit {
   }
 
   selectBlockByCursorPos(index: number) {
+
     if (!this.mainModel) return;
 
+    let blockNum = 0;
+
     for (let block of this.mainModel.blocksArray) {
-      if (index >= block.startIndex && index <= block.endIndex) {
+
+      let endIndex = blockNum < this.mainModel.blocksArray.length - 1 ? this.mainModel.blocksArray[blockNum + 1].startIndex : this.content.length;
+
+      if (index >= block.startIndex && index <= endIndex) {
         this.currentBlock = block;
         this.ref.detectChanges();
         return;
       }
+
+      blockNum++;
     }
   }
 
