@@ -219,7 +219,7 @@ export class EditorComponent implements OnInit {
         this.selectBlock(this.mainModel.blocks[blockId]);
       } else {
         // on crée un nouveau block (pour l'instant à la fin)
-        this.content += "\n\n\n#" + blockId + "\n\n\tTxt...";
+        this.content += "\n\n#" + blockId + "\n\n\tTxt...\n";
 
         // et on positionne le curseur à la fin de ce block
         this.refreshInspector();
