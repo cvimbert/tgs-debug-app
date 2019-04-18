@@ -38,9 +38,11 @@ export class TgsLoadingService extends GameManager {
 
     if (this.mode === "debug") {
       return new Promise<GameSequence>((resolve: Function, reject: Function) => {
+        console.log(this.rawContent);
         let result: ParsingResult = this.parser.parseTGSString(this.rawContent);
         let structure: MainStructure = MainStructure.loadFromParsingResult(result);
         this.sequence = new GameSequence(structure, this);
+        console.log(structure);
         this.loading = false;
         resolve(this.sequence);
       });
