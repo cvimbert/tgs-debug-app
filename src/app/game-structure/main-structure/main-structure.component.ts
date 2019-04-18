@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, AfterViewChecked, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, AfterViewChecked, Input } from '@angular/core';
 import { TgsLoadingService } from '../tgs-loading.service';
 import { GameSequence } from 'tgs-core';
 import { LinkModel } from 'tgs-model';
@@ -42,12 +42,18 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
   toolsDisplayed = false;
   linksAnimationState = "none";
 
+  @Input("mode") mode: string = "normal";
+  @Input("path") path: string;
+  @Input("content") content: string;
+
   constructor(
-    private loadingService: TgsLoadingService,
-    private element: ElementRef
+    private loadingService: TgsLoadingService
   ) { }
 
   ngOnInit() {
+    this.loadingService.mode = this.mode;
+    this.loadingService.rawContent = this.content;
+    this.loadingService.init();
   }
 
   ngAfterViewChecked() {

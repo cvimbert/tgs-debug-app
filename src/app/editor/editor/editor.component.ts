@@ -200,6 +200,14 @@ export class EditorComponent implements OnInit {
     }
   }
 
+  reloadGameDisplay() {
+
+  }
+
+  resetGameDisplay() {
+    
+  }
+
   linkClick(evt: MouseEvent) {
     let element: HTMLElement = evt.target as HTMLElement;
 

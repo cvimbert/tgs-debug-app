@@ -32,7 +32,8 @@
               <div class="block-item"
                 [class.selected]="currentBlock === block"
                 *ngFor="let block of mainModel.blocksArray"
-                (click)="selectBlock(block)">{{ block.id }}
+                (click)="selectBlock(block)">
+                {{ block.id }}
               </div>
             </div>
         </div>
@@ -40,7 +41,13 @@
 
         </div>
         <div class="game-display-panel">
-
+          <div class="display-tools">
+            <input type="button" value="Reload" (click)="reloadGameDisplay()">
+            <input type="button" value="Reset" (click)="resetGameDisplay()">
+          </div>
+          <div class="display-container">
+              <app-main-structure mode="debug" [path]="currentPath" [content]="content"></app-main-structure>
+          </div>
         </div>
   </div>
 </div>

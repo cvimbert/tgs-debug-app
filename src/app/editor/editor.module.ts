@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import './tgs';
 import 'codemirror/addon/hint/show-hint';
 import './anyword-hint';
+import { GameStructureModule } from '../game-structure/game-structure.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import './anyword-hint';
     EditorRoutingModule,
     BrowserModule,
     CodemirrorModule,
-    FormsModule
+    FormsModule,
+    GameStructureModule
   ]
 })
 export class EditorModule { }
