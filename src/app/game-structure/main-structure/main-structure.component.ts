@@ -131,7 +131,7 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
   }
 
   scrollToBottom() {
-    let element: HTMLElement = document.querySelector("#main-container");
+    let element: HTMLElement = document.querySelector("#main-structure-scroll");
     element.scrollTo(0, element.scrollHeight);
   }
 

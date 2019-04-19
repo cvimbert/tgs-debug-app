@@ -1,4 +1,3 @@
-<div class="inspector-title">Logs</div>
 <div class="items-container">
   <div class="log-item" [class.odd]="i % 2 === 1" *ngFor="let log of logs; let i = index">
     <div class="item-content">[{{ logDate(log) }}] - {{ log.text }}</div>

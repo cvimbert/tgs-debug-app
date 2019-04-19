@@ -61,8 +61,16 @@
                 type="button" value="Variables">
             </div>
           </div>
-          <div class="display-container">
-              <app-main-structure (externalNavigation)="onExternalNavigation($event)" mode="debug" [path]="currentPath" [content]="content"></app-main-structure>
+          <div id="main-structure-scroll" class="display-container">
+              <app-main-structure
+                *ngIf="selectedDisplayPanel === 'display'"
+                (externalNavigation)="onExternalNavigation($event)"
+                mode="debug"
+                [path]="currentPath"
+                [content]="content">
+              </app-main-structure>
+              <app-variables-inspector *ngIf="selectedDisplayPanel === 'variables'"></app-variables-inspector>
+              <app-logs-viewer *ngIf="selectedDisplayPanel === 'console'"></app-logs-viewer>
           </div>
         </div>
   </div>

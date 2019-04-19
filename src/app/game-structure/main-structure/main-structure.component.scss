@@ -6,8 +6,8 @@
   font-weight: bold;
   margin-left: auto;
   margin-right: auto;
-  background-color: #a70039;
-  color: white;
+  background-color: #dddddd;
+  color: black;
   text-align: center;
   border-radius: 8px;
 }
@@ -39,12 +39,14 @@
 }
 
 .paragraph {
-  background-color: #d9f3ff;
   margin-bottom: 7px;
-  padding: 12px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border-radius: 13px;
+    padding: 16px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 13px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px dashed white;
 
   &.no-display {
     display: none;

@@ -1,11 +1,13 @@
 .slot {
     display: flex;
     flex-direction: row;
-    background-color: rgba(0, 0, 0, 0.05);
-    padding: 3px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     &.odd {
-        background-color: rgba(0, 0, 0, 0.02);
+        background-color: rgba(255, 255, 255, 0.1);
     }
     
     .name {
@@ -22,6 +24,5 @@
 }
 
 .slots-container {
-    max-height: 400px;
     overflow: auto;
 }

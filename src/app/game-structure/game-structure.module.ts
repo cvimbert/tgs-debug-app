@@ -39,7 +39,9 @@ import { LogsViewerComponent } from './logs-viewer/logs-viewer.component';
     TgsMainService
   ],
   exports: [
-    MainStructureComponent
+    MainStructureComponent,
+    VariablesInspectorComponent,
+    LogsViewerComponent
   ]
 })
 export class GameStructureModule { }
