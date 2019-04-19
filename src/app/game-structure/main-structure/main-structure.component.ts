@@ -28,7 +28,7 @@ import { ExternalNavigation } from '../../editor/interfaces/external-navigation.
         opacity: 0,
         transform: 'translateY(50px)',
       })),
-      state('visible', style({
+      state('visible, visibleNoAnim', style({
         opacity: 1,
         transform: 'translateY(0)',
       })),
@@ -60,10 +60,14 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
   }
 
   ngAfterViewChecked() {
-    this.scrollToBottom();
+    //this.scrollToBottom();
   }
 
   animationState(index: number): string {
+    if (this.mode === GameMode.DEBUG) {
+      return "visibleNoAnim";
+    }
+
     if (index === this.loadingService.currentSequence.units.length - 1 && this.loadingService.currentSequence.initialized) {
       return "visible";
     } else {
@@ -108,6 +112,10 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
   }
 
   getAnimationState(index: number): string {
+    if (this.mode === GameMode.DEBUG) {
+      return "visibleNoAnim";
+    }
+
     if (!this.loadingService.currentSequence.initialized) {
       return "visible"
     } else if (index === this.loadingService.currentSequence.units.length -1) {
@@ -127,7 +135,12 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
       setTimeout(() => this.scrollToBottom());
     }
 
-    this.linksAnimationState = "visible";
+    if (this.mode === GameMode.NORMAL) {
+      this.linksAnimationState = "visible";
+    } else if (this.mode === GameMode.DEBUG) {
+      this.linksAnimationState = "visibleNoAnim";
+    }
+    
   }
 
   scrollToBottom() {
@@ -145,27 +158,25 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
 
   loadLink(link: LinkModel) {
 
-    if (this.loadingService.mode === GameMode.NORMAL) {
-      this.linksAnimationState = "hidden";
+    this.linksAnimationState = "hidden";
 
-      if (!link.globalLinkRef) {
-        this.sequence.loadBlock(link.localLinkRef);
-      } else {
+    if (!link.globalLinkRef) {
+      this.sequence.loadBlock(link.localLinkRef);
+    } else {
+
+      if (this.loadingService.mode === GameMode.NORMAL) {
         this.sequence.navigateToSequence(link.globalLinkRef, link.localLinkRef);
+      } else if (this.loadingService.mode === GameMode.DEBUG) {
+        this.externalNavigation.emit({
+          globalRef: link.globalLinkRef,
+          localRef: link.localLinkRef
+        });
       }
-      
-      setTimeout(() => {
-        this.linksAnimationState = "visible";
-      });
-    } else if (this.loadingService.mode === GameMode.DEBUG) {
-
-      console.log("ici");
-      
-      this.externalNavigation.emit({
-        globalRef: link.globalLinkRef,
-        localRef: link.localLinkRef
-      });
     }
+    
+    setTimeout(() => {
+      this.linksAnimationState = "visible";
+    });
   }
 
   get sequence(): GameSequence {
