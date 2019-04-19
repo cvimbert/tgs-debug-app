@@ -67,8 +67,8 @@
             { regex: /->|=>/, token: "linkb", next: "linkRef"}
         ],
         linkRef: [
-            { regex: /[A-Za-z0-9-]+#[A-Za-z0-9-]+/, token: "linkref", next: "block" },
-            { regex: /[A-Za-z0-9-]+/, token: "linkref", next: "block" },
+            { regex: /[A-Za-z0-9-\/]+#[A-Za-z0-9-]+/, token: "linkref", next: "block" },
+            { regex: /[A-Za-z0-9-\/]+/, token: "linkref", next: "block" },
             { regex: /#[A-Za-z0-9-]+/, token: "linkref", next: "block" }
         ],
         comment: [

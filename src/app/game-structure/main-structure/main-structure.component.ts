@@ -167,6 +167,9 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
       if (this.loadingService.mode === GameMode.NORMAL) {
         this.sequence.navigateToSequence(link.globalLinkRef, link.localLinkRef);
       } else if (this.loadingService.mode === GameMode.DEBUG) {
+
+        //this.sequence.navigateToSequence(link.globalLinkRef, link.localLinkRef);
+
         this.externalNavigation.emit({
           globalRef: link.globalLinkRef,
           localRef: link.localLinkRef

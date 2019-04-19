@@ -29,6 +29,7 @@ export class EditorComponent implements OnInit {
   bdSubject: Subject<number> = new Subject();
 
   selectedDisplayPanel: string = "display";
+  managerDisplayed = false;
 
   private initialized: boolean = false;
 
@@ -45,24 +46,28 @@ export class EditorComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.currentPath = params["path"];
 
-      // ici
-      this.content = localStorage.getItem("editor-" + this.currentPath) || "#index";
+      this.tgsService.registerSequence(this.currentPath);
 
+      this.content = localStorage.getItem("editor-" + this.currentPath) || "#index\n\n\t";
 
-      
       this.refreshInspector();
       this.selectBlockByCursorPos(0);
 
       // Code TOUPOURI(TM)
       setTimeout(() => {
         this.editor.codeMirror.refresh();
+        this.reloadGameDisplay();
       }, 500);
+      
+      
     });
 
     this.bdSubject.pipe(debounceTime(1000)).subscribe(pos => {
       this.refreshInspector();
       this.selectBlockByCursorPos(pos);
     });
+
+    
   }
 
   save() {
