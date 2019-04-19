@@ -9,10 +9,12 @@ import './tgs';
 import 'codemirror/addon/hint/show-hint';
 import './anyword-hint';
 import { GameStructureModule } from '../game-structure/game-structure.module';
+import { SequencesManagerComponent } from './sequences-manager/sequences-manager.component';
 
 @NgModule({
   declarations: [
-    EditorComponent
+    EditorComponent,
+    SequencesManagerComponent
   ],
   imports: [
     CommonModule,

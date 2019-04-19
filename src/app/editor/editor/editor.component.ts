@@ -44,7 +44,12 @@ export class EditorComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.currentPath = params["path"];
+
+      // ici
       this.content = localStorage.getItem("editor-" + this.currentPath) || "#index";
+
+
+      
       this.refreshInspector();
       this.selectBlockByCursorPos(0);
 
