@@ -15,6 +15,7 @@ export class SequencesManagerComponent implements OnInit {
   folders: string[];
   files: string[];
   currentPath = "";
+  selectedFile: string;
 
   @Output("navigation") navigation: EventEmitter<string> = new EventEmitter();
 
@@ -28,10 +29,11 @@ export class SequencesManagerComponent implements OnInit {
   }
 
   setPathContent(path: string) {
-    console.log(path);
+    this.selectedFile = "";
+    // console.log(path);
     this.currentPath = path;
     this.itemsList = this.tgsService.getFolderContent(this.currentPath);
-    console.log(this.itemsList);
+    // console.log(this.itemsList);
 
     this.folders = this.itemsList.filter(item => item.type === SequenceItemType.FOLDER).map(item => item.name);
     this.files = this.itemsList.filter(item => item.type === SequenceItemType.FILE).map(item => item.name);
@@ -51,7 +53,16 @@ export class SequencesManagerComponent implements OnInit {
   }
 
   fileClick(fileName: string) {
-    this.navigation.emit(this.currentPath + "/" + fileName);
+    if (this.selectedFile != fileName) {
+      this.selectedFile = fileName;
+    } else {
+      this.navigation.emit(this.currentPath ? (this.currentPath + "/") : "" + fileName);
+    }
+  }
+
+  deleteFile() {
+    this.tgsService.deleteSequenceFile(this.currentPath ? (this.currentPath + "/") : "" + this.selectedFile);
+    this.navigation.emit("");
   }
 
 }

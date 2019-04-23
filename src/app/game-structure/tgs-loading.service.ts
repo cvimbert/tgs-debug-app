@@ -33,6 +33,21 @@ export class TgsLoadingService extends GameManager {
     }
   }
 
+  deleteSequenceFile(filePath: string) {
+    if (!this.electronService.isElectronApp) {
+      let sequences: string[] = this.getRegisteredSequencesList();
+      let index = sequences.indexOf(filePath);
+
+      console.log(filePath);
+
+      if (index !== -1) {
+        sequences.splice(index, 1);
+        localStorage.setItem("sequences", JSON.stringify(sequences));
+        localStorage.removeItem("editor-" + filePath);
+      }
+    }
+  }
+
   loadFile(path: string): Promise<GameSequence> {
 
     if (this.mode === GameMode.DEBUG) {

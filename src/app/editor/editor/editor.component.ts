@@ -7,6 +7,7 @@ import { Subject, timer } from 'rxjs';
 import { debounce, debounceTime } from 'rxjs/operators';
 import { TgsLoadingService } from 'src/app/game-structure/tgs-loading.service';
 import { ExternalNavigation } from '../interfaces/external-navigation.interface';
+import { LogsViewerComponent } from 'src/app/game-structure/logs-viewer/logs-viewer.component';
 
 @Component({
   selector: 'app-editor',
@@ -29,11 +30,12 @@ export class EditorComponent implements OnInit {
   bdSubject: Subject<number> = new Subject();
 
   selectedDisplayPanel: string = "display";
-  managerDisplayed = true;
+  managerDisplayed = false;
 
   private initialized: boolean = false;
 
   @ViewChild("editor") editor: CodemirrorComponent;
+  @ViewChild("logs") logsPanel: LogsViewerComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,21 +48,27 @@ export class EditorComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.currentPath = params["path"];
 
-      this.tgsService.registerSequence(this.currentPath);
+      if (!this.currentPath) {
+        this.router.navigate(["editor"], {
+          queryParams: {
+            path: "index"
+          }
+        });
+      } else {
+        this.tgsService.registerSequence(this.currentPath);
 
-      this.content = localStorage.getItem("editor-" + this.currentPath) || "#index\n\n\t";
-      this.tgsService.rawContent = this.content;
-
-      this.refreshInspector();
-      this.selectBlockByCursorPos(0);
-
-      // Code TOUPOURI(TM)
-      setTimeout(() => {
-        this.editor.codeMirror.refresh();
-        this.reloadGameDisplay();
-      }, 500);
-      
-      
+        this.content = localStorage.getItem("editor-" + this.currentPath) || "#index\n\n\t";
+        this.tgsService.rawContent = this.content;
+  
+        this.refreshInspector();
+        this.selectBlockByCursorPos(0);
+  
+        // Code TOUPOURI(TM)
+        setTimeout(() => {
+          this.editor.codeMirror.refresh();
+          this.reloadGameDisplay();
+        }, 500);
+      }
     });
 
     this.bdSubject.pipe(debounceTime(1000)).subscribe(pos => {
@@ -249,6 +257,10 @@ export class EditorComponent implements OnInit {
     });
 
     this.managerDisplayed = false;
+  }
+
+  clearLogs() {
+    this.logsPanel.clearLogs();
   }
 
   linkClick(evt: MouseEvent) {

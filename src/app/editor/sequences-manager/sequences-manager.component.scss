@@ -53,6 +53,41 @@
                 margin-right: 5px;
                 font-size: 20px;
             }
+
+            &:hover {
+                background-color: rgba(211, 211, 211, 0.692);
+                color: black;
+            }
+        
+            &.selected {
+                background-color: lightgrey;
+                color: black;
+            }
+        }
+    }
+
+    .tools {
+        width: 100px;
+        border-left: 1px solid white;
+
+        input {
+            color: white;
+            border: none;
+            font-size: 14px;
+            padding: 10px;
+            padding-right: 12px;
+            padding-left: 12px;
+            font-family: RobotoMono-Regular;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            border-bottom: 1px solid white;
+            
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(211, 211, 211, 0.692);
+                color: black;
+            }
         }
     }
 }

@@ -43,8 +43,13 @@
         <div class="game-display-panel">
           <div class="display-tools">
             <div class="left-sub-panel">
+              <ng-container *ngIf="selectedDisplayPanel === 'display'">
                 <input type="button" value="Reload" (click)="reloadGameDisplay()">
                 <input type="button" value="Reset" (click)="resetGameDisplay()">
+              </ng-container>
+              <ng-container *ngIf="selectedDisplayPanel === 'console'">
+                <input type="button" value="Clear logs" (click)="clearLogs()">
+              </ng-container>
             </div>
             <div class="right-sub-panel">
               <input
@@ -70,7 +75,7 @@
                 [content]="content">
               </app-main-structure>
               <app-variables-inspector *ngIf="selectedDisplayPanel === 'variables'"></app-variables-inspector>
-              <app-logs-viewer *ngIf="selectedDisplayPanel === 'console'"></app-logs-viewer>
+              <app-logs-viewer #logs *ngIf="selectedDisplayPanel === 'console'"></app-logs-viewer>
           </div>
         </div>
   </div>
