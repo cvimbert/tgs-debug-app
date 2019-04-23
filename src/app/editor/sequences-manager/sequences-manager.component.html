@@ -3,6 +3,6 @@
     <div *ngFor="let folder of folders" (click)="folderClick(folder)" class="folder-item"><span class="fa fa-folder"></span>{{ folder }}</div>
   </div>
   <div class="files-list">
-    
+    <div class="file-item" (click)="fileClick(file)" *ngFor="let file of files"><span class="fa fa-file"></span>{{ file }}</div>
   </div>
 </div>

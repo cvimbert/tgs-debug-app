@@ -75,4 +75,4 @@
         </div>
   </div>
 </div>
-<app-sequences-manager *ngIf="managerDisplayed"></app-sequences-manager>
+<app-sequences-manager (navigation)="onNavigation($event)" *ngIf="managerDisplayed"></app-sequences-manager>

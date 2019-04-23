@@ -241,6 +241,16 @@ export class EditorComponent implements OnInit {
     this.tgsService.resetGame();
   }
 
+  onNavigation(path: string) {
+    this.router.navigate(["editor"], {
+      queryParams: {
+        path: path
+      }
+    });
+
+    this.managerDisplayed = false;
+  }
+
   linkClick(evt: MouseEvent) {
     let element: HTMLElement = evt.target as HTMLElement;
 
