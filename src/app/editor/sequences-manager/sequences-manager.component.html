@@ -1,7 +1,8 @@
 <div class="content">
-  <div>Sequences manager</div>
-  <div>
-    <div class="fa fa-folder"></div>
-    <div class="fa fa-folder"></div>
+  <div class="folders-list">
+    <div *ngFor="let folder of folders" (click)="folderClick(folder)" class="folder-item"><span class="fa fa-folder"></span>{{ folder }}</div>
+  </div>
+  <div class="files-list">
+    
   </div>
 </div>

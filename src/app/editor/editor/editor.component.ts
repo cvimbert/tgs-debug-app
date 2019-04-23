@@ -29,7 +29,7 @@ export class EditorComponent implements OnInit {
   bdSubject: Subject<number> = new Subject();
 
   selectedDisplayPanel: string = "display";
-  managerDisplayed = false;
+  managerDisplayed = true;
 
   private initialized: boolean = false;
 
@@ -49,6 +49,7 @@ export class EditorComponent implements OnInit {
       this.tgsService.registerSequence(this.currentPath);
 
       this.content = localStorage.getItem("editor-" + this.currentPath) || "#index\n\n\t";
+      this.tgsService.rawContent = this.content;
 
       this.refreshInspector();
       this.selectBlockByCursorPos(0);

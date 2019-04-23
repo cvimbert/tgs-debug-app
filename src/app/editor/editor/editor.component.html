@@ -63,7 +63,7 @@
           </div>
           <div id="main-structure-scroll" class="display-container">
               <app-main-structure
-                *ngIf="selectedDisplayPanel === 'display'"
+                *ngIf="selectedDisplayPanel === 'display' && content"
                 (externalNavigation)="onExternalNavigation($event)"
                 mode="debug"
                 [path]="currentPath"

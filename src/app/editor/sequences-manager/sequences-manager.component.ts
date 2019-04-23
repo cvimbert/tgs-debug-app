@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TgsLoadingService } from 'src/app/game-structure/tgs-loading.service';
+import { SequenceItem } from 'tgs-core';
+import { SequenceItemType } from 'tgs-core';
 
 @Component({
   selector: 'app-sequences-manager',
@@ -7,9 +10,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SequencesManagerComponent implements OnInit {
 
-  constructor() { }
+  itemsList: SequenceItem[];
+  folders: string[];
+  currentPath = "";
+
+  constructor(
+    private tgsService: TgsLoadingService
+  ) { }
 
   ngOnInit() {
+    this.setPathContent("");
+  }
+
+  setPathContent(path: string) {
+    console.log(path);
+    this.currentPath = path;
+    this.itemsList = this.tgsService.getFolderContent(this.currentPath);
+    console.log(this.itemsList);
+
+    this.folders = this.itemsList.filter(item => item.type === SequenceItemType.FOLDER).map(item => item.name);
+
+    if (path !== "") {
+      this.folders.unshift("..");
+    }
+  }
+
+  folderClick(folderName: string) {
+    if (folderName === "..") {
+      let index = this.currentPath.lastIndexOf("/");
+      this.setPathContent(index !== -1 ? this.currentPath : this.currentPath.substring(index));
+    } else {
+      this.setPathContent(this.currentPath + (this.currentPath === "" ? "" : "/") + folderName);
+    }
+    
   }
 
 }
