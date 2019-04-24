@@ -1,11 +1,24 @@
-<div class="content">
-  <div class="folders-list">
-    <div *ngFor="let folder of folders" (click)="folderClick(folder)" class="folder-item"><span class="fa fa-folder"></span>{{ folder }}</div>
-  </div>
-  <div class="files-list">
-    <div class="file-item" [class.selected]="file === selectedFile" (click)="fileClick(file)" *ngFor="let file of files"><span class="fa fa-file"></span>{{ file }}</div>
-  </div>
-  <div class="tools" *ngIf="selectedFile">
-    <input type="button" value="Delete" (click)="deleteFile()">
-  </div>
+<div class="main-container">
+    <div class="background" (click)="closeManager()"></div>
+    <div class="content">
+        <div class="folders-list">
+          <div *ngFor="let folder of folders" (click)="folderClick(folder)" class="folder-item"><span class="fa fa-folder"></span>{{ folder }}</div>
+        </div>
+        <div class="files-main-container">
+          <div class="folder-name">/{{ currentPath }}</div>
+
+          <div class="sub-container">
+              <div class="files-list">
+                  <div class="file-item" [class.selected]="file === selectedFile" (click)="fileClick(file)" *ngFor="let file of files"><span class="fa fa-file"></span>{{ file }}</div>
+              </div>
+              <div class="tools" *ngIf="selectedFile">
+                <input type="button" value="edit" (click)="editSequence()" *ngIf="selectedFile">
+                <input type="button" value="Delete" (click)="deleteFile()">
+              </div>
+          </div>
+          
+        </div>
+        
+        <div class="fa fa-check close-button" (click)="closeManager()"></div>
+      </div>
 </div>

@@ -17,7 +17,8 @@ export class SequencesManagerComponent implements OnInit {
   currentPath = "";
   selectedFile: string;
 
-  @Output("navigation") navigation: EventEmitter<string> = new EventEmitter();
+  @Output("navigation") navigation = new EventEmitter<string>();
+  @Output("close") close = new EventEmitter<void>();
 
   constructor(
     private tgsService: TgsLoadingService,
@@ -56,13 +57,24 @@ export class SequencesManagerComponent implements OnInit {
     if (this.selectedFile != fileName) {
       this.selectedFile = fileName;
     } else {
-      this.navigation.emit(this.currentPath ? (this.currentPath + "/") : "" + fileName);
+      this.navigation.emit(this.getPath(fileName));
     }
   }
 
+  getPath(fileName: string): string {
+    return (this.currentPath !== "" ? (this.currentPath + "/") : "") + fileName;
+  }
+
   deleteFile() {
-    this.tgsService.deleteSequenceFile(this.currentPath ? (this.currentPath + "/") : "" + this.selectedFile);
+    this.tgsService.deleteSequenceFile(this.getPath(this.selectedFile));
     this.navigation.emit("");
   }
 
+  editSequence() {
+    this.navigation.emit(this.getPath(this.selectedFile));
+  }
+
+  closeManager() {
+    this.close.emit();
+  }
 }

@@ -1,7 +1,6 @@
 <div class="main-panel">
   <div class="buttons">
     <div class="left">
-        <input type="button" value="Back" (click)="goBackInHistory()">
         <input type="button" value="Sequences manager" (click)="managerDisplayed = !managerDisplayed">
     </div>
     <div class="sequence-name">
@@ -80,4 +79,4 @@
         </div>
   </div>
 </div>
-<app-sequences-manager (navigation)="onNavigation($event)" *ngIf="managerDisplayed"></app-sequences-manager>
+<app-sequences-manager (close)="managerDisplayed = false" (navigation)="onNavigation($event)" *ngIf="managerDisplayed"></app-sequences-manager>

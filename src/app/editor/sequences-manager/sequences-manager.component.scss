@@ -10,10 +10,10 @@
 .content {
     position: fixed;
     background-color: #263238;
-    left: 60px;
-    right: 60px;
-    top: 60px;
-    bottom: 60px;
+    left: 30px;
+    right: 30px;
+    top: 30px;
+    bottom: 30px;
     border: 2px solid white;
     box-shadow: 2px 2px 7px 3px black;
     color: white;
@@ -24,6 +24,7 @@
     .folders-list {
         width: 200px;
         border-right: 1px solid white;
+        padding: 10px;
 
         .folder-item {
             padding: 3px;
@@ -37,8 +38,33 @@
         }
     }
 
+    .files-main-container {
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .folder-name {
+            height: 40px;
+            border-bottom: 1px solid white;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 40px;        
+        }
+    }
+
+    .sub-container {
+        display: flex;
+        flex-direction: initial;
+        height: 100%;
+    }
+
     .files-list {
         flex: 1;
+        padding: 30px;
+        /* display: flex;
+        flex-direction: row; */
 
         .file-item {
             display: inline-block;
@@ -46,20 +72,21 @@
             padding-left: 21px;
             padding-right: 21px;
             cursor: pointer;
-            border-right: 1px solid white;
-            border-bottom: 1px solid white;
+            border: 1px solid white;
+            border-radius: 6px;
+            margin: 5px;
 
             .fa {
                 margin-right: 5px;
                 font-size: 20px;
             }
 
-            &:hover {
+            /* &:hover {
                 background-color: rgba(211, 211, 211, 0.692);
                 color: black;
-            }
+            } */
         
-            &.selected {
+            &.selected, &:hover {
                 background-color: lightgrey;
                 color: black;
             }
@@ -89,5 +116,28 @@
                 color: black;
             }
         }
+    }
+}
+
+.close-button {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.main-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    .background {
+        background-color:rgba(0, 0, 0, 0.5);
+        position: absolute;
+        width: 100%;
+        height: 100%;
     }
 }
