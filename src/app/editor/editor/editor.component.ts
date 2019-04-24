@@ -57,7 +57,7 @@ export class EditorComponent implements OnInit {
       } else {
         this.tgsService.registerSequence(this.currentPath);
 
-        this.content = localStorage.getItem("editor-" + this.currentPath) || "#index\n\n\t";
+        this.content = localStorage.getItem("editor-" + this.currentPath) || "#index\n\n\tTxt...";
         this.tgsService.rawContent = this.content;
   
         this.refreshInspector();
@@ -86,6 +86,7 @@ export class EditorComponent implements OnInit {
   goBackToGame() {
     this.save();
     this.router.navigate(["/"]);
+    this.save();
   }
 
   goBackInHistory() {
@@ -102,6 +103,8 @@ export class EditorComponent implements OnInit {
         block: navigationData.localRef
       }
     });
+
+    this.save();
   }
 
   refreshInspector() {
@@ -257,6 +260,7 @@ export class EditorComponent implements OnInit {
     });
 
     this.managerDisplayed = false;
+    this.save();
   }
 
   clearLogs() {
@@ -300,6 +304,7 @@ export class EditorComponent implements OnInit {
         }
       });
 
+      this.save();
 
     } else if (blockId && path) {
       // lien externe et blockId
@@ -310,6 +315,7 @@ export class EditorComponent implements OnInit {
         }
       });
 
+      this.save();
     }
   }
 }

@@ -24,6 +24,12 @@
     height: 100%;
 }
 
+button {
+    outline: none;
+    width: 50px;
+    text-align: center;
+}
+
 .sequence-name {
     //background-color: #3b4a51;
     color: white;
@@ -34,6 +40,7 @@
     font-size: 19px;
     padding-top: 4px;
     //border-bottom: 1px solid rgba(255, 255, 255, 0.315);
+    line-height: 33px;
 }
 
 .buttons {
