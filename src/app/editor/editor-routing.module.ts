@@ -8,8 +8,9 @@ const routes: Routes = [
     component: EditorComponent
   },
   {
-    path: "editor/:path",
-    component: EditorComponent
+    path: "",
+    redirectTo: "editor",
+    pathMatch: "full"
   }
 ];
 
