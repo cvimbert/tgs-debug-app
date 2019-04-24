@@ -1,13 +1,13 @@
 <div class="main-panel">
   <div class="buttons">
     <div class="left">
-        <input type="button" value="Sequences manager" (click)="managerDisplayed = !managerDisplayed">
+        <button (click)="managerDisplayed = !managerDisplayed"><i class="fa fa-folder"></i></button>
     </div>
     <div class="sequence-name">
         {{ currentPath }}
       </div>
     <div class="right">
-        <input type="button" value="Save" (click)="save()">
+      <button (click)="save()"><i class="fas fa-save"></i></button>
     </div>
   </div>
   <div class="bottom-panel">
@@ -43,26 +43,29 @@
           <div class="display-tools">
             <div class="left-sub-panel">
               <ng-container *ngIf="selectedDisplayPanel === 'display'">
-                <input type="button" value="Reload" (click)="reloadGameDisplay()">
-                <input type="button" value="Reset" (click)="resetGameDisplay()">
+                <button (click)="reloadGameDisplay()"><i class="fas fa-redo"></i></button>
+                <button (click)="resetGameDisplay()"><i class="fas fa-sync-alt"></i></button>
               </ng-container>
               <ng-container *ngIf="selectedDisplayPanel === 'console'">
-                <input type="button" value="Clear logs" (click)="clearLogs()">
+                <button (click)="clearLogs()"><i class="fas fa-trash"></i></button>
               </ng-container>
             </div>
             <div class="right-sub-panel">
-              <input
+              <button 
                 [class.selected]="selectedDisplayPanel === 'display'"
-                (click)="selectedDisplayPanel = 'display'"
-                type="button" value="Display">
-              <input
+                (click)="selectedDisplayPanel = 'display'">
+                <i class="fas fa-desktop"></i>
+              </button>
+              <button
                 [class.selected]="selectedDisplayPanel === 'console'"
-                (click)="selectedDisplayPanel = 'console'"
-                type="button" value="Console">
-              <input
+                (click)="selectedDisplayPanel = 'console'">
+                <i class="fas fa-terminal"></i>
+              </button>
+              <button
                 [class.selected]="selectedDisplayPanel === 'variables'"
-                (click)="selectedDisplayPanel = 'variables'"
-                type="button" value="Variables">
+                (click)="selectedDisplayPanel = 'variables'">
+                <i class="fas fa-list-alt"></i>
+              </button>
             </div>
           </div>
           <div id="main-structure-scroll" class="display-container">
