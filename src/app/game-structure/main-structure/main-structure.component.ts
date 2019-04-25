@@ -170,10 +170,14 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
 
         //this.sequence.navigateToSequence(link.globalLinkRef, link.localLinkRef);
 
+        this.sequence.navigateToSequence(link.globalLinkRef, link.localLinkRef);
+        
         this.externalNavigation.emit({
           globalRef: link.globalLinkRef,
           localRef: link.localLinkRef
         });
+
+        
       }
     }
     

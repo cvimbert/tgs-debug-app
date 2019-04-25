@@ -66,7 +66,10 @@ export class EditorComponent implements OnInit {
         // Code TOUPOURI(TM)
         setTimeout(() => {
           this.editor.codeMirror.refresh();
+
+          // Pourquoi un reload ?
           this.reloadGameDisplay();
+
         }, 500);
       }
     });
@@ -75,8 +78,10 @@ export class EditorComponent implements OnInit {
       this.refreshInspector();
       this.selectBlockByCursorPos(pos);
     });
+  }
 
-    
+  get isModelValid(): boolean {
+    return this.mainModel.valid;
   }
 
   save() {

@@ -35,6 +35,7 @@
                 {{ block.id }}
               </div>
             </div>
+            <div class="invalid-overlay" *ngIf="!isModelValid"></div>
         </div>
         <div class="panel-separator">
 
@@ -79,7 +80,10 @@
               <app-variables-inspector *ngIf="selectedDisplayPanel === 'variables'"></app-variables-inspector>
               <app-logs-viewer #logs *ngIf="selectedDisplayPanel === 'console'"></app-logs-viewer>
           </div>
+          <div class="invalid-overlay" *ngIf="!isModelValid"></div>
         </div>
   </div>
+  <div class="error-displayer" *ngIf="!isModelValid">Parsing error (c: {{ mainModel.endIndex }})</div>
+  <div class="message-displayer">Saved !</div>
 </div>
 <app-sequences-manager (close)="managerDisplayed = false" (navigation)="onNavigation($event)" *ngIf="managerDisplayed"></app-sequences-manager>
