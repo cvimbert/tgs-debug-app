@@ -84,6 +84,6 @@
         </div>
   </div>
   <div class="error-displayer" *ngIf="!isModelValid">Parsing error (c: {{ mainModel.endIndex }})</div>
-  <div class="message-displayer">Saved !</div>
+  <div class="message-displayer" [@message]="messageState">{{ messageText }}</div>
 </div>
 <app-sequences-manager (close)="managerDisplayed = false" (navigation)="onNavigation($event)" *ngIf="managerDisplayed"></app-sequences-manager>

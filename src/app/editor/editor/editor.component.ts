@@ -8,11 +8,30 @@ import { debounce, debounceTime } from 'rxjs/operators';
 import { TgsLoadingService } from 'src/app/game-structure/tgs-loading.service';
 import { ExternalNavigation } from '../interfaces/external-navigation.interface';
 import { LogsViewerComponent } from 'src/app/game-structure/logs-viewer/logs-viewer.component';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.scss']
+  styleUrls: ['./editor.component.scss'],
+  animations: [
+    trigger("message", [
+      state("hidden", style({
+        opacity: 0,
+        transform: 'translateY(100px)'
+      })),
+      state("visible", style({
+        opacity: 1,
+        transform: 'translateY(0)'
+      })),
+      transition("hidden => visible", [
+        animate("0.3s ease-out")
+      ]),
+      transition("visible => hidden", [
+        animate("0.3s ease-out")
+      ]),
+    ])
+  ]
 })
 export class EditorComponent implements OnInit {
 
@@ -33,6 +52,9 @@ export class EditorComponent implements OnInit {
   managerDisplayed = false;
 
   private initialized: boolean = false;
+
+  messageText: string;
+  messageState = "hidden";
 
   @ViewChild("editor") editor: CodemirrorComponent;
   @ViewChild("logs") logsPanel: LogsViewerComponent;
@@ -81,11 +103,21 @@ export class EditorComponent implements OnInit {
   }
 
   get isModelValid(): boolean {
-    return this.mainModel.valid;
+    return this.mainModel ? this.mainModel.valid : false;
   }
 
   save() {
     localStorage.setItem("editor-" + this.currentPath, this.content);
+    this.displayMessage("Saved!");
+  }
+
+  displayMessage(txt: string, duration: number = 2000) {
+    this.messageText = txt;
+    this.messageState = "visible";
+
+    setTimeout(() => {
+      this.messageState = "hidden";
+    }, duration);
   }
 
   goBackToGame() {
