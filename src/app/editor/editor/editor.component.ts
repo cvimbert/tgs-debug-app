@@ -142,6 +142,7 @@ export class EditorComponent implements OnInit {
     this.save();
   }
 
+  // Plus utile
   goBackInHistory() {
     this.save();
 
@@ -232,6 +233,29 @@ export class EditorComponent implements OnInit {
     });
 
     //console.log("Count", count - 1);
+  }
+
+  getPosition(index: number): Object {
+    let count = 0;
+    let lineNum = 0;
+
+    let res: Object = {};
+
+    this.editor.codeMirror.getDoc().eachLine(line => {
+      let newCount = count + line.text.length + 1;
+
+      if (index >= count && index < newCount) {
+        res = {
+          line: lineNum,
+          char: index - count
+        }
+      }
+      
+      count = newCount;
+      lineNum++;
+    });
+
+    return res;
   }
 
   selectBlock(model: GameBlockModel) {
