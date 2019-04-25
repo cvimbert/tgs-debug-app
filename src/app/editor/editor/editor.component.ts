@@ -106,6 +106,22 @@ export class EditorComponent implements OnInit {
     return this.mainModel ? this.mainModel.valid : false;
   }
 
+  goBack() {
+    this.tgsService.goBackInHistory();
+  }
+
+  goNext() {
+    this.tgsService.goNextInHistory();
+  }
+
+  get hasBack(): boolean {
+    return this.tgsService.hasBack;
+  }
+
+  get hasNext(): boolean {
+    return this.tgsService.hasNext;
+  }
+
   save() {
     localStorage.setItem("editor-" + this.currentPath, this.content);
     this.displayMessage("Saved!");
