@@ -1,0 +1,28 @@
+@init {
+	log("ok");
+    t1 = "yes";
+}
+
+#index
+
+    @script2 {
+        log("ok");
+    }
+
+	Voilà un texte de plus %t1%...
+    
+    <title> Ligne (sdsd) 2
+    
+    (? t1 == "yy") Ligne 3
+    
+    Ligne 4
+    
+    * Lien 	-> sequence2
+    * Lien2 -> #block1
+    * Lien3 -> sequence2#index
+    
+    
+#block1
+
+	Texte bloc 1
+    
