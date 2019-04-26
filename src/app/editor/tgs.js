@@ -54,25 +54,37 @@
         ],
         script: [
             {regex: /\/\/.*/, token: "comment"},
-            { regex: /\{/, token: "operator", push: "scriptBlock"},
-            { regex: /\}/, token: "operator", pop: true },
-            
+            { regex: /\{/, token: "operator", next: "scriptBlock"}
         ],
         scriptBlock: [
             { regex: /\/\/.*/, token: "comment" },
             { regex: /\/\*/, token: "comment", next: "comment" },
-            { regex: /\}/, token: "operator", pop: true },
             { regex: /true|false/, token: "boolean" },
             { regex: /".*?"/, token: "string" },
             { regex: /[0-9]+/, token: "numeric"},
-            { regex: /[A-Za-z0-9]+/, token: "variable" }
+            { regex: /[A-Za-z0-9]+/, token: "variable" },
+            { regex: /\}/, token: "operator", pop: true },
         ],
         block: [
             { regex: /@[A-Za-z0-9-]+/, push: "script", token: "script-id-b" },
             { regex: /\/\*/, token: "comment", next: "comment" },
-            { regex: /%[A-Za-z0-9]+\%/, token: "script-id" },
+            { regex: /%(?=[A-Za-z0-9]+%)/, token: "inblock", next: "inlineVariable" },
             { regex: /(?=#).*?/, next: "start" },
-            { regex: /\*/, next: "link", token: "linkb", pop: true }
+            { regex: /\*/, next: "link", token: "linkb"},
+            { regex: /</, token: "block-inline-item", next: "styleEnum" },
+            { regex: /\(\?/, token: "block-inline-item", next: "condition" }
+        ],
+        condition: [
+            { regex: /(!=\)).*/, token: "block-inline-item"},
+            { regex: /\)/, token: "block-inline-item", next: "block" }
+        ],
+        styleEnum: [
+            { regex: /[A-Za-z0-9-]+/, token: "block-inline-item" },
+            { regex: />/, token: "block-inline-item", next: "block" }
+        ],
+        inlineVariable: [
+            { regex: /[A-Za-z0-9]+/, token: "variable-3" },
+            { regex: /%/, token: "inblock", next: "block"}
         ],
         link: [
             { regex: /->|=>/, token: "linkb", next: "linkRef"}
@@ -80,61 +92,12 @@
         linkRef: [
             { regex: /[A-Za-z0-9-\/]+#[A-Za-z0-9-]+/, token: "linkref", next: "block" },
             { regex: /[A-Za-z0-9-\/]+/, token: "linkref", next: "block" },
-            { regex: /#[A-Za-z0-9-]+/, token: "linkref", next: "block" }
+            { regex: /#[A-Za-z0-9-]+/, token: "linkref-local", next: "block" }
         ],
         comment: [
-            {regex: /.*\*\//, token: "comment", next: "start"},
+            {regex: /.*\*\//, token: "comment", pop: true },
             {regex: /.*/, token: "comment"}
-          ],
-        /*typedObject: [
-            {regex: /[A-Za-z0-9]+\s*:/, token: "property", push: "group"}
         ],
-        group: [
-            {regex: /#[A-Za-z0-9]+/, push: "typedObject", token: "keyword"},
-            {regex: /@[A-Za-z0-9]+/, push: "script", token: "variable-3"},
-            {token: "attribute", push: "attributesList"}
-        ],
-        attributesList: [
-            {regex: /,/, push: "attributesList"},
-            {regex: /#[A-Za-z0-9]+/, push: "typedObject", token: "keyword"},
-            {regex: /@[A-Za-z0-9]+/, push: "script", token: "variable-3"},
-            {regex: /[A-Za-z0-9]+\s*:/, token: "property", push: "attributesList"},
-            {regex: /(?=[A-Za-z0-9]+\s*\(\s*[A-Za-z0-9_-]+\s*\))/, push: "objectSelector"},
-            {regex: /(?=[A-Za-z0-9]+\s*->\s*[A-Za-z0-9]+)/, push: "graphLink"},
-            {regex: /-?[0-9]+(?:\.[0-9]*)?/, token: "number"},
-            {regex: /"[A-Za-z0-9\/._\-]+"/, token: "string"},
-            {regex: /true|false/, token: "number"},
-            {regex: /[A-Za-z0-9\/._]+/, token: "variable"}
-
-        ],
-        graphLink: [
-            {regex: /[A-Za-z0-9]+/, token: "variable"},
-            {regex: /->/, token: "operator", pop: true}
-        ],
-        objectSelector: [
-            {regex: /[A-Za-z0-9]+/, token: "atom", next: "objectSelectorArgument"}
-        ],
-        objectSelectorArgument: [
-            {regex: /[A-Za-z0-9]+/, token: "variable", pop: true}
-        ],
-        listen: [
-            {regex: /[A-Za-z0-9]+/, token: "variable", next: "script"}
-        ],
-        actionOnObject: [
-            {regex: /[A-Za-z0-9_]+/, token: "atom", push: "objectName"}
-        ],
-        objectName: [
-            {regex: /[A-Za-z0-9_]+/, token: "variable", next: "action"}
-        ],
-        action: [
-            {regex: />/, token: "operator", next: "action"},
-            {regex: /[A-Za-z0-9"]+[ ]*$/, token: "", push: "script"},
-            {regex: /[A-Za-z0-9"]+/, token: "", push: "actionArgs"}
-        ],
-        actionArgs: [
-            {regex: /[A-Za-z0-9]+[ ]*$/, token: "string", next: "script"},
-            {regex: /[A-Za-z0-9]+/, next: "actionArgs"}
-        ],*/
         meta: {
             dontIndentStates: ["comment"],
             lineComment: "//"

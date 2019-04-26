@@ -283,7 +283,7 @@ export class EditorComponent implements OnInit {
   @HostListener('mouseover', ['$event'])
   rollOverLink(evt: MouseEvent) {
     let element = evt.target as HTMLElement;
-    if (element.classList.contains("cm-linkref")) {
+    if (element.classList.contains("cm-linkref") || element.classList.contains("cm-linkref-local")) {
       this.selectedLink = element;
       this.checkLink();
     }
@@ -292,7 +292,7 @@ export class EditorComponent implements OnInit {
   @HostListener('mouseout', ['$event'])
   rollOutLink(evt: MouseEvent) {
     let element = evt.target as HTMLElement;
-    if (element.classList.contains("cm-linkref")) {
+    if (element.classList.contains("cm-linkref") || element.classList.contains("cm-linkref-local")) {
       this.uncheckLink();
       this.selectedLink = null;
     }

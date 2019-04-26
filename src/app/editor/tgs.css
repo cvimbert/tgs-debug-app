@@ -49,6 +49,10 @@
   font-weight: bold;
 }
 .cm-s-material .cm-linkref {
+  color: rgb(255, 170, 43);
+  font-weight: bold;
+}
+.cm-linkref-local {
   color: rgba(199, 146, 234, 1);
   font-weight: bold;
 }
@@ -57,6 +61,14 @@
 }
 .cm-numeric {
   color: #ffffae;
+}
+.cm-inblock {
+  color: rgb(255, 116, 116);
+  font-weight: bold;
+}
+.cm-block-inline-item {
+  color: rgb(255, 130, 130);
+  font-weight: bold;
 }
 .cm-s-material .cm-operator { color: rgba(233, 237, 237, 1); }
 .cm-s-material .cm-variable-2 { color: #80CBC4; }
