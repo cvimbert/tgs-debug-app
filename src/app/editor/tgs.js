@@ -48,20 +48,31 @@
         start: [
             {regex: /\/\/.*/, token: "comment"},
             {regex: /\/\*/, token: "comment", next: "comment"},
-            {regex: /@[A-Za-z0-9-]+/, next: "script", token: "script-id"},
+            {regex: /@[A-Za-z0-9-]+/, push: "script", token: "script-id"},
             {regex: /#[A-Za-z0-9-]+/, next: "block", token: "block-id"},
             {regex: /->|=>/, token: "keyword"}
         ],
         script: [
             {regex: /\/\/.*/, token: "comment"},
-            { regex: /\{/, token: "operator"},
-            { regex: /\}/, token: "operator", next: "start"}
+            { regex: /\{/, token: "operator", push: "scriptBlock"},
+            { regex: /\}/, token: "operator", pop: true },
+            
+        ],
+        scriptBlock: [
+            { regex: /\/\/.*/, token: "comment" },
+            { regex: /\/\*/, token: "comment", next: "comment" },
+            { regex: /\}/, token: "operator", pop: true },
+            { regex: /true|false/, token: "boolean" },
+            { regex: /".*?"/, token: "string" },
+            { regex: /[0-9]+/, token: "numeric"},
+            { regex: /[A-Za-z0-9]+/, token: "variable" }
         ],
         block: [
-            {regex: /\/\*/, token: "comment", next: "comment"},
-            { regex: /%[A-Za-z0-9]+\%/, token: "script-id"},
+            { regex: /@[A-Za-z0-9-]+/, push: "script", token: "script-id-b" },
+            { regex: /\/\*/, token: "comment", next: "comment" },
+            { regex: /%[A-Za-z0-9]+\%/, token: "script-id" },
             { regex: /(?=#).*?/, next: "start" },
-            { regex: /\*/, next: "link", token: "linkb", pop: true}
+            { regex: /\*/, next: "link", token: "linkb", pop: true }
         ],
         link: [
             { regex: /->|=>/, token: "linkb", next: "linkRef"}
