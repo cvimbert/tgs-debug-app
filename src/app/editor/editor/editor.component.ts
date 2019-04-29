@@ -79,7 +79,7 @@ export class EditorComponent implements OnInit {
       } else {
         this.tgsService.registerSequence(this.currentPath);
 
-        this.content = localStorage.getItem("editor-" + this.currentPath) || "#index\n\n\tTxt...";
+        this.content = localStorage.getItem("editor-" + this.currentPath) || "#index\n\n\tTxt...\n";
         this.tgsService.rawContent = this.content;
   
         this.refreshInspector();
@@ -219,6 +219,8 @@ export class EditorComponent implements OnInit {
     let count = 0;
     let lineNum = 0;
 
+    if (!this.editor.codeMirror) return;
+
     this.editor.codeMirror.getDoc().eachLine(line => {
       let newCount = count + line.text.length + 1;
 
@@ -240,6 +242,8 @@ export class EditorComponent implements OnInit {
     let lineNum = 0;
 
     let res: Object = {};
+
+    if (!this.editor.codeMirror) return;
 
     this.editor.codeMirror.getDoc().eachLine(line => {
       let newCount = count + line.text.length + 1;

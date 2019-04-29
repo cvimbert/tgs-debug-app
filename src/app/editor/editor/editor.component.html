@@ -85,7 +85,7 @@
           <div class="invalid-overlay" *ngIf="!isModelValid"></div>
         </div>
   </div>
-  <div class="error-displayer" *ngIf="!isModelValid && mainModel">Parsing error<br>(line: {{ getPosition(mainModel.endIndex).line + 1 }}, char: {{ getPosition(mainModel.endIndex).char }})</div>
+  <div class="error-displayer" *ngIf="!isModelValid && mainModel && editor.codeMirror">Parsing error<br>(line: {{ getPosition(mainModel.endIndex).line + 1 }}, char: {{ getPosition(mainModel.endIndex).char }})</div>
   <div class="message-displayer" [@message]="messageState">{{ messageText }}</div>
 </div>
 <app-sequences-manager (close)="managerDisplayed = false" (navigation)="onNavigation($event)" *ngIf="managerDisplayed"></app-sequences-manager>

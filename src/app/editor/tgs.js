@@ -53,41 +53,59 @@
             {regex: /->|=>/, token: "keyword"}
         ],
         script: [
-            {regex: /\/\/.*/, token: "comment"},
+            { regex: /\/\/.*/, token: "comment" },
             { regex: /\{/, token: "operator", next: "scriptBlock"}
         ],
         scriptBlock: [
             { regex: /\/\/.*/, token: "comment" },
             { regex: /\/\*/, token: "comment", next: "comment" },
+            { regex: /if|for|elseif/, token: "builtin", push: "conditional" },
             { regex: /true|false/, token: "boolean" },
             { regex: /".*?"/, token: "string" },
             { regex: /[0-9]+/, token: "numeric"},
             { regex: /[A-Za-z0-9]+/, token: "variable" },
             { regex: /\}/, token: "operator", pop: true },
         ],
+        conditional: [
+            { regex: /\(/, next: "coloredCondition" }
+        ],
         block: [
             { regex: /@[A-Za-z0-9-]+/, push: "script", token: "script-id-b" },
+            { regex: /[\[\]]/, token: "block-inline-item" },
             { regex: /\/\*/, token: "comment", next: "comment" },
-            { regex: /%(?=[A-Za-z0-9]+%)/, token: "inblock", next: "inlineVariable" },
+            { regex: /%(?=[A-Za-z0-9]+%)/, token: "variable", next: "inlineVariable" },
             { regex: /(?=#).*?/, next: "start" },
             { regex: /\*/, next: "link", token: "linkb"},
-            { regex: /</, token: "block-inline-item", next: "styleEnum" },
-            { regex: /\(\?/, token: "block-inline-item", next: "condition" }
+            { regex: /<[A-Za-z0-9 -]+>/, token: "block-inline-item" },
+            // tag
+            { regex: /</, token: "block-inline-item", push: "tag" },
+            { regex: /\(\?/, token: "block-inline-item", push: "condition" }
+        ],
+        tag: [
+            { regex: /[A-Za-z0-9-=".]+/, token: "block-inline-item" },
+            { regex: />/, token: "block-inline-item", pop: true }
+        ],
+        coloredCondition: [
+            { regex: /".*?"/, token: "string" },
+            { regex: /[0-9]+/, token: "numeric"},
+            { regex: /[A-Za-z0-9]+/, token: "variable" },
+            { regex: /\)/, next: "script" }
         ],
         condition: [
-            { regex: /(!=\)).*/, token: "block-inline-item"},
-            { regex: /\)/, token: "block-inline-item", next: "block" }
+            { regex: /.*?\)/, token: "block-inline-item", pop: true}
         ],
         styleEnum: [
             { regex: /[A-Za-z0-9-]+/, token: "block-inline-item" },
             { regex: />/, token: "block-inline-item", next: "block" }
         ],
         inlineVariable: [
-            { regex: /[A-Za-z0-9]+/, token: "variable-3" },
-            { regex: /%/, token: "inblock", next: "block"}
+            { regex: /[A-Za-z0-9]+/, token: "variable" },
+            { regex: /%/, token: "variable", next: "block"}
         ],
         link: [
-            { regex: /->|=>/, token: "linkb", next: "linkRef"}
+            { regex: /\(/, push: "condition", token: "block-inline-item" },
+            { regex: /->|=>/, token: "linkb", next: "linkRef"},
+            { regex: /\[[A-Za-z0-9- ]+\]/, token: "block-inline-item" }
         ],
         linkRef: [
             { regex: /[A-Za-z0-9-\/]+#[A-Za-z0-9-]+/, token: "linkref", next: "block" },

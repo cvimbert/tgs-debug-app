@@ -45,11 +45,11 @@
   font-size: 17px;
 }
 .cm-s-material .cm-linkb {
-  color: rgb(255, 118, 94);
+  color: rgb(255, 74, 98);
   font-weight: bold;
 }
 .cm-s-material .cm-linkref {
-  color: rgb(255, 170, 43);
+  color: rgb(239, 210, 100);
   font-weight: bold;
 }
 .cm-linkref-local {
@@ -68,7 +68,7 @@
 }
 .cm-block-inline-item {
   color: rgb(255, 130, 130);
-  font-weight: bold;
+  opacity: 0.7;
 }
 .cm-s-material .cm-operator { color: rgba(233, 237, 237, 1); }
 .cm-s-material .cm-variable-2 { color: #80CBC4; }

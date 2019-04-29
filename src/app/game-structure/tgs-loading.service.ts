@@ -64,7 +64,7 @@ export class TgsLoadingService extends GameManager {
       this.historyIndex = this.history.length - 1;
     }
 
-    console.log(this.history);
+    //console.log(this.history);
 
     super.registerSequence(path);
   }
@@ -82,7 +82,7 @@ export class TgsLoadingService extends GameManager {
       let sequences: string[] = this.getRegisteredSequencesList();
       let index = sequences.indexOf(filePath);
 
-      console.log(filePath);
+      //console.log(filePath);
 
       if (index !== -1) {
         sequences.splice(index, 1);
