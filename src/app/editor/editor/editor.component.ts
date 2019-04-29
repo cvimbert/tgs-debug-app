@@ -79,20 +79,27 @@ export class EditorComponent implements OnInit {
       } else {
         this.tgsService.registerSequence(this.currentPath);
 
-        this.content = localStorage.getItem("editor-" + this.currentPath) || "#index\n\n\tTxt...\n";
-        this.tgsService.rawContent = this.content;
-  
-        this.refreshInspector();
-        this.selectBlockByCursorPos(0);
-  
-        // Code TOUPOURI(TM)
-        setTimeout(() => {
-          this.editor.codeMirror.refresh();
+        this.tgsService.getFileContent(this.currentPath).then(content => {
+          
+          this.content = content;
 
-          // Pourquoi un reload ?
-          this.reloadGameDisplay();
+          this.tgsService.rawContent = this.content;
+  
+          this.refreshInspector();
+          this.selectBlockByCursorPos(0);
+    
+          // Code TOUPOURI(TM)
+          setTimeout(() => {
+            this.editor.codeMirror.refresh();
+  
+            // Pourquoi un reload ?
+            this.reloadGameDisplay();
+  
+          }, 500);
+        });
 
-        }, 500);
+
+        //this.content = localStorage.getItem("editor-" + this.currentPath) || "#index\n\n\tTxt...\n";
       }
     });
 
@@ -123,8 +130,7 @@ export class EditorComponent implements OnInit {
   }
 
   save() {
-    localStorage.setItem("editor-" + this.currentPath, this.content);
-    this.displayMessage("Saved!");
+    this.tgsService.save(this.currentPath, this.content).then(() => this.displayMessage("Saved!"));
   }
 
   displayMessage(txt: string, duration: number = 2000) {

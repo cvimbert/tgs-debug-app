@@ -1,13 +1,53 @@
+@init {
+	test1 = "true";
+    test2 = 99;
+    test3 = false;
+    
+    // ok commentaire
+    
+    if (test2 > 100) {
+    	log ("yes");
+    }
+    
+    log("ok");
+}
+    
 #index
-    <title>Un démarrage en trombe
-    <subtitle>Lieu :  si seulement on le savait...
-    dsqdqs
 
-    wxx
+	@init { test2 = 99; }
 
-    * jjjj -> #dd
+	<title>Voilà !!!
+    
+    Condition text %test1%
+    
+    <img src="ok.png">
+    
+    
+    [(? test2 == 990)
+    	Test b ?
+    ]
+    
+    [<subtitle>
+    	ok
+        et autre
+    ]
+    
+    * (? test2 == 50) Lien 1 -> #block2
+    * [unique] Lien 2 -> #block2
+    * Lien 3 -> example
+    
 
-#dd
-    jjj 
+#block1
 
-#ok
+	Texte bloc 1
+    
+    * Séquence 1 -> sequence1
+    * Séquence 2 -> sequence2
+	* Retour -> #index
+    * ttt -> dsdsd
+
+#block2
+
+	Texte bloc 2
+    
+    * Retour -> #index

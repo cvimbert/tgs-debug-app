@@ -33,15 +33,19 @@ export class SequencesManagerComponent implements OnInit {
     this.selectedFile = "";
     // console.log(path);
     this.currentPath = path;
-    this.itemsList = this.tgsService.getFolderContent(this.currentPath);
-    // console.log(this.itemsList);
 
-    this.folders = this.itemsList.filter(item => item.type === SequenceItemType.FOLDER).map(item => item.name);
-    this.files = this.itemsList.filter(item => item.type === SequenceItemType.FILE).map(item => item.name);
+    this.tgsService.getFolderContent(this.currentPath).then(items => {
+      this.itemsList = items;
 
-    if (path !== "") {
-      this.folders.unshift("..");
-    }
+      this.folders = this.itemsList.filter(item => item.type === SequenceItemType.FOLDER).map(item => item.name);
+      this.files = this.itemsList.filter(item => item.type === SequenceItemType.FILE).map(item => item.name);
+
+      if (path !== "") {
+        this.folders.unshift("..");
+      }
+
+      console.log("items", this.itemsList, this.folders, this.files);
+    });
   }
 
   folderClick(folderName: string) {
