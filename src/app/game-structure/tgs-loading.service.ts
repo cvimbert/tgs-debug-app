@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GameManager, GameSequence, GameMode } from 'tgs-core';
+import { GameManager, GameSequence, GameMode, SequenceItem, SequenceItemType } from 'tgs-core';
 import { ElectronService } from 'ngx-electron';
 import { MainStructure } from 'tgs-model';
 import { ParsingResult } from 'tgs-parser';
@@ -89,6 +89,47 @@ export class TgsLoadingService extends GameManager {
         localStorage.setItem("sequences", JSON.stringify(sequences));
         localStorage.removeItem("editor-" + filePath);
       }
+    }
+  }
+
+
+  getFolderContent(path: string): SequenceItem[] {
+
+    
+
+    if (this.electronService.isElectronApp) {
+
+      let res: SequenceItem[] = [];
+
+      let fs: any = this.electronService.remote.require("fs");
+
+      let mpath: string = "src/assets/tgs/" + path;
+
+      fs.readdir(mpath, (err: any, files: string[]) => {
+
+        if (err) {
+          console.log(err);
+        }
+
+        if (files) {
+          files.forEach(file => {
+            let filePath = mpath + "/" + file;
+  
+            fs.lstat(filePath, (err: string, stats: any) => {
+              console.log(stats);
+              res.push({
+                type: stats.isDirectory() ? SequenceItemType.FOLDER : SequenceItemType.FILE,
+                name: file
+              });
+            });
+          });
+        }
+      });
+
+      console.log(res);
+      return res;
+    } else {
+      return super.getFolderContent(path);
     }
   }
 

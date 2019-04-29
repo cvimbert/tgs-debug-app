@@ -25,7 +25,7 @@ function createWindow () {
   mainWindow.loadFile(`dist/tgs-debug-app/index.html`)
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -35,7 +35,7 @@ function createWindow () {
     mainWindow = null
   })
 
-  //mainWindow.maximize();
+  mainWindow.maximize();
 }
 
 // This method will be called when Electron has finished
