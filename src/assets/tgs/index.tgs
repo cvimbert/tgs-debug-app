@@ -16,7 +16,7 @@
 
 	@init { test2 = 99; }
 
-	<title>Voilà !!!
+	<title>Voilà
     
     Condition text %test1%
     

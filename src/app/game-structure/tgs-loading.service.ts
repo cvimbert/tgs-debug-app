@@ -82,19 +82,35 @@ export class TgsLoadingService extends GameManager {
     return this.historyIndex < this.history.length - 1;
   }
 
-  deleteSequenceFile(filePath: string) {
-    if (!this.electronService.isElectronApp) {
-      let sequences: string[] = this.getRegisteredSequencesList();
-      let index = sequences.indexOf(filePath);
+  deleteSequenceFile(filePath: string): Promise<void> {
 
-      //console.log(filePath);
+    return new Promise<void>((resolve, reject) => {
+      if (!this.electronService.isElectronApp) {
+        let sequences: string[] = this.getRegisteredSequencesList();
+        let index = sequences.indexOf(filePath);
+  
+        //console.log(filePath);
+  
+        if (index !== -1) {
+          sequences.splice(index, 1);
+          localStorage.setItem("sequences", JSON.stringify(sequences));
+          localStorage.removeItem("editor-" + filePath);
+          resolve();
+        }
+      } else {
+        //console.log("path", this.tgsAssetsPath + filePath);
 
-      if (index !== -1) {
-        sequences.splice(index, 1);
-        localStorage.setItem("sequences", JSON.stringify(sequences));
-        localStorage.removeItem("editor-" + filePath);
+        let fs = this.electronService.remote.require("fs");
+        let mpath = this.tgsAssetsPath + filePath;
+
+        fs.unlink(mpath, (err: Error) => {
+          console.log(err);
+          if (err) reject(); else resolve();
+        });
       }
-    }
+    });
+
+    
   }
 
   getFileContent(path: string): Promise<string> {
@@ -103,7 +119,7 @@ export class TgsLoadingService extends GameManager {
       if (this.electronService.isElectronApp) {
         let fs = this.electronService.remote.require("fs");
 
-        console.log(path);
+        // console.log(path);
 
         fs.readFile(this.tgsAssetsPath + path + ".tgs", "utf8", (err: Error, data: string) => {
           if (err) {
@@ -130,10 +146,24 @@ export class TgsLoadingService extends GameManager {
   save(path: string, content: string): Promise<void> {
 
     return new Promise<void>((resolve, reject) => {
+
       if (this.electronService.isElectronApp) {
 
+        let fs = this.electronService.remote.require("fs");
+
+        let mpath = this.tgsAssetsPath + path + ".tgs";
+
+        fs.writeFile(mpath, content, (err: Error) => {
+          if (err) {
+            reject();
+          } else {
+            resolve();
+          }
+        });
+        
       } else {
         localStorage.setItem("editor-" + path, content);
+        resolve();
       }
     });
 
@@ -162,7 +192,7 @@ export class TgsLoadingService extends GameManager {
               let filePath = mpath + "/" + file;
     
               fs.lstat(filePath, (err: string, stats: any) => {
-                console.log(stats);
+                
                 res.push({
                   type: stats.isDirectory() ? SequenceItemType.FOLDER : SequenceItemType.FILE,
                   name: file

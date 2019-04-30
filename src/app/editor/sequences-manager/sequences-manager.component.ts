@@ -44,7 +44,7 @@ export class SequencesManagerComponent implements OnInit {
         this.folders.unshift("..");
       }
 
-      console.log("items", this.itemsList, this.folders, this.files);
+      //console.log("items", this.itemsList, this.folders, this.files);
     });
   }
 
