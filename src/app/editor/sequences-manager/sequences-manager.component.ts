@@ -70,8 +70,9 @@ export class SequencesManagerComponent implements OnInit {
   }
 
   deleteFile() {
-    this.tgsService.deleteSequenceFile(this.getPath(this.selectedFile));
-    this.navigation.emit("");
+    this.tgsService.deleteSequenceFile(this.getPath(this.selectedFile)).then(() => {
+      this.setPathContent(this.currentPath);
+    });
   }
 
   editSequence() {

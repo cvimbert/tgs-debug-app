@@ -1,3 +1,6 @@
+?condition1 { vtest == 5 }
+?condition2 { true }
+
 @init {
 	test1 = "true";
     test2 = 99;

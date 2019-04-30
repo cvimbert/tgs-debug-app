@@ -103,6 +103,8 @@ export class TgsLoadingService extends GameManager {
         let fs = this.electronService.remote.require("fs");
         let mpath = this.tgsAssetsPath + filePath;
 
+        console.log("deleted", mpath);
+
         fs.unlink(mpath, (err: Error) => {
           console.log(err);
           if (err) reject(); else resolve();
