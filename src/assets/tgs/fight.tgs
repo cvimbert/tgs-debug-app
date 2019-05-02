@@ -1,0 +1,22 @@
+@init {
+	player.life = 20;
+    player.magic = 10;
+    adv.life = 10;
+    ad.magic = 5;
+    
+    currentRound = 0;
+}
+
+#index
+
+	<title> Tuto fight
+    <subtitle> Round 1
+    
+    * => #start
+
+
+#start
+
+	Début du combat
+    Niveau actuel de vie : %player.life%
+    Niveau actuel de magie : %player.magic%

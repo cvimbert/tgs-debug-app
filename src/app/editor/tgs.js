@@ -77,7 +77,7 @@
             { regex: /@[A-Za-z0-9-]+/, push: "script", token: "script-id-b" },
             { regex: /[\[\]]/, token: "block-inline-item" },
             { regex: /\/\*/, token: "comment", next: "comment" },
-            { regex: /%(?=[A-Za-z0-9]+%)/, token: "variable", next: "inlineVariable" },
+            { regex: /%(?=[A-Za-z0-9\.]+%)/, token: "variable", next: "inlineVariable" },
             { regex: /(?=#).*?/, next: "start" },
             { regex: /\*/, next: "link", token: "linkb"},
             { regex: /<[A-Za-z0-9 -]+>/, token: "block-inline-item" },
@@ -104,7 +104,7 @@
             { regex: />/, token: "block-inline-item", next: "block" }
         ],
         inlineVariable: [
-            { regex: /[A-Za-z0-9]+/, token: "variable" },
+            { regex: /[A-Za-z0-9-\.]+/, token: "variable" },
             { regex: /%/, token: "variable", next: "block"}
         ],
         link: [
