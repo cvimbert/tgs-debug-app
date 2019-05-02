@@ -79,6 +79,9 @@ export class EditorComponent implements OnInit {
       } else {
         this.tgsService.registerSequence(this.currentPath);
 
+        this.tgsService.rawContent = "";
+        // this.tgsService.resetGame();
+
         this.tgsService.getFileContent(this.currentPath).then(content => {
           
           this.content = content;
@@ -104,8 +107,12 @@ export class EditorComponent implements OnInit {
     });
 
     this.bdSubject.pipe(debounceTime(1000)).subscribe(pos => {
-      this.refreshInspector();
-      this.selectBlockByCursorPos(pos);
+
+      if (this.tgsService.rawContent !== "") {
+        this.refreshInspector();
+        this.selectBlockByCursorPos(pos);
+      }
+      
     });
   }
 

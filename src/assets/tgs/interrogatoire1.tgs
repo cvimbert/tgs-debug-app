@@ -3,10 +3,13 @@
     son = 0;
 }
 
+#title
+	<title>Titre de la séquence
+    
+    * => #start
+
 #start
-    [<title>Un interrogatoire
-        [<subtitle>Lieu inconnu...]
-    ]
+
     Est-ce que c'était un soleil qui tourne devant moi ?
     ---
     Difficile à dire...
@@ -19,8 +22,8 @@
     * => #hub1
 
 #hub1
-    * (main == 0) Tendre la main... -> #tendremain
-    * (son == 0) Un bourdonnement... -> #bourdonnement
+    * (? main == 0) Tendre la main... -> #tendremain
+    * (? son == 0) Un bourdonnement... -> #bourdonnement
 
 #tendremain
     @init { main = 1; }

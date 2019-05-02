@@ -58,6 +58,9 @@ export class SequencesManagerComponent implements OnInit {
   }
 
   fileClick(fileName: string) {
+
+    fileName = fileName.replace(/\.tgs$/, "");
+
     if (this.selectedFile != fileName) {
       this.selectedFile = fileName;
     } else {

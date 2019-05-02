@@ -190,6 +190,11 @@ export class TgsLoadingService extends GameManager {
           }
   
           if (files) {
+
+            if (files.length === 0) {
+              resolve([]);
+            }
+
             files.forEach((file, index) => {
               let filePath = mpath + "/" + file;
     

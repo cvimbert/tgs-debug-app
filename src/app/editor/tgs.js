@@ -50,11 +50,15 @@
             {regex: /\/\*/, token: "comment", next: "comment"},
             {regex: /@[A-Za-z0-9-]+/, push: "script", token: "script-id"},
             {regex: /#[A-Za-z0-9-]+/, next: "block", token: "block-id"},
+            {regex: /\?[A-Za-z0-9-]+/, next: "", token: "block-id"},
             {regex: /->|=>/, token: "keyword"}
         ],
         script: [
             { regex: /\/\/.*/, token: "comment" },
             { regex: /\{/, token: "operator", next: "scriptBlock"}
+        ],
+        conditionBlock: [
+            { regex: /\{/, next: "coloredCondition" },
         ],
         scriptBlock: [
             { regex: /\/\/.*/, token: "comment" },
@@ -89,7 +93,8 @@
             { regex: /".*?"/, token: "string" },
             { regex: /[0-9]+/, token: "numeric"},
             { regex: /[A-Za-z0-9]+/, token: "variable" },
-            { regex: /\)/, next: "script" }
+            { regex: /\)/, next: "script" },
+            { regex: /\}/, pop: true }
         ],
         condition: [
             { regex: /.*?\)/, token: "block-inline-item", pop: true}

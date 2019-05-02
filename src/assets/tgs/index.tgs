@@ -1,5 +1,10 @@
-?condition1 { vtest == 5 }
-?condition2 { true }
+?condition1 {
+	vtest == 5
+}
+
+?condition2 {
+	true
+}
 
 @init {
 	test1 = "true";
