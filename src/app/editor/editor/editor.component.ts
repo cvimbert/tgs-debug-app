@@ -1,14 +1,15 @@
-import { Component, OnInit, HostListener, ViewChild, AfterContentInit, OnChanges, AfterViewInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TGSParser, ParsingResult } from 'tgs-parser';
 import { MainStructure, GameBlockModel } from 'tgs-model';
 import { CodemirrorComponent } from '@ctrl/ngx-codemirror';
-import { Subject, timer } from 'rxjs';
-import { debounce, debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { TgsLoadingService } from 'src/app/game-structure/tgs-loading.service';
 import { ExternalNavigation } from '../interfaces/external-navigation.interface';
 import { LogsViewerComponent } from 'src/app/game-structure/logs-viewer/logs-viewer.component';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ElectronService } from 'ngx-electron';
 
 @Component({
   selector: 'app-editor',
@@ -63,7 +64,8 @@ export class EditorComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private ref: ChangeDetectorRef,
-    private tgsService: TgsLoadingService
+    private tgsService: TgsLoadingService,
+    private electronService: ElectronService
   ) {}
 
   ngOnInit() {
@@ -359,6 +361,17 @@ export class EditorComponent implements OnInit {
 
   clearLogs() {
     this.logsPanel.clearLogs();
+  }
+
+  openDevTools() {
+    // console.log("open dev tools");
+    if (this.electronService.isElectronApp) {
+      // console.log("ici");
+
+      // On verra pour l'ouverture des dev tools
+      console.log(this.electronService.remote.require("electron"));
+
+    }
   }
 
   linkClick(evt: MouseEvent) {

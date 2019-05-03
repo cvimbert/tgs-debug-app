@@ -3,6 +3,7 @@
     //font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-family: RobotoMono-Regular;
     font-size: 13px;
+    max-width: 800px;
 
     .CodeMirror-vscrollbar {
         visibility: hidden;
@@ -132,6 +133,7 @@ button {
         .right-panel {
             position: relative;
             width: 200px;
+            min-width: 200px;
             background-color: white;
             height: 100%;
             background-color: #263238;

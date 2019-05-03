@@ -2,9 +2,10 @@
 	player.life = 20;
     player.magic = 10;
     adv.life = 10;
-    ad.magic = 5;
+    adv.magic = 5;
     
     currentRound = 0;
+    typeArme = 0;
 }
 
 #index
@@ -12,11 +13,62 @@
 	<title> Tuto fight
     <subtitle> Round 1
     
-    * => #start
+    * => #recap
 
 
-#start
+#recap
 
 	Début du combat
     Niveau actuel de vie : %player.life%
     Niveau actuel de magie : %player.magic%
+
+	* => #start
+
+
+#start
+
+	Je m'approche de l'extrémité du tunnel, m'apprêtant à faire un choix entre le passage de gauche ou de droite, quand un bang sonore retentit, projetant débris et poussière aveuglante tout autour de moi.
+    
+    * Je fais un saut en arrière -> #sautArriere
+    * Je plonge face contre terre -> #plongeon
+    * Je sors mon arme de son fourreau -> #sorsArme
+
+
+#sautArriere
+
+	Me ressaisissant, je fais un bond en arrière. Une bonne chose. J'évite de justesse le coup porté par une immense patte, telle une immense dague aiguisée et velue, qui se rétracte tout de suite dans l'ombre.
+    
+    La poussière retombe doucement vers le sol.
+   
+    
+    * Je peux maintenant sortir mon arme... -> #sortArmeOk
+
+
+#plongeon
+
+	@init {
+    	player.life -= 2;
+    }
+
+	Je plonge face contre terre, ce qui me permet d'éviter la chute d'une portion du plafond, mais je ressens un choc cinglant contre mon flanc, heureusement armorti par mon armure.
+    
+    (Nouvelle valeur de vie : %player.life%)
+    
+    
+    * Je me redresse comme je peux et sors mon arme -> #sorsArmeOk
+
+
+#sorsArme
+
+	Mon arme sort de son fourreau avec le sifflement de l'acier vorace.
+    Malheureusement, sortant bruquement du brouillard constitué de mille particules de poussière, une immense patte chitineuse en percute la lame, et l'envoie voler contre le mur puis sur le sol.
+    
+    * Tant pis pour l'épée, il me reste une dague -> #sorsDague
+    * Je me jette sur l'épée -> #recupEpee
+    * Un sort, peut-être... -> #sort
+     
+
+
+#sorsArmeOk
+
+	Txt...

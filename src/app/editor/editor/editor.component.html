@@ -3,7 +3,10 @@
     <div class="left">
       <button *ngIf="hasBack" title="Go back" (click)="goBack()"><i class="fas fa-arrow-left"></i></button>
       <button *ngIf="hasNext" title="Go next" (click)="goNext()"><i class="fas fa-arrow-right"></i></button>
-      <button title="Display sequences manager" (click)="managerDisplayed = !managerDisplayed"><i class="fa fa-folder"></i></button>
+      <button title="Display sequences manager"(click)="managerDisplayed = !managerDisplayed">
+        <i class="fa fa-folder"></i>
+      </button>
+      <button (click)="openDevTools()"><i class="fas fa-arrow-up"></i></button>
     </div>
     <div class="sequence-name">
         {{ currentPath }}
@@ -22,6 +25,7 @@
                 lineNumbers: true,
                 theme: 'material',
                 mode: 'tgs',
+                lineWrapping: true,
                 extraKeys: { 'Ctrl-Space': 'autocomplete'}
               }"
               (cursorActivity)="onCursorActivity($event)">
