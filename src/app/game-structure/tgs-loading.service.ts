@@ -4,6 +4,7 @@ import { ElectronService } from 'ngx-electron';
 import { MainStructure } from 'tgs-model';
 import { ParsingResult } from 'tgs-parser';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class TgsLoadingService extends GameManager {
   history: string[] = [];
   historyIndex = 0;
 
-  tgsAssetsPath = "src/assets/tgs/";
+  tgsDebugAssetsPath = "src/assets/tgs/";
+  tgsProdAssetsPath = "assets/tgs/"
 
   constructor(
     public electronService: ElectronService,
@@ -38,6 +40,11 @@ export class TgsLoadingService extends GameManager {
       this.loading = false;
       //this.init();
     }
+  }
+
+  get tgsAssetsPath(): string {
+    console.log(environment);
+    return environment.production ? this.tgsProdAssetsPath : this.tgsDebugAssetsPath;
   }
 
   goBackInHistory() {

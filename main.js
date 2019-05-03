@@ -22,6 +22,7 @@ function createWindow () {
   // mainWindow.webContents.openDevTools()
 
   // and load the index.html of the app.
+  //mainWindow.loadURL(`http://localhost:4200`)
   mainWindow.loadFile(`dist/tgs-debug-app/index.html`)
 
   // Open the DevTools.

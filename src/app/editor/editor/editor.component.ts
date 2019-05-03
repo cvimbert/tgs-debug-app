@@ -96,6 +96,7 @@ export class EditorComponent implements OnInit {
           // Code TOUPOURI(TM)
           setTimeout(() => {
             this.editor.codeMirror.refresh();
+            this.editor.codeMirror.getDoc().clearHistory();
   
             // Pourquoi un reload ?
             this.reloadGameDisplay();
@@ -283,6 +284,10 @@ export class EditorComponent implements OnInit {
     this.currentBlock = model;
   }
 
+  onKeyHandled(key: string) {
+    console.log(key);
+  }
+
   @HostListener('window:keydown', ['$event'])
   onkeyDown(evt: KeyboardEvent) {
     if (evt.key === "Control") {
@@ -296,6 +301,18 @@ export class EditorComponent implements OnInit {
     if (evt.key === "Control") {
       this.navigationActivated = false;
       this.uncheckLink();
+    }
+
+    if (this.electronService.isElectronApp) {
+
+      if (evt.ctrlKey) {
+        switch(evt.key) {
+          case "s":
+            this.save();
+            break;
+        }
+      }
+      
     }
   }
 
@@ -367,10 +384,7 @@ export class EditorComponent implements OnInit {
     // console.log("open dev tools");
     if (this.electronService.isElectronApp) {
       // console.log("ici");
-
-      // On verra pour l'ouverture des dev tools
-      console.log(this.electronService.remote.require("electron"));
-
+      this.electronService.remote.BrowserWindow.getFocusedWindow().webContents.openDevTools()
     }
   }
 
