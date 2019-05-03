@@ -11,7 +11,8 @@ function createWindow () {
     title: "TGS Debug application",
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    show: false
   })
 
   mainWindow.on('page-title-updated', function(e) {
@@ -36,7 +37,12 @@ function createWindow () {
     mainWindow = null
   })
 
-  mainWindow.maximize();
+  mainWindow.once("ready-to-show", function() {
+    mainWindow.show();
+    mainWindow.maximize();
+  })
+
+  
 }
 
 // This method will be called when Electron has finished
