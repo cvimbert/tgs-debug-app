@@ -56,6 +56,9 @@
   color: rgba(199, 146, 234, 1);
   font-weight: bold;
 }
+.cm-extension-ref {
+  color: rgba(199, 146, 234, 1);
+}
 .cm-boolean {
   color: #ff8a8a;
 }

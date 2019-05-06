@@ -53,6 +53,9 @@
             {regex: /\?[A-Za-z0-9-]+/, next: "", token: "block-id"},
             {regex: /->|=>/, token: "keyword"}
         ],
+        blockExtension: [
+            { regex: /#[A-Za-z0-9-]+/, token: "extension-ref", pop: true }
+        ],
         script: [
             { regex: /\/\/.*/, token: "comment" },
             { regex: /\{/, token: "operator", next: "scriptBlock"}
@@ -74,6 +77,7 @@
             { regex: /\(/, next: "coloredCondition" }
         ],
         block: [
+            { regex: /before:|after:/, token: "block-inline-item", push: "blockExtension" },
             { regex: /@[A-Za-z0-9-]+/, push: "script", token: "script-id-b" },
             { regex: /[\[\]]/, token: "block-inline-item" },
             { regex: /\/\*/, token: "comment", next: "comment" },

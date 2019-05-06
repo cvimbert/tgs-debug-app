@@ -11,23 +11,23 @@
 #index
 
 	<title> Tuto fight
-    <subtitle> Round 1
+    <subtitle> Round %currentRound%
     
-    * => #recap
+    * => #start
 
 
 #recap
 
 	Début du combat
+    
     Niveau actuel de vie : %player.life%
     Niveau actuel de magie : %player.magic%
 
-	* => #start
 
-
-#start
+#start before: #recap after: #recap
 
 	Je m'approche de l'extrémité du tunnel, m'apprêtant à faire un choix entre le passage de gauche ou de droite, quand un bang sonore retentit, projetant débris et poussière aveuglante tout autour de moi.
+    
     
     * Je fais un saut en arrière -> #sautArriere
     * Je plonge face contre terre -> #plongeon
