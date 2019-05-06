@@ -73,6 +73,11 @@
                 (click)="selectedDisplayPanel = 'variables'">
                 <i class="fas fa-list-alt"></i>
               </button>
+              <button title="Display graph"
+                [class.selected]="selectedDisplayPanel === 'graph'"
+                (click)="selectedDisplayPanel = 'graph'">
+                <i class="fas fa-list-alt"></i>
+              </button>
             </div>
           </div>
           <div id="main-structure-scroll" class="display-container">
@@ -85,6 +90,7 @@
               </app-main-structure>
               <app-variables-inspector *ngIf="selectedDisplayPanel === 'variables'"></app-variables-inspector>
               <app-logs-viewer #logs *ngIf="selectedDisplayPanel === 'console'"></app-logs-viewer>
+              <app-graph-view *ngIf="selectedDisplayPanel === 'graph'"></app-graph-view>
           </div>
           <div class="invalid-overlay" *ngIf="!isModelValid"></div>
         </div>

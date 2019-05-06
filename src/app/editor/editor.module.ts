@@ -10,11 +10,15 @@ import 'codemirror/addon/hint/show-hint';
 import './anyword-hint';
 import { GameStructureModule } from '../game-structure/game-structure.module';
 import { SequencesManagerComponent } from './sequences-manager/sequences-manager.component';
+import { GraphViewComponent } from './graph-view/graph-view.component';
+import { GraphViewBlockComponent } from './graph-view-block/graph-view-block.component';
 
 @NgModule({
   declarations: [
     EditorComponent,
-    SequencesManagerComponent
+    SequencesManagerComponent,
+    GraphViewComponent,
+    GraphViewBlockComponent
   ],
   imports: [
     CommonModule,

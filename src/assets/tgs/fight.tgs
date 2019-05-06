@@ -41,7 +41,7 @@
     La poussière retombe doucement vers le sol.
    
     
-    * Je peux maintenant sortir mon arme... -> #sortArmeOk
+    * Je peux maintenant sortir mon arme... -> #sorsArmeOk
 
 
 #plongeon
@@ -72,3 +72,5 @@
 #sorsArmeOk
 
 	Txt...
+    
+    * Par-là -> test/parla
