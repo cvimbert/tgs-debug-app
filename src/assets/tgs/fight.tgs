@@ -10,6 +10,10 @@
 
 #index
 
+	@head {
+    	log("yes", rand(5));
+    }
+
 	<title> Tuto fight
     <subtitle> Round %currentRound%
     
@@ -94,10 +98,11 @@
     * Je préfère renoncer -> #skipGetSword
     
     
-#actionRecupEpee
+#actionRecupEpee after: #lifeDisplay
  	
  	@init {
-    	local.action = 2;
+    	local.action = rand(3);
+        log(local.action);
         
         if (local.action == 0) {
         	player.life -= 2;
@@ -127,11 +132,11 @@
         
         Un pas en avant.
         
-        Et je saisis l'épée par sa poignée (terme pour poignée à trouver ??).
+        Et je saisis l'épée par la garde.
         
-        La créature frissonne et jette un ensemble de pattes vers moi.
+        La créature frissonne et jette une masse de pattes vers moi.
         
-        Trop tard. J'ai réculé hors de portée de ses coups.
+        Trop tard pour elle. J'ai réculé hors de portée de ses coups.
     ]
  
  
@@ -152,4 +157,7 @@
     
 #debutCombat
 
-	Txt...
+	Txt...qsq
+    
+    * fsdfds -> dsqdsq/fdsqdsqdq
+    

@@ -43,7 +43,7 @@ export class TgsLoadingService extends GameManager {
   }
 
   get tgsAssetsPath(): string {
-    console.log(environment);
+    // console.log(environment);
     return environment.production ? this.tgsProdAssetsPath : this.tgsDebugAssetsPath;
   }
 
@@ -159,8 +159,15 @@ export class TgsLoadingService extends GameManager {
       if (this.electronService.isElectronApp) {
 
         let fs = this.electronService.remote.require("fs");
+        let nodePath = this.electronService.remote.require("path");
 
         let mpath = this.tgsAssetsPath + path + ".tgs";
+
+        let fold: string = nodePath.dirname(mpath);
+
+        if (!fs.existsSync(fold)) {
+          fs.mkdirSync(fold, { recursive: true });
+        }
 
         fs.writeFile(mpath, content, (err: Error) => {
           if (err) {
@@ -168,7 +175,7 @@ export class TgsLoadingService extends GameManager {
           } else {
             resolve();
           }
-        });
+        });        
         
       } else {
         localStorage.setItem("editor-" + path, content);
