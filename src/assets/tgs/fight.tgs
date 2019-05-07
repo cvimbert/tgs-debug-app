@@ -4,7 +4,7 @@
     adv.life = 10;
     adv.magic = 5;
     
-    currentRound = 0;
+    currentRound = 1;
     typeArme = 0;
 }
 
@@ -24,7 +24,12 @@
     Niveau actuel de magie : %player.magic%
 
 
-#start before: #recap after: #recap
+#lifeDisplay
+
+	Nouvelle valeur de vie : %player.life%
+    
+
+#start before: #recap
 
 	Je m'approche de l'extrémité du tunnel, m'apprêtant à faire un choix entre le passage de gauche ou de droite, quand un bang sonore retentit, projetant débris et poussière aveuglante tout autour de moi.
     
@@ -41,7 +46,7 @@
     La poussière retombe doucement vers le sol.
    
     
-    * Je peux maintenant sortir mon arme... -> #sorsArmeOk
+    * Je peux maintenant sortir mon arme... -> #debutCombat
 
 
 #plongeon
@@ -55,7 +60,7 @@
     (Nouvelle valeur de vie : %player.life%)
     
     
-    * Je me redresse comme je peux et sors mon arme -> #sorsArmeOk
+    * Je me redresse comme je peux et sors mon arme -> #debutCombat
 
 
 #sorsArme
@@ -65,12 +70,86 @@
     
     * Tant pis pour l'épée, il me reste une dague -> #sorsDague
     * Je me jette sur l'épée -> #recupEpee
-    * Un sort, peut-être... -> #sort
      
+    
+
+#sorsDague
+
+	@init {
+    	typeArme = 1;
+    }
+
+	Tant pis pour l'épée, il me reste toujours la dague, accrochée en permanence à ma ceinture en cas de coup dur.
+    
+    Et si par hasard je réussis à m'approcher de la lame qui gît au sol au gré du combat, je pourrai toujours tenter un mouvement pour la récupérer.
+    
+    * Allons-y gaiement... -> #debutCombat
 
 
-#sorsArmeOk
+#recupEpee
+
+	Me rapprochant dangereusement de l'agitation frénétique des membres de la créature que je distingue dans la pénombre, je tente un glissé rapide le long du mur de droite du couloir, le bras tendu vers la lame qui pointe vers moi.
+    
+    * Le mouvement est délicat -> #actionRecupEpee
+    * Je préfère renoncer -> #skipGetSword
+    
+    
+#actionRecupEpee
+ 	
+ 	@init {
+    	local.action = 2;
+        
+        if (local.action == 0) {
+        	player.life -= 2;
+        }
+    }
+    
+    [(? local.action == 0)
+    	Je ne peux malheureusement pas tendre la main assez loin, une griffe (croc, patte ?) de la créature s'étant tendue vers moi au dernier moment, provoquant un mouvement de recul.
+        
+        Je ne peux attraper mon arme que par la lame, et non par la poignée comme je l'espérai.
+        
+        La paume de ma main est entaillée de haut en bas, mais la douleur n'est pas trop forte, et chose la plus importante, j'ai de nouveau mon épée en main.
+    ]
+    
+    [(? local.action == 1) 
+    	Je tends la main vers l'épée, doucement mais promptement. 
+        
+        Mais juste au moment où j'allais l'atteindre, mon pied droit dérape sur un amas de pierres instable, attirant l'attention de la créature, qui jette vers moi une de ses pattes griffues.
+    	
+    	J'esquive le coup sans problème, mais la tentative pour récupérer mon arme est infructueuse.
+    ]
+    
+    [(? local.action == 2)
+    	Je fais un bond en avant, promptement mais sûrement. La créature semble s'agiter dans la poussière.
+        
+        Serait-ce possible qu'elle ne m'ait pas vue ?
+        
+        Un pas en avant.
+        
+        Et je saisis l'épée par sa poignée (terme pour poignée à trouver ??).
+        
+        La créature frissonne et jette un ensemble de pattes vers moi.
+        
+        Trop tard. J'ai réculé hors de portée de ses coups.
+    ]
+ 
+ 
+ 	* Au combat maintenant -> #debutCombat
+
+
+#skipGetSword
+
+	Avec le peu de recul que je peux avoir sur la situation, la manoeuvre à effectuer pour récupérer l'épée me semble trop périlleuse.
+    
+    Je retenterai plus tard.
+    
+    Si l'occasion s'en présente...
+    
+    
+    * Il n'y a plus qu'une chose à faire... -> #debutCombat
+    
+    
+#debutCombat
 
 	Txt...
-    
-    * Par-là -> test/parla
