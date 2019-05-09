@@ -98,7 +98,7 @@
 #actionRecupEpee after: #lifeDisplay
  	
  	@init {
-    	local.action = rand(3);
+    	local.action = 0;
         
         if (local.action == 0) {
         	player.life -= 2;
@@ -110,6 +110,11 @@
     }
     
     [(? local.action == 0)
+    	
+    	@init {
+        	log("ici");
+        }
+    
     	Je ne peux malheureusement pas tendre la main assez loin, une griffe (croc, patte ?) de la créature s'étant tendue vers moi au dernier moment, provoquant un mouvement de recul.
         
         Je ne peux attraper mon arme que par la lame, et non par la poignée comme je l'espérai.
@@ -177,7 +182,7 @@
 
 	Je lève les mains, les écarte, et commence à murmurer.
     
-    * (? player.magic >= 2) Boule de feu: -2PM -> #fireball
+    * [unique] (? player.magic >= 2) Boule de feu: -2PM -> #fireball
     * (? player.magic >= 2) Affaiblissement: -2PM -> #weaken
     * (? player.magic >= 3) Guérison: -3PM -> #healing
 
@@ -235,7 +240,7 @@
     
     Le cri qu'elle pousse (mais est-ce vraiment un cri) me déchire les oreilles.
     
-    * Maintenant à l'attaque -> #creatureAttack
+    * Maintenant, à l'attaque -> #creatureAttack
 
 #weaken
 

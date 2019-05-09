@@ -22,4 +22,3 @@
 - Affichage des variables dans l'état où elles sont à un point donné	
 
 - Réorganisation de la configuration du language
-- Affichage des messages de log dans la console : à peaufiner
