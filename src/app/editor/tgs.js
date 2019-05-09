@@ -18,6 +18,9 @@
     var WORD = /[\w$]+/, RANGE = 500;
 
   CodeMirror.registerHelper("hint", "anyword", function(editor, options) {
+
+    console.log(options, editor);
+
     var word = options && options.word || WORD;
     var range = options && options.range || RANGE;
     var cur = editor.getCursor(), curLine = editor.getLine(cur.line);
@@ -35,6 +38,10 @@
           if (line == cur.line && m[0] === curWord) continue;
           if ((!curWord || m[0].lastIndexOf(curWord, 0) == 0) && !Object.prototype.hasOwnProperty.call(seen, m[0])) {
             seen[m[0]] = true;
+
+            console.log(m[0]);
+
+            list.push("ok");
             list.push(m[0]);
           }
         }

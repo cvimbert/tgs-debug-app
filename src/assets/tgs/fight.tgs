@@ -6,13 +6,10 @@
     
     currentRound = 1;
     typeArme = 0;
+    protectionActivated = false;
 }
 
 #index
-
-	@head {
-    	log("yes", rand(5));
-    }
 
 	<title> Tuto fight
     <subtitle> Round %currentRound%
@@ -102,10 +99,13 @@
  	
  	@init {
     	local.action = rand(3);
-        log(local.action);
         
         if (local.action == 0) {
         	player.life -= 2;
+        }
+        
+        if (local.action == 2) {
+        	typeArme = 0;
         }
     }
     
@@ -130,9 +130,7 @@
         
         Serait-ce possible qu'elle ne m'ait pas vue ?
         
-        Un pas en avant.
-        
-        Et je saisis l'épée par la garde.
+        Un pas en avant, et je saisis l'épée par la garde.
         
         La créature frissonne et jette une masse de pattes vers moi.
         
@@ -147,17 +145,114 @@
 
 	Avec le peu de recul que je peux avoir sur la situation, la manoeuvre à effectuer pour récupérer l'épée me semble trop périlleuse.
     
-    Je retenterai plus tard.
-    
-    Si l'occasion s'en présente...
+    Je retenterai plus tard... si l'occasion s'en présente...
     
     
     * Il n'y a plus qu'une chose à faire... -> #debutCombat
     
     
-#debutCombat
+#debutCombat after: #fightAction1
 
-	Txt...qsq
+	Peu à peu, le nuage de poussière se résorbe, et la créature apparait. Enfin ce que je devrais considérer comme une créature...
     
-    * fsdfds -> dsqdsq/fdsqdsqdq
+    Est-ce une araignée, un singe ?
     
+    Le haut de son corps est recouvert de ce qui pourrait être au mieux décrit comme une carapace de crustacé, n'étaient les innombrables yeux qui en parsemaient la surface, s'ouvrant et se refermant à un rythme hypnotisant.
+    
+    La partie basse de son être pourrait être celui d'une chêvre, couvert d'un pelage crevé par endroit de bubons suintants, desquels naissaient des amas de pattes-griffes-tentacules ondulant dans ma direction.
+    
+    Et le tout glissant dans ma direction, dans un crissement insupportable pour les oreilles.
+    
+    
+    
+#fightAction1
+
+	* (? player.magic >= 2) Je jette un sort -> #spell
+    * J'attaque -> #attack
+    * J'essaie au maximum de me protéger -> #protection
+    
+
+
+#spell
+
+	Je lève les mains, les écarte, et commence à murmurer.
+    
+    * (? player.magic >= 2) Boule de feu: -2PM -> #fireball
+    * (? player.magic >= 2) Affaiblissement: -2PM -> #weaken
+    * (? player.magic >= 3) Guérison: -3PM -> #healing
+
+
+#attack
+
+	Txt...
+    
+    
+#creatureAttack
+
+	@init {
+    	attackType = rand(1);
+        
+        if (attackType == 0) {
+        	player.life -= 3;
+        }
+    }
+    
+    
+    [(? attackType == 0)
+    	La créature glisse vers moi, à une telle vitesse que je n'ai rien vue venir.
+        
+        Avant que j'aie pu réagir, une de ses pattes a transpercé mon plastron sur une dizaine de centimètres.
+        
+        La douleur est cinglante.
+        
+		Nouvelle valeur de vie : %player.life%
+    ]
+    
+    
+    * Nouveau round -> #debutCombat
+
+#protection
+
+	@init {
+    	protectionActivated = true;
+    }
+
+	J'aspire longuement l'air vicié qui m'entoure, pour absorber un maximum du peu d'énergie qui resterait dans l'atmosphère. Je le régurgite d'une traite, lui donnant la forme et la dureté d'un mur d'acier entre moi et la bête.
+    
+    Avec un peu de chance, le mur devrait tenir quelque minutes.
+    
+    * A l'attaque -> #creatureAttack
+
+
+#fireball
+
+	@init {
+    	player.magic -= 2;
+        adv.life -= 4;
+    }
+
+	La chaleur monte de mes mains, l'air se met à vibrer puis à rougeoyer. Et brutalement, cette fournaise quitte mes paumes sous forme d'une boule qui percute la créature, la repoussant vers l'arrière.
+    
+    Le cri qu'elle pousse (mais est-ce vraiment un cri) me déchire les oreilles.
+    
+    * Maintenant à l'attaque -> #creatureAttack
+
+#weaken
+
+	Mes paumes émettent un halo bleuté qui s'écarte de moi pour envelopper la créature. Qui pousse un cri, semblable à un rire éraillé.
+    
+    J'aurais pu lui jeter un saut d'eau, celà aurait eu tout autant d'effet.
+    
+    * A l'attaque -> #creatureAttack
+
+
+#healing
+
+	@init {
+    	player.life += 4;
+        player.magic -= 3;
+    }
+    
+    Sort de guérison
+    
+   	* Après sort, attaque créature -> #creatureAttack
