@@ -37,7 +37,7 @@
         ],
         scriptBlock: [
             { regex: /\/\/.*/, token: "comment" },
-            { regex: /\/\*/, token: "comment", next: "comment" },
+            { regex: /\/\*/, token: "comment", push: "comment" },
             { regex: /if|for|elseif/, token: "builtin", push: "conditional" },
             { regex: /true|false/, token: "boolean" },
             { regex: /".*?"/, token: "string" },
@@ -49,6 +49,8 @@
             { regex: /\(/, next: "coloredCondition" }
         ],
         block: [
+            { regex: /\/\/.*/, token: "comment" },
+            { regex: /\/\*/, token: "comment", push: "comment" },
             { regex: /before:|after:/, token: "block-inline-item", push: "blockExtension" },
             { regex: /@[A-Za-z0-9-]+/, push: "script", token: "script-id-b" },
             { regex: /[\[\]]/, token: "block-inline-item" },
