@@ -77,6 +77,9 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
 
   @HostListener('window:keyup', ['$event'])
   onKeyUp(evt: KeyboardEvent) {
+
+    return;
+    
     if (evt.ctrlKey) {
 
       if (!evt.altKey) {

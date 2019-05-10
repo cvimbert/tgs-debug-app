@@ -280,7 +280,9 @@ export class EditorComponent implements OnInit {
 
   selectBlock(model: GameBlockModel) {
     this.editor.codeMirror.focus();
-    this.setCursorPos(model.endIndex);
+
+    // à voir
+    this.setCursorPos(model.startIndex);
     this.currentBlock = model;
   }
 
