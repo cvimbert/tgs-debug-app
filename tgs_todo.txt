@@ -9,8 +9,10 @@ LANGAGE TGS
 - Directives sur les liens (unique) (last) : voir la logique d'execution
 - Génération de messages d'erreurs clairs
 
+
 ORGANISATION DU MODELE DE DONNEES
 - Réorganisation de la configuration du language
+
 
 EDITEUR
 - Console d'édition des variables (triées par groupe)
