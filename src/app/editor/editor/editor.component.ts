@@ -196,9 +196,14 @@ export class EditorComponent implements OnInit {
       let endIndex = blockNum < this.mainModel.blocksArray.length - 1 ? this.mainModel.blocksArray[blockNum + 1].startIndex : this.content.length;
 
       if (index >= block.startIndex && index < endIndex) {
+
+        if (block !== this.currentBlock) {
+          this.highlightSelectedBlockLines(block);
+        }
+        
         this.currentBlock = block;
 
-        this.highlightSelectedBlockLines(block);
+        
 
         this.ref.detectChanges();
         return;
