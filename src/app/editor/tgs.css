@@ -12,6 +12,10 @@
   cursor: pointer;
 }
 
+.CodeMirror-linebackground.selected {
+  background-color: #344147;
+}
+
 .cm-s-material.CodeMirror {
   background-color: #263238;
   color: rgba(233, 237, 237, 1);

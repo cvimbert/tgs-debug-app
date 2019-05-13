@@ -195,14 +195,45 @@ export class EditorComponent implements OnInit {
 
       let endIndex = blockNum < this.mainModel.blocksArray.length - 1 ? this.mainModel.blocksArray[blockNum + 1].startIndex : this.content.length;
 
-      if (index >= block.startIndex && index <= endIndex) {
+      if (index >= block.startIndex && index < endIndex) {
         this.currentBlock = block;
+
+        this.highlightSelectedBlockLines(block);
+
         this.ref.detectChanges();
         return;
       }
 
       blockNum++;
     }
+  }
+
+  highlightSelectedBlockLines(block: GameBlockModel): number[] {
+    let lines: number[] = [];
+
+    let pos: any = this.editor.codeMirror.getDoc().getCursor();
+    let startLine = this.getPosition(block.startIndex)["line"];
+
+    let blockIndex = this.mainModel.blocksArray.indexOf(block);
+
+    let endLine = (blockIndex >=  this.mainModel.blocksArray.length - 1) ? this.getPosition(block.endIndex)["line"] : (this.getPosition(this.mainModel.blocksArray[blockIndex + 1].startIndex))["line"] - 1;
+
+    let doc = this.editor.codeMirror.getDoc();
+
+    for (let i: number = 0; i < doc.lineCount(); i++) {
+      (doc as any).removeLineClass(i, "background", "selected");
+    }
+
+    for (let i: number = startLine; i <= endLine; i++) {
+      lines.push(i);
+      (doc as any).addLineClass(i, "background", "selected");
+    }
+
+
+
+    console.log(lines);
+
+    return lines;
   }
 
   onCursorActivity(evt: any) {
@@ -281,9 +312,12 @@ export class EditorComponent implements OnInit {
   selectBlock(model: GameBlockModel) {
     this.editor.codeMirror.focus();
 
+    this.highlightSelectedBlockLines(model);
+    
     // à voir
     this.setCursorPos(model.startIndex);
     this.currentBlock = model;
+   
   }
 
   onKeyHandled(key: string) {
