@@ -200,14 +200,15 @@
 
 	@init {
     	attackType = rand(1);
-        
-        if (attackType == 0) {
-        	player.life -= 3;
-        }
     }
     
     
     [(? attackType == 0)
+    	
+        @init {
+        	player.life -= 3;
+        }
+    
     	La créature glisse vers moi, à une telle vitesse que je n'ai rien vue venir.
         
         Avant que j'aie pu réagir, une de ses pattes a transpercé mon plastron sur une dizaine de centimètres.
