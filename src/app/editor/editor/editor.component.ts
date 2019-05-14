@@ -109,7 +109,7 @@ export class EditorComponent implements OnInit {
       }
     });
 
-    this.bdSubject.pipe(debounceTime(1000)).subscribe(pos => {
+    this.bdSubject.subscribe(pos => {
 
       if (this.tgsService.rawContent !== "") {
         this.refreshInspector();
@@ -164,6 +164,22 @@ export class EditorComponent implements OnInit {
 
     // à voir avec angular
     window.history.back();
+  }
+
+  setBlockScroll(block: GameBlockModel) {
+    let startLine: number = this.getPosition(block.startIndex)["line"];
+    let endLine: number = this.getPosition(block.endIndex)["line"] + 1;
+
+    this.editor.codeMirror.scrollIntoView({
+      from: {
+        line: startLine,
+        ch: 0
+      },
+      to: {
+        line: endLine,
+        ch: 0
+      },
+    }, 100);
   }
 
   onExternalNavigation(navigationData: ExternalNavigation) {
@@ -319,10 +335,10 @@ export class EditorComponent implements OnInit {
 
     this.highlightSelectedBlockLines(model);
     
-    // à voir
-    this.setCursorPos(model.startIndex);
     this.currentBlock = model;
    
+    this.setCursorPos(model.startIndex);
+    this.setBlockScroll(model);
   }
 
   onKeyHandled(key: string) {
