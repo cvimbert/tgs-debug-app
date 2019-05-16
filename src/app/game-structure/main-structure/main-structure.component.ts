@@ -44,10 +44,12 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
   linksAnimationState = "none";
 
   @Output("externalNavigation") externalNavigation = new EventEmitter<ExternalNavigation>();
+  @Output("blockSelection") blockSelection = new EventEmitter<string>();
 
   @Input("mode") mode: string = "normal";
   @Input("path") path: string;
   @Input("content") content: string;
+  @Input("debugDisplay") debugDisplay = false;
 
   constructor(
     private loadingService: TgsLoadingService
@@ -61,6 +63,10 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
 
   ngAfterViewChecked() {
     //this.scrollToBottom();
+  }
+
+  selectBlock(blockId: string) {
+    this.blockSelection.emit(blockId);
   }
 
   animationState(index: number): string {

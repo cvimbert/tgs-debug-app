@@ -7,7 +7,7 @@
       (@hiddenVisible.done)="paragraphAnimationEnd($event, i)"
       [class.no-display]="unitsArray.length === 0"
       *ngFor="let unitsArray of sequence.units; let i = index">
-
+      <div class="block-id" (click)="selectBlock(unitsArray[0].blockId)">#{{ unitsArray[0].blockId }}</div>
       <app-text-block-line *ngFor="let unit of unitsArray" [unit]="unit"></app-text-block-line>
     </div>
     <div class="links" [@linksAnimation]="linksAnimationState">

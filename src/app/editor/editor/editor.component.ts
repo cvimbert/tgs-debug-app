@@ -57,6 +57,8 @@ export class EditorComponent implements OnInit {
   messageText: string;
   messageState = "hidden";
 
+  debugMode = false;
+
   @ViewChild("editor") editor: CodemirrorComponent;
   @ViewChild("logs") logsPanel: LogsViewerComponent;
 
@@ -100,7 +102,6 @@ export class EditorComponent implements OnInit {
   
             // Pourquoi un reload ?
             this.reloadGameDisplay();
-  
           }, 500);
         });
 
@@ -339,6 +340,10 @@ export class EditorComponent implements OnInit {
    
     this.setCursorPos(model.startIndex);
     this.setBlockScroll(model);
+  }
+
+  selectBlockById(blockId: string) {
+    this.selectBlock(this.mainModel.blocks[blockId]);
   }
 
   onKeyHandled(key: string) {
