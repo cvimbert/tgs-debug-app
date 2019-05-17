@@ -18,7 +18,6 @@ EDITEUR
 - Console d'édition des variables (triées par groupe)
 - Suppression de variables (à voir le principe)
 - Empêcher le curseur multiple sur code mirror
-- Bug de reset bizarre en mode editeur
 - Que faire des variables en mode debug ?? De la même manière, que faire des messages de log ?
 - Un petit test sur android pour voir si ça marche bien
 - Réflexion sur la gestion des données
@@ -33,4 +32,3 @@ EDITEUR
 - Affichage d'icones dans les liens
 - Affichage de débug dans le display (id du bloc affiché, id liens affichés, 
 - Sauvegarde des settings editeur (mode debug, path courant, etc)
-- En mode débug, possibilité de remonter à un noeud donné dans la séquence (icône flêche sur le bloc)
