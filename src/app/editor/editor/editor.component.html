@@ -52,7 +52,7 @@
               <ng-container *ngIf="selectedDisplayPanel === 'display'">
                 <button title="Reload sequence" (click)="reloadGameDisplay()"><i class="fas fa-redo"></i></button>
                 <button title="Reset sequence" (click)="resetGameDisplay()"><i class="fas fa-sync-alt"></i></button>
-                <button title="Debug display" (click)="debugMode = !debugMode" [class.selected]="debugMode"><i class="fas fa-check"></i></button>
+                <button title="Debug display" (click)="toggleDebugMode()" [class.selected]="debugMode"><i class="fas fa-check"></i></button>
               </ng-container>
               <ng-container *ngIf="selectedDisplayPanel === 'console'">
                 <button title="Clear logs" (click)="clearLogs()"><i class="fas fa-trash"></i></button>
@@ -83,6 +83,7 @@
           </div>
           <div id="main-structure-scroll" class="display-container">
               <app-main-structure
+                #displayView
                 *ngIf="selectedDisplayPanel === 'display' && content"
                 (externalNavigation)="onExternalNavigation($event)"
                 (blockSelection)="selectBlockById($event)"

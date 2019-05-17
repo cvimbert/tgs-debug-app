@@ -5,6 +5,7 @@ import { MainStructure } from 'tgs-model';
 import { ParsingResult } from 'tgs-parser';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { sequence } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -79,7 +80,6 @@ export class TgsLoadingService extends GameManager {
     if (!this.electronService.isElectronApp) {
       super.registerSequence(path);
     }
-    
   }
 
   get hasBack(): boolean {

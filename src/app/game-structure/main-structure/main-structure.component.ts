@@ -165,6 +165,10 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
     }
   }
 
+  rewindTo(index: number) {
+    this.loadingService.rewindTo(index);
+  }
+
   loadLink(link: LinkModel) {
 
     this.linksAnimationState = "hidden";
@@ -185,8 +189,6 @@ export class MainStructureComponent implements OnInit, OnDestroy, AfterViewCheck
           globalRef: link.globalLinkRef,
           localRef: link.localLinkRef
         });
-
-        
       }
     }
     

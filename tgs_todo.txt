@@ -33,3 +33,4 @@ EDITEUR
 - Affichage d'icones dans les liens
 - Affichage de débug dans le display (id du bloc affiché, id liens affichés, 
 - Sauvegarde des settings editeur (mode debug, path courant, etc)
+- En mode débug, possibilité de remonter à un noeud donné dans la séquence (icône flêche sur le bloc)

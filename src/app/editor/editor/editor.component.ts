@@ -10,6 +10,7 @@ import { ExternalNavigation } from '../interfaces/external-navigation.interface'
 import { LogsViewerComponent } from 'src/app/game-structure/logs-viewer/logs-viewer.component';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ElectronService } from 'ngx-electron';
+import { MainStructureComponent } from 'src/app/game-structure/main-structure/main-structure.component';
 
 @Component({
   selector: 'app-editor',
@@ -61,6 +62,7 @@ export class EditorComponent implements OnInit {
 
   @ViewChild("editor") editor: CodemirrorComponent;
   @ViewChild("logs") logsPanel: LogsViewerComponent;
+  @ViewChild("displayView") displayView: MainStructureComponent
 
   constructor(
     private route: ActivatedRoute,
@@ -258,10 +260,6 @@ export class EditorComponent implements OnInit {
       (doc as any).addLineClass(i, "background", "selected");
     }
 
-
-
-    console.log(lines);
-
     return lines;
   }
 
@@ -276,6 +274,14 @@ export class EditorComponent implements OnInit {
       this.initialized = true;
     }
     
+  }
+
+  toggleDebugMode() {
+    this.debugMode = !this.debugMode;
+
+    setTimeout(() => {
+      this.displayView.scrollToBottom();
+    });
   }
 
   convertLineAndChToPosition(line: number, ch: number): number {
