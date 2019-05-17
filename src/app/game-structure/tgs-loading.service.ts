@@ -30,10 +30,11 @@ export class TgsLoadingService extends GameManager {
   }
 
   modeInit(mode: string, content: string) {
+    console.log("mode init");
     if (mode === GameMode.NORMAL) {
       this.init();
     } else if (mode === GameMode.DEBUG) {
-      console.log(content);
+      console.log("ici", content);
       let result: ParsingResult = this.parser.parseTGSString(content);
       let structure: MainStructure = MainStructure.loadFromParsingResult(result);
       this.sequence = new GameSequence(structure, this);
@@ -237,7 +238,7 @@ export class TgsLoadingService extends GameManager {
 
     if (this.mode === GameMode.DEBUG) {
       return new Promise<GameSequence>((resolve: Function, reject: Function) => {
-        //console.log(this.rawContent);
+        // console.log(this.rawContent);
         let result: ParsingResult = this.parser.parseTGSString(this.rawContent);
         let structure: MainStructure = MainStructure.loadFromParsingResult(result);
         this.sequence = new GameSequence(structure, this);

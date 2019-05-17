@@ -428,6 +428,12 @@ export class EditorComponent implements OnInit {
   }
 
   onNavigation(path: string) {
+
+    // On change de séquence, donc remise à zéro des data de sauvegarde
+    // On pourrait aussi enregistrer un structure de sauvegarde par sequence (en mode débug)
+    // A voir...
+    this.tgsService.clearGame();
+
     this.router.navigate(["editor"], {
       queryParams: {
         path: path
