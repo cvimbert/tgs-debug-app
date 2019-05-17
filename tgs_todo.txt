@@ -26,10 +26,10 @@ EDITEUR
 - Raccourcis clavier à revoir
 - Extension des blocs extendsAfter et extendsBefore à vérifier
 - Vue graph de l'éditeur ? Peut-être utile. Ou alors un inspecteur de séquences plus efficace peut suffire ?
-- Alterner la couleur des fonds de lignes en fonction de l'alternance des blocs // utile ??
 - Affichage des scripts dans le sélecteur de blocks
 - En gros, amélioration de l'inspecteur de séquence
 - Sur le display d'erreur, clic pour redirection vers la ligne et le caractère qui posent soucis (si c'est possible facilement)
 - Afficher la ligne courante en surbrillance
 - Affichage d'icones dans les liens
-- Affichage de débug dans le display (id du bloc afficher, id liens affichés, 
+- Affichage de débug dans le display (id du bloc affiché, id liens affichés, 
+- Sauvegarde des settings editeur (mode debug, path courant, etc)

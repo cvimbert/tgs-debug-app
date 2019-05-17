@@ -194,6 +194,13 @@ export class EditorComponent implements OnInit {
     this.save();
   }
 
+  selectError(line: number, char: number) {
+    this.editor.codeMirror.getDoc().setCursor({
+      line: line,
+      ch: char
+    });
+  }
+
   refreshInspector() {
     if (this.content && this.content !== "") {
       let parser: TGSParser = new TGSParser();
