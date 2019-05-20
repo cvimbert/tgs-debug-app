@@ -4,7 +4,7 @@
     adv.life = 10;
     adv.magic = 5;
     
-    currentRound = 1;
+    local.currentRound = 1;
     typeArme = 0;
     protectionActivated = false;
 }
@@ -12,7 +12,7 @@
 #index
 
 	<title> Tuto fight
-    <subtitle> Round %currentRound%
+    <subtitle> Round %local.currentRound%
     
     * => #start
 
